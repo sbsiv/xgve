@@ -1,0 +1,134 @@
+/* XGVE — Colour system
+ * Identity: Void Black + Signal White + Signal Red. Red must remain scarce;
+ * its power comes from concentration. Neutrals are pure grayscale (no hue cast)
+ * to keep the "engineered / void" feel. The canonical expression is DARK
+ * (white structure on black). A light-background adaptation scope is provided.
+ */
+
+:root {
+  /* ---- Brand primitives ---------------------------------------------- */
+  --xg-black: #000000;              /* Void Black  — primary background     */
+  --xg-white: #ffffff;              /* Signal White — structure & wordmark  */
+  --xg-red:   #e6021b;              /* Signal Red — visor, needle, X accent */
+
+  /* channel triplets for alpha compositing: rgb(var(--xg-red-rgb) / .12) */
+  --xg-black-rgb: 0 0 0;          /* @kind other */
+  --xg-white-rgb: 255 255 255;    /* @kind other */
+  --xg-red-rgb:   230 2 27;       /* @kind other */
+
+  /* Signal Red states — brighter on hover (advancing), deeper on press.
+     No glow, no gradient: flat, standardised swatch. */
+  --xg-red-bright: #ff2036;         /* hover / advancing                    */
+  --xg-red-deep:   #b00015;         /* press / held                         */
+  --xg-red-dim:    #6e000e;         /* deepest fill for quiet red surfaces  */
+
+  /* ---- Neutral ramp (grayscale, dark-first) -------------------------- */
+  --xg-n-0:  #000000;               /* = Void Black, base canvas            */
+  --xg-n-1:  #0a0a0b;               /* inset / recessed                     */
+  --xg-n-2:  #0f0f11;               /* surface                              */
+  --xg-n-3:  #151517;               /* raised surface / card                */
+  --xg-n-4:  #1c1c1f;               /* overlay surface / input              */
+  --xg-n-5:  #26262a;               /* hover surface / subtle border        */
+  --xg-n-6:  #313136;               /* default border                       */
+  --xg-n-7:  #43444a;               /* strong border / divider              */
+  --xg-n-8:  #5c5d64;               /* faint text / disabled                */
+  --xg-n-9:  #83848c;               /* muted text / placeholder             */
+  --xg-n-10: #a8a9b0;               /* secondary text                       */
+  --xg-n-11: #cacbd0;               /* high secondary text                  */
+  --xg-n-12: #e9eaec;               /* near-white text                      */
+  --xg-n-13: #ffffff;               /* = Signal White                       */
+
+  /* ---- Functional data/status (OPTIONAL, use sparingly) --------------
+     Red is the brand signal — reach for these ONLY in dense data/status UIs.
+     Never let them compete with red in marketing or hero surfaces. Muted,
+     technical, low-chroma on purpose. */
+  --xg-fn-positive: #2fbf71;
+  --xg-fn-warning:  #e8a317;
+  --xg-fn-info:     #4a9de8;
+  --xg-fn-critical: var(--xg-red);  /* critical == the signal colour        */
+
+  /* ===================================================================
+     SEMANTIC ALIASES — DARK (canonical). Consume these, not primitives.
+     =================================================================== */
+
+  /* Surfaces */
+  --surface-canvas:      var(--xg-n-0);   /* page background (the black field)*/
+  --surface-inset:       var(--xg-n-1);   /* wells, code blocks, track        */
+  --surface-default:     var(--xg-n-2);   /* panels                           */
+  --surface-raised:      var(--xg-n-3);   /* cards                            */
+  --surface-overlay:     var(--xg-n-4);   /* menus, popovers, dialogs, inputs */
+  --surface-hover:       rgb(var(--xg-white-rgb) / 0.05);
+  --surface-active:      rgb(var(--xg-white-rgb) / 0.09);
+  --surface-inverse:     var(--xg-white); /* white geometric panel motif      */
+
+  /* Content (text & icons) */
+  --content-primary:     var(--xg-white);
+  --content-secondary:   var(--xg-n-10);
+  --content-muted:       var(--xg-n-9);
+  --content-faint:       var(--xg-n-8);
+  --content-inverse:     var(--xg-n-0);   /* on white / on red-bright panels  */
+  --content-on-accent:   var(--xg-white); /* white text over Signal Red       */
+
+  /* Borders & lines (thin technical rules) */
+  --border-subtle:       var(--xg-n-4);
+  --border-default:      var(--xg-n-6);
+  --border-strong:       var(--xg-n-7);
+  --border-inverse:      var(--xg-white);
+
+  /* Accent — Signal Red */
+  --accent:              var(--xg-red);
+  --accent-hover:        var(--xg-red-bright);
+  --accent-active:       var(--xg-red-deep);
+  --accent-content:      var(--xg-white);      /* text/icon on a red fill     */
+  --accent-surface:      rgb(var(--xg-red-rgb) / 0.12);  /* quiet red tint    */
+  --accent-surface-hover:rgb(var(--xg-red-rgb) / 0.18);
+  --accent-border:       rgb(var(--xg-red-rgb) / 0.45);
+
+  /* Focus — always the signal colour */
+  --focus-ring:          var(--xg-red);
+  --focus-ring-offset:   var(--xg-n-0);
+
+  /* Selection */
+  --selection-bg:        rgb(var(--xg-red-rgb) / 0.30);
+  --selection-fg:        var(--xg-white);
+}
+
+/* =====================================================================
+   LIGHT-BACKGROUND ADAPTATION — black structure on white, red accent.
+   Apply with <html data-theme="light"> or [data-theme="light"] on a scope.
+   ===================================================================== */
+[data-theme="light"] {
+  --surface-canvas:      var(--xg-white);
+  --surface-inset:       #f2f2f3;
+  --surface-default:     #ffffff;
+  --surface-raised:      #ffffff;
+  --surface-overlay:     #ffffff;
+  --surface-hover:       rgb(var(--xg-black-rgb) / 0.04);
+  --surface-active:      rgb(var(--xg-black-rgb) / 0.07);
+  --surface-inverse:     var(--xg-black);
+
+  --content-primary:     var(--xg-black);
+  --content-secondary:   #3a3a3f;
+  --content-muted:       #6c6d74;
+  --content-faint:       #9a9ba1;
+  --content-inverse:     var(--xg-white);
+  --content-on-accent:   var(--xg-white);
+
+  --border-subtle:       #e6e6e8;
+  --border-default:      #d2d2d6;
+  --border-strong:       #b4b5bb;
+  --border-inverse:      var(--xg-black);
+
+  --accent:              var(--xg-red);
+  --accent-hover:        var(--xg-red-deep);   /* darken on light bg          */
+  --accent-active:       #8a0011;
+  --accent-content:      var(--xg-white);
+  --accent-surface:      rgb(var(--xg-red-rgb) / 0.09);
+  --accent-surface-hover:rgb(var(--xg-red-rgb) / 0.14);
+  --accent-border:       rgb(var(--xg-red-rgb) / 0.35);
+
+  --focus-ring:          var(--xg-red);
+  --focus-ring-offset:   var(--xg-white);
+}
+
+::selection { background: var(--selection-bg); color: var(--selection-fg); }

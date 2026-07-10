@@ -1,0 +1,63 @@
+/* XGVE — Base layer
+ * Minimal, unopinionated reset + document defaults wired to tokens. Consumers
+ * that link styles.css get a black field, Signal-White text and the supporting
+ * type system out of the box. Keep this lean — components carry their own look.
+ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--surface-canvas);
+  color: var(--content-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings default to the display face, tight and engineered. */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  color: var(--content-primary);
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition-colors);
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* Keyboard focus — Signal-Red double ring, never a soft glow. */
+:focus { outline: none; }
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+}
+
+/* Media defaults */
+img, svg, video, canvas { display: block; max-width: 100%; }
+
+/* Tabular numerals wherever mono is used for data */
+.xg-tnum { font-variant-numeric: tabular-nums; }

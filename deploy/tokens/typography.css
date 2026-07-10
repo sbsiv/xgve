@@ -1,0 +1,90 @@
+/* XGVE — Typography
+ * Display/headings: Space Grotesk (geometric, engineered).
+ * Interface/body:   Inter (clarity, low personality).
+ * Technical/code:   IBM Plex Mono (labels, data, eyebrows).
+ * The logo provides the character; supporting type provides clarity.
+ * Reminder: never re-type the XGVE wordmark in these faces — it is artwork.
+ */
+
+:root {
+  /* ---- Families ------------------------------------------------------ */
+  --font-display: 'Space Grotesk', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body:    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono:    'IBM Plex Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace;
+
+  /* ---- Type scale (px) ----------------------------------------------- */
+  --text-2xs:  11px;
+  --text-xs:   12px;
+  --text-sm:   13px;
+  --text-base: 15px;   /* default body */
+  --text-md:   16px;
+  --text-lg:   18px;
+  --text-xl:   22px;
+  --text-2xl:  28px;
+  --text-3xl:  36px;
+  --text-4xl:  48px;
+  --text-5xl:  64px;
+  --text-6xl:  88px;
+  --text-7xl:  120px;  /* hero display */
+
+  /* ---- Weights ------------------------------------------------------- */
+  --weight-regular:  400;   /* @kind font */
+  --weight-medium:   500;   /* @kind font */
+  --weight-semibold: 600;   /* @kind font */
+  --weight-bold:     700;   /* @kind font */
+
+  /* ---- Line height --------------------------------------------------- */
+  --leading-none:    1;      /* @kind font */
+  --leading-tight:   1.05;   /* @kind font */
+  --leading-snug:    1.2;    /* @kind font */
+  --leading-normal:  1.5;    /* @kind font */
+  --leading-relaxed: 1.65;   /* @kind font */
+
+  /* ---- Letter spacing ------------------------------------------------
+     Display is tightened; mono eyebrow labels are tracked wide + UPPERCASE. */
+  --tracking-tighter: -0.03em;
+  --tracking-tight:   -0.015em;
+  --tracking-normal:  0;
+  --tracking-wide:    0.04em;
+  --tracking-wider:   0.08em;
+  --tracking-widest:  0.16em;   /* mono technical labels */
+
+  /* ---- Semantic role aliases ----------------------------------------- */
+  --font-eyebrow: var(--font-mono);   /* small tracked technical label */
+  --font-heading: var(--font-display);
+  --font-metric:  var(--font-mono);   /* numeric readouts / data */
+}
+
+/* Optional ready-made role classes — thin conveniences, tokens are the API. */
+.xg-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+.xg-heading {
+  font-family: var(--font-display);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+.xg-body {
+  font-family: var(--font-body);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-normal);
+}
+.xg-eyebrow {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-xs);
+  line-height: var(--leading-none);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+}
+.xg-mono {
+  font-family: var(--font-mono);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-normal);
+  font-feature-settings: 'tnum' 1;   /* tabular numerals for data */
+}

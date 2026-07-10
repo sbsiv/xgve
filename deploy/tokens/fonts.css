@@ -1,0 +1,7 @@
+/* XGVE — Webfonts
+ * The XGVE wordmark itself is CUSTOM geometric artwork (shipped as PNG in /assets),
+ * NOT a font. The families below are the approved SUPPORTING type system only.
+ * All three are open-source Google Fonts, so they are the exact specified faces —
+ * no substitution. Loaded at runtime; @import must stay at the top of this file.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');

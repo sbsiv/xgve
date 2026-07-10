@@ -1,0 +1,92 @@
+/* XGVE — Spacing, radius, chamfer, borders, sizing, z-index
+ * Engineered and precise. Base rhythm is 4px, with a 2px hairline step for
+ * technical fineness. Corners are SHARP by default — the brand "rounds" by
+ * CHAMFER (a 45° cut), not by radius.
+ */
+
+:root {
+  /* ---- Spacing scale ------------------------------------------------- */
+  --space-0:  0;
+  --space-px: 1px;
+  --space-1:  2px;
+  --space-2:  4px;
+  --space-3:  8px;
+  --space-4:  12px;
+  --space-5:  16px;
+  --space-6:  20px;
+  --space-7:  24px;
+  --space-8:  32px;
+  --space-9:  40px;
+  --space-10: 48px;
+  --space-11: 64px;
+  --space-12: 80px;
+  --space-13: 96px;
+  --space-14: 128px;
+  --space-15: 160px;
+  --space-16: 200px;
+
+  /* ---- Radius — sharp is the default -------------------------------- */
+  --radius-0:    0;        /* DEFAULT: engineered, hard corners            */
+  --radius-1:    2px;      /* inputs / small controls, barely softened    */
+  --radius-2:    4px;      /* cards, max radius for most surfaces         */
+  --radius-3:    6px;
+  --radius-pill: 999px;    /* pills, status dots, avatars ONLY            */
+
+  /* ---- Chamfer — the brand's angular "rounding" ---------------------
+     Cut-corner sizes for clip-path polygons and background gradients.
+     e.g. one cut corner:
+       clip-path: polygon(0 0, calc(100% - var(--chamfer-md)) 0,
+                          100% var(--chamfer-md), 100% 100%, 0 100%); */
+  --chamfer-sm: 6px;
+  --chamfer-md: 10px;
+  --chamfer-lg: 16px;
+  --chamfer-xl: 28px;
+
+  /* ---- Border widths (thin technical rules) ------------------------- */
+  --border-hairline: 1px;
+  --border-thin:     1px;
+  --border-thick:    2px;
+  --border-heavy:    3px;
+
+  /* ---- Control sizing (heights) ------------------------------------- */
+  --size-control-sm: 28px;
+  --size-control-md: 36px;   /* default control height */
+  --size-control-lg: 44px;   /* min touch target */
+  --size-control-xl: 56px;
+
+  /* ---- Icon sizing --------------------------------------------------- */
+  --icon-xs: 14px;
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 24px;
+  --icon-xl: 32px;
+
+  /* ---- Layout ------------------------------------------------------- */
+  --container-sm:  640px;
+  --container-md:  840px;
+  --container-lg:  1080px;
+  --container-xl:  1280px;
+  --container-2xl: 1440px;
+  --gutter:        var(--space-8);
+
+  /* ---- Logo clear space --------------------------------------------
+     1x == thickness of the broken-circle enclosure. Standard clear space
+     around the full lockup is 4x; compact UI min 2x; emblem-only 3x. These
+     are proportional guides; --logo-1x is a sensible px default to compose. */
+  --logo-1x: 8px;
+  --logo-clear-standard: calc(var(--logo-1x) * 4);
+  --logo-clear-compact:  calc(var(--logo-1x) * 2);
+  --logo-clear-emblem:   calc(var(--logo-1x) * 3);
+  --logo-min-lockup-w:   180px;   /* below this, use the emblem alone      */
+  --logo-min-emblem:     32px;    /* preserve the 3-part E at/above this    */
+
+  /* ---- Z-index scale ------------------------------------------------- */
+  --z-base:     0;      /* @kind other */
+  --z-raised:   10;     /* @kind other */
+  --z-sticky:   100;    /* @kind other */
+  --z-nav:      200;    /* @kind other */
+  --z-overlay:  1000;   /* @kind other */
+  --z-dialog:   1100;   /* @kind other */
+  --z-toast:    1200;   /* @kind other */
+  --z-tooltip:  1300;   /* @kind other */
+}

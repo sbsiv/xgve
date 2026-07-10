@@ -1,0 +1,53 @@
+<!-- @dsCard group="Site" viewport="1280x760" name="XGVE Studios — Cinematic Site" subtitle="Single-viewport site; the logo intro is the redline emblem (rev → cool → settle → signal pulse)" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XGVE Studios — Good taste, engineered.</title>
+<meta name="description" content="XGVE Studios — eXperimental Games & Vibe Engineering. A vibecoded games studio. Good taste, engineered.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="XGVE Studios">
+<meta property="og:description" content="eXperimental Games & Vibe Engineering. Good taste, engineered.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="../assets/web/xgve-icon-512.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="XGVE Studios">
+<meta name="twitter:description" content="Good taste, engineered.">
+<link rel="icon" href="../assets/web/xgve-favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="emblem-masks.css">
+<link rel="stylesheet" href="xgve-site.css">
+<link rel="stylesheet" href="xgve-redline.css">
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="ascii-data.js"></script>
+<script src="xgve-asciifield.js"></script>
+<script src="xgve-ascii-emblem.js"></script>
+<script src="xgve-foxglove-ghost.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="xgve-lockup.jsx"></script>
+<script type="text/babel" src="xgve-foxglove.jsx"></script>
+<script type="text/babel" src="xgve-work.jsx"></script>
+<script type="text/babel" src="xgve-windows.jsx"></script>
+<script type="text/babel" src="xgve-site.jsx"></script>
+<script type="text/babel">
+  (function boot() {
+    if (window.XGVE_App && window.useTweaks && window.XGVE_RedlineEmblem && window.XGVE_WorkOverlay && window.XGVE_FoxgloveLanding) {
+      ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(window.XGVE_App));
+    } else {
+      setTimeout(boot, 40);
+    }
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* XGVE — Motion
+ * Reinforce ACCELERATION and PRECISION. Fast, hard reveals that end on a
+ * perfectly still, sharp state. No bounce, no squash/stretch, no continuous
+ * spin, no glitch. Prefer clip-path wipes along the visor diagonal and
+ * red pixels advancing outward.
+ */
+
+:root {
+  /* ---- Durations ----------------------------------------------------- */
+  --dur-instant: 80ms;   /* @kind other */
+  --dur-fast:    140ms;  /* @kind other */
+  --dur-base:    220ms;  /* @kind other */
+  --dur-slow:    360ms;  /* @kind other */
+  --dur-slower:  560ms;  /* @kind other */
+
+  /* ---- Easing -------------------------------------------------------- */
+  /* Decisive settle — most UI transitions. */
+  --ease-out:    cubic-bezier(0.2, 0.8, 0.2, 1);      /* @kind other */
+  /* Symmetric precision — moves that travel and stop. */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);      /* @kind other */
+  /* Acceleration — slow launch into fast exit (the needle/pixel-trail feel). */
+  --ease-accel:  cubic-bezier(0.5, 0, 0.9, 0.25);     /* @kind other */
+  /* Sharp entrance — snaps in, no overshoot. */
+  --ease-enter:  cubic-bezier(0.16, 1, 0.3, 1);       /* @kind other */
+
+  /* ---- Named transitions -------------------------------------------- */
+  --transition-colors: color var(--dur-fast) var(--ease-out),
+                       background-color var(--dur-fast) var(--ease-out),
+                       border-color var(--dur-fast) var(--ease-out),
+                       fill var(--dur-fast) var(--ease-out);
+  --transition-transform: transform var(--dur-fast) var(--ease-out);
+  --transition-opacity: opacity var(--dur-base) var(--ease-out);
+}
+
+/* Reveal along the visor diagonal — content wipes in and ends still. */
+@keyframes xg-reveal-diagonal {
+  from { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  to   { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+/* A progress sweep moving through a broken ring (rotational, single pass). */
+@keyframes xg-sweep {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(270deg); }
+}
+
+/* Red acceleration pixels advancing outward, then settling. */
+@keyframes xg-pixel-advance {
+  0%   { opacity: 0; transform: translate(-6px, 6px); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+
+/* Controlled status pulse — a single, restrained system heartbeat. */
+@keyframes xg-status-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant: 0ms; /* @kind other */
+    --dur-fast: 0ms; /* @kind other */
+    --dur-base: 0ms; /* @kind other */
+    --dur-slow: 0ms; /* @kind other */
+    --dur-slower: 0ms; /* @kind other */
+  }
+}

@@ -1,0 +1,175 @@
+/* XGVE Studios — redline emblem for the site hero.
+ * The real mark, split into layers (metallic dial + heat-graded needle + trail),
+ * playing the locked-in phased motion: hot rev + limiter flutter + shudder →
+ * cools and settles → calm SIGNAL-PULSE idle. Nothing redrawn.
+ * Masks come from emblem-masks.css (data-URI silhouettes: --m-struct / --m-needle).
+ * --rl-mo scales all durations (Motion tweak). Default 1.
+ */
+
+.rl-lockup {
+  position: absolute; top: 45%; left: 50%;
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(26px, 3.6vh, 44px);
+  --rl-mo: 1;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 900px) { .rl-lockup { left: 50%; } }
+
+/* ---- layered emblem ---- */
+.rl-emblem {
+  position: relative;
+  width: clamp(300px, 48vh, 520px);
+  aspect-ratio: 524 / 425;
+}
+.rl-layer { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.rl-structure {
+  -webkit-mask-image: var(--m-struct); mask-image: var(--m-struct);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  background: linear-gradient(157deg, #ffffff 0%, #eef1f6 19%, #b2b8c4 45%, #eaedf2 57%, #9096a1 82%, #d4d8df 100%);
+}
+.rl-sheen {
+  position: absolute; inset: 0; pointer-events: none; z-index: 2; mix-blend-mode: screen;
+  -webkit-mask-image: var(--m-struct); mask-image: var(--m-struct);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.9) 50%, transparent 58%);
+  background-size: 280% 100%; background-position: 165% 0;
+  animation: rl-sheen-sweep 5.5s ease-in-out infinite;
+}
+@keyframes rl-sheen-sweep { 0%, 55% { background-position: 165% 0; } 83%, 100% { background-position: -65% 0; } }
+
+.rl-rev { position: absolute; inset: 0; transform-origin: 48% 45%; }
+.rl-needle {
+  position: absolute; inset: 0; transform-origin: 48% 45%;
+  -webkit-mask-image: var(--m-needle); mask-image: var(--m-needle);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  background: linear-gradient(48deg, #6d000e 0%, #bf0019 29%, #ee0a22 57%, #ff5842 82%, #ffdcc8 100%);
+}
+.rl-heat {
+  position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(48deg, transparent 34%, rgba(255,120,92,0.55) 68%, rgba(255,236,222,0.95) 100%);
+  opacity: 0;
+}
+
+/* trail squares — real positions (fractions of the 524×425 icon), recreated crisp */
+.rl-px { position: absolute; transform: translate(-50%,-50%);
+  background: linear-gradient(135deg, #ff6a58 0%, #e6021b 72%);
+  box-shadow: 0 0 5px rgba(230,2,27,0.55); }
+.rl-px.p1 { left: 83.8%; top: 29.9%; width: 3.1%; aspect-ratio: 1; }
+.rl-px.p2 { left: 88.2%; top: 24.5%; width: 2.9%; aspect-ratio: 1; }
+.rl-px.p3 { left: 91.8%; top: 20.0%; width: 2.6%; aspect-ratio: 1; }
+.rl-px.p4 { left: 95.2%; top: 15.8%; width: 2.5%; aspect-ratio: 1; }
+
+/* ===== phased motion (durations scale with --rl-mo) ===== */
+/* revving: hot, flutter at limiter, whole mark shudders */
+.rl-emblem.is-revving { animation: rl-body-vibe calc(0.1s * var(--rl-mo)) linear calc(2.6s * var(--rl-mo)) infinite; }
+.rl-emblem.is-revving .rl-rev {
+  transform: rotate(-130deg); opacity: 0;
+  animation: rl-rev-anim calc(2.6s * var(--rl-mo)) cubic-bezier(0.28, 0.6, 0.32, 1) calc(0.2s * var(--rl-mo)) forwards;
+}
+.rl-emblem.is-revving .rl-needle { animation: rl-flutter calc(0.18s * var(--rl-mo)) linear calc(2.7s * var(--rl-mo)) infinite; }
+.rl-emblem.is-revving .rl-heat { opacity: 1; }
+.rl-emblem.is-revving .rl-px { opacity: 0; animation: rl-px-in calc(1.2s * var(--rl-mo)) ease-out calc(1.9s * var(--rl-mo)) forwards; }
+
+/* settled: cooled + still, then the calm idle */
+.rl-emblem.is-settled .rl-heat { opacity: 0; transition: opacity 1s ease-out; }
+.rl-emblem.is-settled .rl-needle { transform: rotate(0deg); transition: transform 0.7s var(--ease-out, ease-out); }
+.rl-emblem.is-settled .rl-px { opacity: 1; }
+/* SIGNAL PULSE idle (locked-in default): scarce-red heartbeat on needle + trail */
+.rl-emblem.is-settled[data-idle="pulse"] .rl-needle { animation: rl-pulse-needle 2.6s ease-in-out infinite; }
+.rl-emblem.is-settled[data-idle="pulse"] .rl-px { animation: rl-pulse-px 2.6s ease-in-out infinite; }
+/* PIXEL STREAM idle (alt): trail advances outward */
+.rl-emblem.is-settled[data-idle="stream"] .rl-px { animation: rl-stream 2s ease-out infinite; }
+.rl-emblem.is-settled[data-idle="stream"] .p1 { animation-delay: 0s; }
+.rl-emblem.is-settled[data-idle="stream"] .p2 { animation-delay: 0.1s; }
+.rl-emblem.is-settled[data-idle="stream"] .p3 { animation-delay: 0.2s; }
+.rl-emblem.is-settled[data-idle="stream"] .p4 { animation-delay: 0.3s; }
+
+@keyframes rl-rev-anim {
+  0%   { transform: rotate(-130deg); opacity: 0; }
+  12%  { opacity: 1; }
+  100% { transform: rotate(0deg); opacity: 1; }
+}
+@keyframes rl-flutter {
+  0%   { transform: rotate(5deg); }
+  16%  { transform: rotate(-0.8deg); }
+  30%  { transform: rotate(4.6deg); }
+  46%  { transform: rotate(0.2deg); }
+  62%  { transform: rotate(5.2deg); }
+  78%  { transform: rotate(-0.6deg); }
+  100% { transform: rotate(5deg); }
+}
+@keyframes rl-px-in {
+  0%   { opacity: 0; transform: translate(-40%,40%) translate(-50%,-50%) scale(0.6); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+}
+@keyframes rl-body-vibe {
+  0%   { transform: translate(1px, -0.6px) rotate(0.35deg); }
+  18%  { transform: translate(-1.2px, 0.7px) rotate(-0.42deg); }
+  34%  { transform: translate(0.7px, 1.1px) rotate(0.26deg); }
+  52%  { transform: translate(-0.9px, -0.5px) rotate(-0.3deg); }
+  68%  { transform: translate(1.2px, 0.5px) rotate(0.4deg); }
+  84%  { transform: translate(-0.6px, -1px) rotate(-0.24deg); }
+  100% { transform: translate(1px, -0.6px) rotate(0.35deg); }
+}
+@keyframes rl-pulse-needle { 0%,100% { filter: brightness(0.72); } 50% { filter: brightness(1.32); } }
+@keyframes rl-pulse-px { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+@keyframes rl-stream {
+  0%   { opacity: 0; transform: translate(-140%,140%) translate(-50%,-50%) scale(0.6); }
+  35%  { opacity: 1; }
+  70%  { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+  100% { opacity: 0; transform: translate(60%,-60%) translate(-50%,-50%) scale(0.7); }
+}
+
+/* ---- wordmark + tagline reveal (after the mark settles) ---- */
+.rl-wordmark {
+  display: block; width: clamp(230px, 30vw, 460px); height: auto;
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.85s ease-out, transform 0.85s ease-out;
+}
+.rl-tagline {
+  margin: 0; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(32px, 4.6vw, 68px); letter-spacing: -0.01em; line-height: 1;
+  color: #fff; white-space: nowrap; position: relative;
+  text-shadow: -2.5px 0 rgba(0,225,255,0.62), 2.5px 0 rgba(255,45,140,0.62), 0 0 10px rgba(90,200,255,0.28), 0 0 17px rgba(255,45,140,0.18);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.85s ease-out, transform 0.85s ease-out;
+  animation: rl-chroma 3.8s ease-in-out infinite;
+}
+.rl-tagline .dot { color: var(--accent); text-shadow: 0 0 10px rgba(255,34,51,0.7); }
+/* VHS scanlines: sparse black lines drifting slowly through the text (minimal) */
+.rl-tagline::after {
+  content: ""; position: absolute; inset: -4px -6px; pointer-events: none; z-index: 3;
+  background: repeating-linear-gradient(to bottom, transparent 0 7px, rgba(0,0,0,0.30) 7px 8px);
+  mix-blend-mode: multiply;
+  animation: rl-vhs-scan 0.7s linear infinite;
+}
+@keyframes rl-vhs-scan { from { background-position: 0 0; } to { background-position: 0 -8px; } }
+@keyframes rl-chroma {
+  0%,100% { text-shadow: -2.5px 0 rgba(0,225,255,0.62), 2.5px 0 rgba(255,45,140,0.62), 0 0 10px rgba(90,200,255,0.28), 0 0 17px rgba(255,45,140,0.18); }
+  50% { text-shadow: -3.5px 0 rgba(0,225,255,0.78), 3.5px 0 rgba(255,45,140,0.78), 0 0 15px rgba(90,200,255,0.42), 0 0 24px rgba(255,45,140,0.26); }
+}
+.phase-idle .rl-wordmark { opacity: 1; transform: none; transition-delay: 0.15s; }
+.phase-idle .rl-tagline  { animation: tag-in 0.9s ease-out 2.3s both; }
+@keyframes tag-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .rl-emblem.is-revving, .rl-emblem.is-revving .rl-rev, .rl-emblem.is-revving .rl-needle,
+  .rl-emblem.is-revving .rl-px, .rl-sheen,
+  .rl-emblem.is-settled[data-idle] .rl-needle, .rl-emblem.is-settled[data-idle] .rl-px {
+    animation: none !important;
+  }
+  .rl-emblem .rl-rev { transform: rotate(0deg) !important; opacity: 1 !important; }
+  .rl-emblem .rl-px { opacity: 1 !important; }
+  .rl-emblem .rl-heat { opacity: 0 !important; }
+  .rl-wordmark, .rl-tagline { opacity: 1 !important; transform: none !important; }
+  .rl-tagline::before, .rl-tagline::after { animation: none !important; }
+  .rl-tagline::before { display: none !important; }
+}
