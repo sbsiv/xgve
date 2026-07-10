@@ -90,7 +90,7 @@
           React.createElement("div", { style: mono({ fontSize: 10, lineHeight: 1.9, color: "#83848c", textTransform: "uppercase", letterSpacing: ".08em" }) },
             "Status: ", React.createElement("b", { style: { color: "#ff2233" } }, "TBC"), React.createElement("br"), "Engine: Continuity")),
         React.createElement("div", { style: { display: "flex", gap: 12 } },
-          React.createElement("a", { href: "mailto:hello@xgve.io?subject=Foxglove%20Multiversal%20updates",
+          React.createElement("a", { href: "mailto:xgve@pm.me?subject=Foxglove%20Multiversal%20updates",
             style: Object.assign({ textDecoration: "none", display: "inline-block" }, btn(true)) }, "Get updates"))),
 
       // ---- right: flora reconstruction ----

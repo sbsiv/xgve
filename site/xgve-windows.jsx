@@ -92,7 +92,7 @@
           h("div", { style: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 24, lineHeight: 1.08, color: "#fff", margin: "10px 0 14px" } }, "Foxglove", h("br"), "Multiversal"),
           h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 9, marginBottom: 18 } },
             h("div", { style: { background: "#c11722", color: "#fff", fontSize: 10, letterSpacing: "0.16em", padding: "6px 10px" } }, "\u25cf IN DEVELOPMENT"),
-            h("a", { href: WISHLIST_URL || ("mailto:hello@xgve.io?subject=" + encodeURIComponent("Notify me: Foxglove Multiversal")), target: WISHLIST_URL ? "_blank" : undefined, rel: WISHLIST_URL ? "noopener" : undefined, title: WISHLIST_URL ? "Wishlist Foxglove Multiversal" : "Get notified when Foxglove Multiversal is available to wishlist", className: "xgwl-btn", style: { display: "inline-block", background: "transparent", border: "1px solid #83848c", color: "#e9eaec", fontSize: 10, letterSpacing: "0.16em", padding: "6px 12px", textDecoration: "none", cursor: "pointer" } }, "WISHLIST")),
+            h("a", { href: WISHLIST_URL || ("mailto:xgve@pm.me?subject=" + encodeURIComponent("Notify me: Foxglove Multiversal")), target: WISHLIST_URL ? "_blank" : undefined, rel: WISHLIST_URL ? "noopener" : undefined, title: WISHLIST_URL ? "Wishlist Foxglove Multiversal" : "Get notified when Foxglove Multiversal is available to wishlist", className: "xgwl-btn", style: { display: "inline-block", background: "transparent", border: "1px solid #83848c", color: "#e9eaec", fontSize: 10, letterSpacing: "0.16em", padding: "6px 12px", textDecoration: "none", cursor: "pointer" } }, "WISHLIST")),
           h("div", { style: { fontSize: 12, lineHeight: 1.8, color: "#6f7480" } },
             "Climb the corporate ladder while unravelling the mysteries at Foxglove Multiversal.")
         )
@@ -116,13 +116,13 @@
     const lnk = { color: "#c6ced8", textDecoration: "none", letterSpacing: "0.12em" };
     return h(RetroWindow, { title: "contact.txt", x0: Math.max(12, (window.innerWidth - 380) / 2), y0: 110, w: Math.min(380, window.innerWidth - 24), onClose: onClose },
       h("div", { style: { padding: "18px 20px 22px", fontSize: 12.5, lineHeight: 2, color: "#c6ced8" } },
-        h("a", { href: "mailto:hello@xgve.io", style: { color: "#fff", textDecoration: "none", letterSpacing: "0.1em" } }, "hello@xgve.io"),
+        h("a", { href: "mailto:xgve@pm.me", style: { color: "#fff", textDecoration: "none", letterSpacing: "0.1em" } }, "xgve@pm.me"),
         h("div", { style: Object.assign({ marginTop: 16 }, dim) }, "// socials"),
         LINKS.map(function (l) { return h("div", { key: l[0] }, h("a", { href: l[1], target: "_blank", rel: "noopener", style: lnk }, l[0])); }),
         h("div", { style: Object.assign({ marginTop: 16 }, dim) }, "// mailing list"),
         h("div", { style: { display: "flex", gap: 8, marginTop: 6 } },
           h("input", { value: em, onChange: function (e) { setEm(e.target.value); }, placeholder: "you@domain", style: { flex: 1, minWidth: 0, background: "#0b0b0e", border: "1px solid #33363d", color: "#e9eaec", fontFamily: MONO, fontSize: 12, padding: "7px 9px", outline: "none" } }),
-          h("button", { onClick: function () { location.href = "mailto:hello@xgve.io?subject=Mailing%20list&body=" + encodeURIComponent("Subscribe: " + em); }, style: { background: "transparent", border: "1px solid #83848c", color: "#e9eaec", fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", padding: "7px 10px", cursor: "pointer" } }, "[ SUBSCRIBE ]"))
+          h("button", { onClick: function () { location.href = "mailto:xgve@pm.me?subject=Mailing%20list&body=" + encodeURIComponent("Subscribe: " + em); }, style: { background: "transparent", border: "1px solid #83848c", color: "#e9eaec", fontFamily: MONO, fontSize: 10, letterSpacing: "0.14em", padding: "7px 10px", cursor: "pointer" } }, "[ SUBSCRIBE ]"))
       )
     );
   }
