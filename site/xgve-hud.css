@@ -1,0 +1,111 @@
+/* XGVE Studios — terminal HUD chrome (faithful to the reference composition).
+ * Dense cyberpunk readout framing the metallic emblem: framed border, corner
+ * data blocks, top-center ruler, left radar arcs, right reticle, progress +
+ * SYSTEM ONLINE, bottom nav. Monospace, white/gray with scarce red.
+ */
+.stage {
+  --hud-white: #e9eaec;
+  --hud-mid: #9a9ca3;
+  --hud-dim: #6f7178;
+  --hud-faint: #4a4c52;
+  --hud-line: #212228;
+  --hud-red: #d8202e;
+  --hud-red-b: #ff2a38;
+}
+.hud, .hud * { font-family: var(--font-mono, "IBM Plex Mono", monospace); }
+
+/* ---- outer frame + corner brackets ---- */
+.hud-frame { position: absolute; inset: 16px; border: 1px solid var(--hud-line); z-index: 12; pointer-events: none; }
+.hud-frame .fc { position: absolute; width: 14px; height: 14px; border: 0 solid var(--hud-faint); }
+.hud-frame .fc.tl { left: -1px; top: -1px; border-left-width: 1px; border-top-width: 1px; }
+.hud-frame .fc.tr { right: -1px; top: -1px; border-right-width: 1px; border-top-width: 1px; }
+.hud-frame .fc.bl { left: -1px; bottom: -1px; border-left-width: 1px; border-bottom-width: 1px; }
+.hud-frame .fc.br { right: -1px; bottom: -1px; border-right-width: 1px; border-bottom-width: 1px; }
+
+/* ---- generic HUD text layer ---- */
+.hud-el {
+  position: absolute; z-index: 13; pointer-events: none;
+  font-size: 11px; line-height: 1.72; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--hud-mid); white-space: nowrap;
+}
+.hud-el .dim { color: var(--hud-dim); }
+.hud-el .white { color: var(--hud-white); }
+.hud-el .red { color: var(--hud-red); }
+.hud-el .jp { color: var(--hud-dim); text-transform: none; letter-spacing: 0.08em; font-family: "Noto Sans JP", var(--font-mono), monospace; }
+.hud-gap { height: 12px; }
+
+/* top-left brand */
+.brand-tl { position: absolute; left: 40px; top: 34px; z-index: 14; display: flex; align-items: center; gap: 9px; }
+.brand-tl img { height: 17px; width: auto; display: block; }
+.brand-tl .cur { color: var(--hud-white); font-family: var(--font-mono); font-size: 15px; font-weight: 600; }
+.brand-tr { right: 40px; top: 34px; z-index: 14; font-size: 11px; letter-spacing: 0.14em; }
+.brand-tr .red { color: var(--hud-red); }
+
+/* top-center ruler */
+.top-center { position: absolute; left: 50%; top: 30px; transform: translateX(-50%); z-index: 13; text-align: center; }
+.top-center .plus { color: var(--hud-red); font-size: 13px; line-height: 1; }
+.top-center .ruler { display: flex; align-items: center; gap: 8px; margin-top: 8px; color: var(--hud-dim); font-size: 11px; }
+.top-center .ticks { display: inline-block; width: 210px; height: 7px; background: repeating-linear-gradient(90deg, var(--hud-dim) 0 1px, transparent 1px 8px); }
+.top-center .tl09 { margin-top: 6px; color: var(--hud-dim); font-size: 10px; letter-spacing: 0.16em; }
+
+/* corner blocks */
+.hud-lt { left: 40px; top: 92px; }
+.hud-lv { left: 40px; top: 300px; }
+.hud-rt { right: 40px; top: 92px; text-align: right; }
+.hud-bl { left: 40px; bottom: 92px; }
+
+.hud-lt .status-h { margin-top: 16px; color: var(--hud-dim); }
+
+/* left-edge radar arcs */
+.radar { position: absolute; left: -96px; top: 47%; transform: translateY(-50%); width: 300px; height: 300px; z-index: 12; pointer-events: none; }
+.radar span { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); border: 1px solid var(--hud-line); border-radius: 50%; }
+.radar .r1 { width: 90px; height: 90px; } .radar .r2 { width: 160px; height: 160px; }
+.radar .r3 { width: 232px; height: 232px; } .radar .r4 { width: 300px; height: 300px; }
+.radar .dot { width: 5px; height: 5px; background: var(--hud-red); border: 0; border-radius: 0; left: 78%; top: 50%; }
+
+/* right reticle */
+.reticle { position: absolute; right: 11%; top: 61%; width: 46px; height: 46px; z-index: 12; pointer-events: none; }
+.reticle .ring { position: absolute; inset: 6px; border: 1px solid var(--hud-faint); border-radius: 50%; }
+.reticle .h, .reticle .v { position: absolute; background: var(--hud-faint); }
+.reticle .h { left: 0; right: 0; top: 50%; height: 1px; }
+.reticle .v { top: 0; bottom: 0; left: 50%; width: 1px; }
+.reticle .cc { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; background: var(--hud-red); transform: translate(-50%,-50%); }
+
+/* scattered plus marks */
+.plusmark { position: absolute; z-index: 12; color: var(--hud-red); font-size: 12px; line-height: 1; pointer-events: none; }
+
+/* progress + system online (sits under the tagline, inside the lockup) */
+.recon { width: 420px; max-width: 82vw; text-align: center; margin-top: 28px; z-index: 13; }
+.recon .lbl { color: var(--hud-dim); font-size: 11px; letter-spacing: 0.14em; }
+.recon .lbl b { color: var(--hud-red); font-weight: 400; }
+.recon .bar { margin: 12px auto 0; width: 320px; height: 8px; background: repeating-linear-gradient(90deg, var(--hud-faint) 0 1px, transparent 1px 6px); position: relative; }
+.recon .bar i { position: absolute; left: 0; top: 0; bottom: 0; background: repeating-linear-gradient(90deg, var(--hud-red) 0 1px, transparent 1px 6px); animation: recon-fill 6.5s ease-in-out infinite; }
+@keyframes recon-fill { 0% { width: 34%; } 50% { width: 88%; } 100% { width: 34%; } }
+.sysonline { margin-top: 26px; color: var(--hud-red); font-size: 12px; letter-spacing: 0.3em; }
+.sysonline .br { color: var(--hud-faint); }
+
+/* bottom nav */
+.hud-nav { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); z-index: 14;
+  display: flex; align-items: center; gap: clamp(10px, 1.4vw, 20px); font-size: clamp(10px, 0.9vw, 12px); letter-spacing: 0.16em; color: var(--hud-mid); white-space: nowrap; }
+.hud-nav .item { display: inline-flex; align-items: center; gap: 9px; cursor: pointer; pointer-events: auto; transition: color .2s ease; text-transform: uppercase; white-space: nowrap; }
+.hud-nav .item .n { color: var(--hud-red); }
+.hud-nav .item:hover { color: #fff; }
+.hud-nav .sep { color: var(--hud-red); opacity: .7; }
+
+/* bottom-right spec panel */
+.hud-panel { position: absolute; right: 40px; bottom: 78px; z-index: 14; border: 1px solid var(--hud-line);
+  padding: 13px 16px; display: grid; grid-template-columns: auto auto; gap: 3px 22px; font-size: 10.5px; letter-spacing: 0.1em; }
+.hud-panel .k { color: var(--hud-dim); text-transform: uppercase; }
+.hud-panel .v { color: var(--hud-mid); text-transform: uppercase; text-align: left; }
+.hud-panel .v.red { color: var(--hud-red); }
+
+.blink { animation: hud-blink 1.05s steps(1) infinite; }
+@keyframes hud-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+/* hide the densest chrome on small screens; keep it legible */
+@media (max-width: 1100px) {
+  .radar, .reticle, .plusmark, .top-center .tl09 { display: none; }
+}
+@media (max-width: 820px) {
+  .hud-lv, .hud-panel, .recon { display: none; }
+}

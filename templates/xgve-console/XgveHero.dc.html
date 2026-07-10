@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="XGVE Hero" description="Black-field studio hero — emblem + wordmark, mono eyebrow, display headline, Signal-Red CTAs and a broken-ring stat strip." -->
+<helmet>
+<script src="./ds-base.js"></script>
+</helmet>
+<div style="min-height:100vh; background:#000; color:#fff; font-family:var(--font-body); position:relative; overflow:hidden; display:flex; flex-direction:column;">
+
+  <div aria-hidden="true" style="position:absolute; top:-220px; right:-180px; width:640px; height:640px; border-radius:50%; background:conic-gradient(#e6021b 0deg 36deg, transparent 36deg 66deg, #26262a 66deg 320deg, transparent 320deg 360deg); -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px)); mask:radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px)); opacity:0.55; pointer-events:none;"></div>
+
+  <header style="position:relative; display:flex; align-items:center; gap:22px; padding:26px 48px; border-bottom:1px solid #151517;">
+    <img src="../../assets/icon/xgve-icon-transparent.png" alt="" style="height:36px; width:auto; display:block;" />
+    <img src="../../assets/wordmark/xgve-wordmark-transparent.png" alt="XGVE Studios" style="height:21px; width:auto; display:block; margin-left:-4px;" />
+    <nav style="display:flex; gap:26px; margin-left:24px; font-size:14px; color:#a8a9b0;">
+      <a href="#" style="color:#a8a9b0; text-decoration:none;">Games</a>
+      <a href="#" style="color:#a8a9b0; text-decoration:none;">Studio</a>
+      <a href="#" style="color:#a8a9b0; text-decoration:none;">Clients</a>
+      <a href="#" style="color:#a8a9b0; text-decoration:none;">About</a>
+    </nav>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:16px;">
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.Badge" variant="signal-soft" hint-size="70px,22px">Studio</x-import>
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.Button" variant="secondary" size="sm" hint-size="130px,28px">Work with us</x-import>
+    </div>
+  </header>
+
+  <main style="position:relative; flex:1; display:flex; flex-direction:column; justify-content:center; max-width:980px; padding:64px 48px;">
+    <p style="font-family:var(--font-mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:#e6021b; margin:0 0 22px;">eXperimental games &amp; vibe engineering</p>
+    <h1 style="font-family:var(--font-display); font-weight:700; font-size:76px; line-height:1.02; letter-spacing:-0.02em; margin:0 0 22px; max-width:16ch;">Build the improbable. Ship it anyway.</h1>
+    <p style="font-size:19px; line-height:1.5; color:#cacbd0; margin:0 0 36px; max-width:54ch;">XGVE Studios is a vibecoded games studio. We build our own games — and vibecode working SaaS apps for clients in days, not quarters. Games first, but never boxed in.</p>
+    <div style="display:flex; gap:14px; align-items:center;">
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.Button" variant="primary" size="lg" hint-size="170px,44px">See our games</x-import>
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.Button" variant="secondary" size="lg" hint-size="160px,44px">Start a project</x-import>
+    </div>
+  </main>
+
+  <footer style="position:relative; display:flex; gap:56px; align-items:center; padding:28px 48px; border-top:1px solid #151517;">
+    <div style="display:flex; align-items:center; gap:16px;">
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.ProgressRing" value="82" size="64" thickness="8" label="Velocity" hint-size="64px,64px"></x-import>
+      <div>
+        <div style="font-family:var(--font-display); font-size:22px; font-weight:600; letter-spacing:-0.01em;">5<span style="color:#83848c; font-size:13px; font-family:var(--font-mono);"> days</span></div>
+        <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#83848c;">avg client app</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.ProgressRing" value="90" size="64" thickness="8" label="On time" hint-size="64px,64px"></x-import>
+      <div>
+        <div style="font-family:var(--font-display); font-size:22px; font-weight:600; letter-spacing:-0.01em;">9<span style="color:#83848c; font-size:13px; font-family:var(--font-mono);"> / 10</span></div>
+        <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#83848c;">client ships</div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <x-import component-from-global-scope="XGVEDesignSystem_c9ef21.ProgressRing" value="48" size="64" thickness="8" label="In play" hint-size="64px,64px"></x-import>
+      <div>
+        <div style="font-family:var(--font-display); font-size:22px; font-weight:600; letter-spacing:-0.01em;">3<span style="color:#83848c; font-size:13px; font-family:var(--font-mono);"> live</span></div>
+        <div style="font-family:var(--font-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#83848c;">games in dev</div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+</body>
+</html>
