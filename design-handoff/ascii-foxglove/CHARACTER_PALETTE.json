@@ -1,0 +1,539 @@
+{
+  "note": "The foxglove art is pre-authored glyph-noise; characters ARE the shading. Do NOT substitute a conventional brightness ramp — reproduce these exact glyphs from foxglove.fixture.json.",
+  "densityRamp": {
+    "string": " .`',:;^~-_!|/\\()<>+=*?icvzxsoeaftjrnuywkbdpqhg123456789SEZAGRUKD$%#@&MWB08",
+    "length": 75,
+    "order": "index 0 = lightest/least ink (space) → last = densest (8). density = DENS.indexOf(char) / (DENS.length - 1).",
+    "fallbackDensityWhenNotFound": 0.5,
+    "perCharDensity": {
+      "0": 0.9865,
+      "1": 0.6351,
+      "2": 0.6486,
+      "3": 0.6622,
+      "4": 0.6757,
+      "5": 0.6892,
+      "6": 0.7027,
+      "7": 0.7162,
+      "8": 1,
+      "9": 0.7432,
+      " ": 0,
+      ".": 0.0135,
+      "`": 0.027,
+      "'": 0.0405,
+      ",": 0.0541,
+      ":": 0.0676,
+      ";": 0.0811,
+      "^": 0.0946,
+      "~": 0.1081,
+      "-": 0.1216,
+      "_": 0.1351,
+      "!": 0.1486,
+      "|": 0.1622,
+      "/": 0.1757,
+      "\\": 0.1892,
+      "(": 0.2027,
+      ")": 0.2162,
+      "<": 0.2297,
+      ">": 0.2432,
+      "+": 0.2568,
+      "=": 0.2703,
+      "*": 0.2838,
+      "?": 0.2973,
+      "i": 0.3108,
+      "c": 0.3243,
+      "v": 0.3378,
+      "z": 0.3514,
+      "x": 0.3649,
+      "s": 0.3784,
+      "o": 0.3919,
+      "e": 0.4054,
+      "a": 0.4189,
+      "f": 0.4324,
+      "t": 0.4459,
+      "j": 0.4595,
+      "r": 0.473,
+      "n": 0.4865,
+      "u": 0.5,
+      "y": 0.5135,
+      "w": 0.527,
+      "k": 0.5405,
+      "b": 0.5541,
+      "d": 0.5676,
+      "p": 0.5811,
+      "q": 0.5946,
+      "h": 0.6081,
+      "g": 0.6216,
+      "S": 0.7568,
+      "E": 0.7703,
+      "Z": 0.7838,
+      "A": 0.7973,
+      "G": 0.8108,
+      "R": 0.8243,
+      "U": 0.8378,
+      "K": 0.8514,
+      "D": 0.8649,
+      "$": 0.8784,
+      "%": 0.8919,
+      "#": 0.9054,
+      "@": 0.9189,
+      "&": 0.9324,
+      "M": 0.9459,
+      "W": 0.9595,
+      "B": 0.973
+    }
+  },
+  "glyphsUsedInArt": {
+    "uniqueCount": 54,
+    "glyphs": [
+      {
+        "glyph": ";",
+        "count": 85,
+        "density": 0.0811,
+        "inDensRamp": true
+      },
+      {
+        "glyph": ":",
+        "count": 84,
+        "density": 0.0676,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "#",
+        "count": 78,
+        "density": 0.9054,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "+",
+        "count": 76,
+        "density": 0.2568,
+        "inDensRamp": true
+      },
+      {
+        "glyph": ",",
+        "count": 62,
+        "density": 0.0541,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "'",
+        "count": 60,
+        "density": 0.0405,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "`",
+        "count": 57,
+        "density": 0.027,
+        "inDensRamp": true
+      },
+      {
+        "glyph": ".",
+        "count": 56,
+        "density": 0.0135,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "x",
+        "count": 49,
+        "density": 0.3649,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "7",
+        "count": 48,
+        "density": 0.7162,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "5",
+        "count": 46,
+        "density": 0.6892,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "w",
+        "count": 46,
+        "density": 0.527,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "j",
+        "count": 45,
+        "density": 0.4595,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "6",
+        "count": 44,
+        "density": 0.7027,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "*",
+        "count": 43,
+        "density": 0.2838,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "i",
+        "count": 42,
+        "density": 0.3108,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "E",
+        "count": 42,
+        "density": 0.7703,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "t",
+        "count": 41,
+        "density": 0.4459,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "a",
+        "count": 41,
+        "density": 0.4189,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "c",
+        "count": 40,
+        "density": 0.3243,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "<",
+        "count": 39,
+        "density": 0.2297,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "v",
+        "count": 39,
+        "density": 0.3378,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "H",
+        "count": 39,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "2",
+        "count": 38,
+        "density": 0.6486,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "8",
+        "count": 38,
+        "density": 1,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "?",
+        "count": 38,
+        "density": 0.2973,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "W",
+        "count": 38,
+        "density": 0.9595,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "-",
+        "count": 37,
+        "density": 0.1216,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "@",
+        "count": 37,
+        "density": 0.9189,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "P",
+        "count": 37,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "o",
+        "count": 37,
+        "density": 0.3919,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "3",
+        "count": 36,
+        "density": 0.6622,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "|",
+        "count": 36,
+        "density": 0.1622,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "e",
+        "count": 36,
+        "density": 0.4054,
+        "inDensRamp": true
+      },
+      {
+        "glyph": ">",
+        "count": 36,
+        "density": 0.2432,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "r",
+        "count": 35,
+        "density": 0.473,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "g",
+        "count": 35,
+        "density": 0.6216,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "!",
+        "count": 35,
+        "density": 0.1486,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "0",
+        "count": 34,
+        "density": 0.9865,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "F",
+        "count": 34,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "L",
+        "count": 34,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "$",
+        "count": 33,
+        "density": 0.8784,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "~",
+        "count": 33,
+        "density": 0.1081,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "B",
+        "count": 33,
+        "density": 0.973,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "&",
+        "count": 32,
+        "density": 0.9324,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "X",
+        "count": 32,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "M",
+        "count": 32,
+        "density": 0.9459,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "N",
+        "count": 32,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "1",
+        "count": 31,
+        "density": 0.6351,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "=",
+        "count": 31,
+        "density": 0.2703,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "Q",
+        "count": 30,
+        "density": 0.5,
+        "inDensRamp": false
+      },
+      {
+        "glyph": "S",
+        "count": 29,
+        "density": 0.7568,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "9",
+        "count": 25,
+        "density": 0.7432,
+        "inDensRamp": true
+      },
+      {
+        "glyph": "%",
+        "count": 24,
+        "density": 0.8919,
+        "inDensRamp": true
+      }
+    ]
+  },
+  "colorCodesInData": {
+    "note": "The foxglove `colors` grid contains ONLY these codes. Crucially it contains NO 'r' — so no red is baked into the foxglove data. Red is injected procedurally by the canvas renderers (see redModel).",
+    "tally": {
+      ".": 2708,
+      "w": 2250
+    }
+  },
+  "redModel": {
+    "dataDriven": "colors[y][x] === 'r'  → NEVER true for foxglove (grid has only '.' and 'w').",
+    "ghostCanvas": "isRed = (x*7 + y*13) % 11 === 0   → deterministic ~9.09% of glyph cells. Color rgba(230,32,46,0.95).",
+    "windowCanvas": "hsh = (x*7 + y*13) % 23; red when hsh===0 (~4.35%, #e6202e); hsh<3 → cyan #4fa3c0; hsh<8 → gray #6f7480; else #c6ced8.",
+    "landingDOM": "Routes to red <pre> layer only when colors[y][x]==='r'. Since that never occurs, the red layer stays EMPTY and the landing foxglove renders entirely in #e9eaec white.",
+    "rule": "Red is deterministic per (x,y) — never randomised per frame (color flicker reads as a glitch). See ascii-motion-doctrine §3."
+  },
+  "fillColors": {
+    "ghostWhite": "rgba(198,204,214,0.95)",
+    "ghostRed": "rgba(230,32,46,0.95)",
+    "landingWhite": "#e9eaec",
+    "landingRed": "#ff2233",
+    "windowWhite": "#c6ced8",
+    "windowGray": "#6f7480",
+    "windowCyan": "#4fa3c0",
+    "windowRed": "#e6202e"
+  },
+  "noiseSets": {
+    "ghost_leadingEdge_and_flicker": [
+      "0",
+      "1",
+      "#",
+      "@",
+      "%",
+      "&",
+      "$",
+      "X",
+      "=",
+      "+",
+      "*",
+      "<",
+      ">",
+      "/",
+      "\\",
+      "|"
+    ],
+    "ghost_shimmer_forAbstractSubjects_only": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "K",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "#",
+      "@",
+      "%",
+      "&",
+      "$",
+      "*",
+      "+",
+      "=",
+      "<",
+      ">",
+      "?",
+      "!"
+    ],
+    "landing": [
+      "#",
+      "@",
+      "8",
+      "0",
+      "%",
+      "&",
+      "?",
+      "7",
+      "1",
+      "$",
+      "X",
+      "B",
+      "H",
+      ":",
+      ".",
+      "*",
+      "=",
+      "+",
+      "o",
+      "w"
+    ],
+    "window": [
+      "0",
+      "1",
+      "#",
+      "@",
+      "%",
+      "&",
+      "$",
+      "X",
+      "=",
+      "+",
+      "*"
+    ]
+  }
+}

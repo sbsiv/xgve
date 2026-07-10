@@ -1,0 +1,35 @@
+<!-- @dsCard group="Spacing" viewport="700x260" name="Logo clear space" subtitle="1x = broken-ring thickness · 4x standard, 3x emblem" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas); color: var(--content-primary);
+         font-family: var(--font-body); display: flex; gap: 28px; align-items: center; }
+  .frame { position: relative; padding: 36px; /* ~ clear space */
+           outline: var(--border-thin) dashed var(--border-strong); }
+  .frame img { display: block; height: 120px; width: auto; }
+  .frame::after { content: ""; position: absolute; inset: 12px; outline: 1px dashed var(--accent-border); }
+  .legend { display: flex; flex-direction: column; gap: 10px; }
+  .legend .k { font-family: var(--font-mono); font-size: 11px; letter-spacing: var(--tracking-wide);
+               color: var(--content-secondary); }
+  .legend .k b { color: var(--content-primary); }
+  .swatch { display: inline-block; width: 10px; height: 10px; margin-right: 8px; vertical-align: middle; }
+  .s1 { border: 1px dashed var(--border-strong); }
+  .s2 { border: 1px dashed var(--accent-border); }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <img src="../assets/icon/xgve-icon-transparent.png" alt="XGVE emblem">
+  </div>
+  <div class="legend">
+    <span class="k"><span class="swatch s1"></span><b>Clear space</b> — 4x around full lockup</span>
+    <span class="k"><span class="swatch s2"></span>3x preferred for emblem-only</span>
+    <span class="k"><b>1x</b> = broken-ring thickness</span>
+    <span class="k">--logo-clear-standard / -emblem</span>
+    <span class="k">min lockup 180px · min emblem 32px</span>
+  </div>
+</body>
+</html>

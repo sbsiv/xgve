@@ -1,0 +1,40 @@
+<!-- @dsCard group="Colors" viewport="700x220" name="Primary palette" subtitle="Void Black · Signal White · Signal Red" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas);
+         font-family: var(--font-body); color: var(--content-primary); }
+  .row { display: flex; gap: 14px; }
+  .sw { flex: 1; }
+  .chip { height: 108px; border-radius: var(--radius-0); }
+  .chip.black { border: var(--border-thin) solid var(--border-default); }
+  .meta { margin-top: 10px; display: flex; flex-direction: column; gap: 3px; }
+  .name { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+  .hex { font-family: var(--font-mono); font-size: var(--text-xs);
+         color: var(--content-secondary); letter-spacing: var(--tracking-wide); }
+  .tok { font-family: var(--font-mono); font-size: 11px; color: var(--content-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw">
+      <div class="chip black" style="background: var(--xg-black);"></div>
+      <div class="meta"><span class="name">Void Black</span>
+        <span class="hex">#000000</span><span class="tok">--xg-black</span></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background: var(--xg-white);"></div>
+      <div class="meta"><span class="name">Signal White</span>
+        <span class="hex">#FFFFFF</span><span class="tok">--xg-white</span></div>
+    </div>
+    <div class="sw">
+      <div class="chip" style="background: var(--xg-red);"></div>
+      <div class="meta"><span class="name">Signal Red</span>
+        <span class="hex">#E6021B</span><span class="tok">--xg-red</span></div>
+    </div>
+  </div>
+</body>
+</html>

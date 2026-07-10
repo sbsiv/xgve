@@ -1,0 +1,30 @@
+<!-- @dsCard group="Spacing" viewport="700x220" name="Radius & chamfer" subtitle="Sharp is default — the brand rounds by 45° cut" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas); color: var(--content-primary);
+         font-family: var(--font-body); }
+  .row { display: flex; gap: 16px; }
+  .cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .box { width: 100%; height: 92px; background: var(--surface-raised);
+         border: var(--border-thin) solid var(--border-strong); }
+  .box.r1 { border-radius: var(--radius-1); }
+  .box.r2 { border-radius: var(--radius-2); }
+  .box.ch { border: none; background: var(--accent);
+            clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
+  .n { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+  .t { font-family: var(--font-mono); font-size: 10px; color: var(--content-muted); text-align: center; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><div class="box"></div><span class="n">Sharp</span><span class="t">--radius-0 · default</span></div>
+    <div class="cell"><div class="box r1"></div><span class="n">Subtle</span><span class="t">--radius-1 · 2px</span></div>
+    <div class="cell"><div class="box r2"></div><span class="n">Soft</span><span class="t">--radius-2 · 4px max</span></div>
+    <div class="cell"><div class="box ch"></div><span class="n">Chamfer</span><span class="t">--chamfer-lg · 45° cut</span></div>
+  </div>
+</body>
+</html>

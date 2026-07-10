@@ -1,0 +1,76 @@
+/* ===========================================================================
+   XGVE — ASCII Foxglove: exact styling used in production.
+   Two style surfaces: (A) the CSS that positions the canvas ghost, and
+   (B) the JS-applied inline styles on the DOM <pre> layers of the landing.
+   There is NO CSS blur/glow filter on the foxglove — glow is intrinsic to the
+   draw (canvas alpha + wave) or to text-shadow (DOM). Do not add a filter.
+   Source of truth: site/xgve-site.css, site/xgve-foxglove.jsx.
+   =========================================================================== */
+
+/* ---- Fonts (loaded once, globally) --------------------------------------
+   From tokens/fonts.css — @import MUST stay at top of its file:
+   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
+   The foxglove renders exclusively in the mono family below.                */
+:root {
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace;
+}
+
+/* ===========================================================================
+   A. CANONICAL SWAYING GHOST (canvas) — the pseudo-3D foxglove.
+   Mounted in xgve-site.jsx as <canvas class="foxglove-ghost"> inside .stage.
+   z-order: ascii-field (0) < foxglove-ghost (1) < emblem (2) < trail (6) < hud.
+   =========================================================================== */
+.foxglove-ghost {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+/* Mobile: the ghost is REMOVED, not scaled (see FOXGLOVE_RESPONSIVE_RULES.md). */
+@media (max-width: 760px) {
+  .foxglove-ghost { display: none; }
+}
+
+/* ===========================================================================
+   B. LANDING FOXGLOVE (DOM two-<pre> reveal) — .fox section.
+   Non-swaying; bottom-first reveal + idle flicker. Opened from the Work overlay.
+   The <pre> layers below are created in JS (FoxgloveAscii); the exact inline
+   cssText is reproduced here for reference, resolved at the production font=8.
+   =========================================================================== */
+.fox {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: radial-gradient(150% 130% at 76% 50%, #0e0e11 0%, #000 60%);
+  display: flex;
+  align-items: center;
+  padding: 0 clamp(30px, 6vw, 80px);
+  overflow: hidden;
+  animation: work-in .5s ease-out both;
+}
+
+/* Reference-only: the two absolutely-stacked glyph layers (font = 8px).
+   White layer holds all glyphs (foxglove data has no 'r'); red layer stays empty.
+   fs=8 → line-height = fs*1.15 = 9.2px, char cell width = fs*0.6 = 4.8px,
+   container = cols*4.8 x rows*9.2 = 355.2 x 616.4 px. */
+.fox__glyph-layer {
+  margin: 0;
+  position: absolute;
+  inset: 0;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 8px;
+  line-height: 9.2px;
+  white-space: pre;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+.fox__glyph-layer--white {
+  color: #e9eaec;
+  text-shadow: 0 0 4px rgba(150, 160, 175, .22);   /* 0 0 (fs*0.5)px */
+}
+.fox__glyph-layer--red {                            /* empty in practice */
+  color: #ff2233;
+  text-shadow: 0 0 7.2px rgba(255, 34, 51, .5);     /* 0 0 (fs*0.9)px */
+}
+
+@keyframes work-in { from { opacity: 0; } to { opacity: 1; } }

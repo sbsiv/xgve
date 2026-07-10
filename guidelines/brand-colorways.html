@@ -1,0 +1,28 @@
+<!-- @dsCard group="Brand" viewport="700x210" name="Emblem colourways" subtitle="Primary dark · light-bg · mono white · mono black" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas); color: var(--content-primary); }
+  .row { display: flex; gap: 14px; }
+  .cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .plate { width: 100%; height: 112px; display: flex; align-items: center; justify-content: center;
+           border: var(--border-thin) solid var(--border-subtle); }
+  .plate img { height: 76px; width: auto; display: block; }
+  .dark { background: #000; }
+  .light { background: #fff; }
+  .t { font-family: var(--font-mono); font-size: 10px; color: var(--content-muted);
+       letter-spacing: var(--tracking-wide); text-align: center; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><div class="plate dark"><img src="../assets/icon/xgve-icon-transparent.png" alt="primary dark"></div><span class="t">Primary · dark</span></div>
+    <div class="cell"><div class="plate light"><img src="../assets/icon/xgve-icon-transparent-dark.png" alt="light bg"></div><span class="t">Light background</span></div>
+    <div class="cell"><div class="plate dark"><img src="../assets/icon/xgve-icon-mono-white.png" alt="mono white"></div><span class="t">Mono · white</span></div>
+    <div class="cell"><div class="plate light"><img src="../assets/icon/xgve-icon-mono-black.png" alt="mono black"></div><span class="t">Mono · black</span></div>
+  </div>
+</body>
+</html>

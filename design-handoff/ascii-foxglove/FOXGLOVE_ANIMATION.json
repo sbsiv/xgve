@@ -1,0 +1,65 @@
+{
+  "canonicalRenderer": "source/xgve-foxglove-ghost.js  → window.XGVE_initFoxgloveGhost(canvas)",
+  "timelineNote": "The ghost ALTERNATES two subjects, never simultaneously: idx 0 = foxglove (far right, bottom-first), idx 1 = XGVE wordmark (bottom-left, left→right). Foxglove is idx 0.",
+  "timeUnit": "seconds (accumulated dt, clamped to 0.05s/frame); paint capped ~30fps (skip if <33ms since last paint).",
+  "smoothstep": "smooth(t) = t*t*(3 - 2*t), clamped 0..1",
+  "foxglove_subphase": {
+    "buildSeconds": 4.2,
+    "holdSeconds": 2.6,
+    "decaySeconds": 3,
+    "gapSeconds": 1.1,
+    "revealOrderPerCell": "o = 1 - y/rows   (bottom builds first)",
+    "revealFraction_rf": {
+      "build": "rf = smooth(e / 4.2)",
+      "hold": "rf = 1",
+      "decay": "rf = 1 - smooth((e - 4.2 - 2.6) / 3.0)",
+      "gap": "rf = -1  (nothing drawn; blinking block cursor marks where next build starts)"
+    },
+    "perCellReveal": "reveal = rf - o ; skip if reveal <= 0",
+    "leadingEdgeGlyph": "reveal < 0.06 → random NOISE glyph",
+    "bodyGlyph": "else 1.5% chance random NOISE, otherwise the cell's TRUE character (exact art)",
+    "alphaFront": "globalAlpha = min(1, smooth(reveal/0.22) * (0.52 + 0.24*(wv*0.25+0.5)) * lite)"
+  },
+  "sway": {
+    "parallaxAmplitudePx": 30,
+    "parallaxFormula": "px += (density - 0.5) * 30 * sin(t*0.55)",
+    "swayFrequency": 0.55,
+    "rollingLight": "lite = 0.85 + 0.35*(density - 0.5)*sin(t*0.55 + 0.6)",
+    "fieldWave": "wv = sin(px*0.011 + t*1.2) + sin(py*0.013 - t*0.9)",
+    "verticalLiftPx": "py + wv*2.4",
+    "important": "sway / rollingLight / fieldWave read performance.now() DIRECTLY (t = performance.now()*0.001), so they keep moving even when the build/hold/decay timeline is frozen."
+  },
+  "placement_drawGrid_args": {
+    "subject": "foxglove",
+    "cx": 0.85,
+    "hFrac": 0.72,
+    "wFrac": 0.28,
+    "place": "right",
+    "exact": true
+  },
+  "reducedMotion": {
+    "detection": "matchMedia('(prefers-reduced-motion: reduce)').matches",
+    "behavior": "timeline frozen (dt not accumulated), idx pinned to 0, rf pinned to 1 → full foxglove shown, no build/hold/decay cycling.",
+    "caveatHonest": "Because sway/light/wave read performance.now() directly, they STILL animate under reduced-motion; only the reveal timeline and subject alternation stop. Treat this as the captured production behavior (a candidate fix is noted in ACCEPTANCE_CRITERIA)."
+  },
+  "pause": "window.XGVE_PAUSED === true → canvas cleared, XGVE_RMASK nulled, timeline held.",
+  "occupancyMask": "Publishes window.XGVE_RMASK each frame = Set of 24px-cell keys ((px/24|0)*4096)+(py/24|0); the background field multiplies its alpha ×0.14 where masked so the field visibly PARTS to form the shape.",
+  "landingRenderer_params": {
+    "renderer": "source/xgve-foxglove.jsx → FoxgloveAscii",
+    "fontPx": 8,
+    "lineHeightFactor": 1.15,
+    "cellAspect": 0.6,
+    "buildMs": 4200,
+    "idleFlickerMs": 150,
+    "sway": false,
+    "note": "DOM two-<pre> reveal+flicker; no sway."
+  },
+  "windowRenderer_params": {
+    "renderer": "source/xgve-windows.jsx → Flora",
+    "canvasW": 240,
+    "canvasH": 330,
+    "cellAspect": 0.62,
+    "buildMs": 2800,
+    "sway": false
+  }
+}

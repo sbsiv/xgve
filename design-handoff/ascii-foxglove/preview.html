@@ -1,0 +1,323 @@
+<!doctype html>
+<!-- ===========================================================================
+  XGVE — ASCII Foxglove · isolated inspection harness (dev-only, do NOT ship to players)
+  Two engines on one black stage:
+   • LIVE  — the shipped renderer source/xgve-foxglove-ghost.js (true production
+             motion; alternates foxglove ⇄ XGVE wordmark exactly as production).
+   • INSPECT — a faithful mirror of the ghost's foxglove-branch draw (same exact
+             constants) that adds what the shipped renderer doesn't expose:
+             deterministic STATIC pose, layer isolation, density view, occupancy
+             mask, reduced-motion freeze, and single-frame stepping.
+  Source of truth is always source/xgve-foxglove-ghost.js — the inspector mirrors it.
+  URL params: ?static=1  ?mode=live  ?reduced=1  ?mobile=1  ?layer=white|red  ?density=1
+  =========================================================================== -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>foxglove:harness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --font-mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace; }
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #stage { position: fixed; inset: 0; display: block; }
+  /* mobile simulation: the production ghost is display:none ≤760px */
+  body[data-mobile="1"] #stage { display: none; }
+  #mobileNote {
+    position: fixed; inset: 0; display: none; align-items: center; justify-content: center; text-align: center;
+    font-family: var(--font-mono); color: #6f7480; font-size: 12px; letter-spacing: .1em;
+    padding: 0 32px; text-transform: uppercase;
+  }
+  #mobileNote .card { max-width: 330px; line-height: 1.75; }
+  #mobileNote .dim { color: #3f434c; letter-spacing: .18em; }
+  body[data-mobile="1"] #mobileNote { display: grid; }
+
+  #ui {
+    position: fixed; top: 14px; left: 14px; z-index: 10; width: 232px;
+    background: rgba(7,7,9,.86); border: 1px solid #23252b; backdrop-filter: blur(4px);
+    font-family: var(--font-mono); color: #c6ced8; font-size: 11px; letter-spacing: .04em;
+    padding: 12px 13px 14px;
+  }
+  #ui h1 { margin: 0 0 2px; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #e9eaec; }
+  #ui .sub { color: #565b64; font-size: 10px; letter-spacing: .1em; margin: 0 0 11px; text-transform: uppercase; }
+  #ui .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 7px 0; }
+  #ui label { color: #9aa0aa; text-transform: uppercase; letter-spacing: .1em; font-size: 10px; }
+  #ui .seg { display: inline-flex; border: 1px solid #2b2e35; }
+  #ui .seg button { background: transparent; border: 0; color: #7b818b; font-family: var(--font-mono);
+    font-size: 10px; letter-spacing: .08em; padding: 4px 7px; cursor: pointer; text-transform: uppercase; }
+  #ui .seg button[aria-pressed="true"] { background: #e6021b; color: #fff; }
+  #ui .tog { width: 30px; height: 16px; border: 1px solid #3a3d45; background: #16171b; cursor: pointer; position: relative; flex: none; }
+  #ui .tog::after { content: ""; position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; background: #6f7480; transition: .12s; }
+  #ui .tog[aria-pressed="true"] { border-color: #e6021b; }
+  #ui .tog[aria-pressed="true"]::after { left: 15px; background: #ff2233; }
+  #ui .divider { height: 1px; background: #1d1f24; margin: 11px -13px; }
+  #ui .read { color: #565b64; font-size: 10px; letter-spacing: .06em; line-height: 1.7; }
+  #ui .read b { color: #c6ced8; font-weight: 500; }
+  #ui button.act { width: 100%; background: transparent; border: 1px solid #3a3d45; color: #c6ced8;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; padding: 6px; cursor: pointer;
+    text-transform: uppercase; margin-top: 4px; }
+  #ui button.act:disabled { opacity: .35; cursor: default; }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="mobileNote"><div class="card">Foxglove ghost is <b style="color:#c6ced8">display:none</b> at ≤760px.<br>Mobile users meet the landing renderer instead.<br><br><span class="dim">canonical mobile state</span></div></div>
+
+<div id="ui">
+  <h1>Foxglove · Harness</h1>
+  <p class="sub">source/xgve-foxglove-ghost.js</p>
+
+  <div class="row"><label>Engine</label>
+    <span class="seg" id="segMode">
+      <button data-v="inspect" aria-pressed="true">Inspect</button>
+      <button data-v="live">Live</button>
+    </span>
+  </div>
+  <div class="row"><label>Play</label><button class="tog" id="togPlay" aria-pressed="true"></button></div>
+  <div class="row"><label>Static pose</label><button class="tog" id="togStatic" aria-pressed="false"></button></div>
+  <div class="row"><label>Reduced motion</label><button class="tog" id="togReduced" aria-pressed="false"></button></div>
+
+  <div class="divider"></div>
+
+  <div class="row"><label>Layer</label>
+    <span class="seg" id="segLayer">
+      <button data-v="all" aria-pressed="true">All</button>
+      <button data-v="white">White</button>
+      <button data-v="red">Red</button>
+    </span>
+  </div>
+  <div class="row"><label>Density view</label><button class="tog" id="togDensity" aria-pressed="false"></button></div>
+  <div class="row"><label>Occupancy mask</label><button class="tog" id="togMask" aria-pressed="false"></button></div>
+  <div class="row"><label>Mobile (≤760)</label><button class="tog" id="togMobile" aria-pressed="false"></button></div>
+
+  <div class="divider"></div>
+  <button class="act" id="btnStep" disabled>Step +1 frame (1/30s)</button>
+  <p class="read" id="readout"></p>
+</div>
+
+<!-- data + shipped renderer (verbatim copies) -->
+<script src="source/ascii-data.js"></script>
+<script src="source/xgve-foxglove-ghost.js"></script>
+
+<script>
+(function () {
+  "use strict";
+  var cv = document.getElementById("stage");
+  var ctx = cv.getContext("2d");
+
+  // ---- exact constants copied from source/xgve-foxglove-ghost.js -----------
+  var DENS = " .`',:;^~-_!|/\\()<>+=*?icvzxsoeaftjrnuywkbdpqhg123456789SEZAGRUKD$%#@&MWB08";
+  var NOISE = "01#@%&$X=+*<>/\\|".split("");
+  // foxglove subphase timeline (seconds)
+  var Tb = 4.2, Th = 2.6, Td = 3.0, Tg = 1.1;
+  function smooth(t){ t = t<0?0:t>1?1:t; return t*t*(3-2*t); }
+  function densOf(ch){ var i = DENS.indexOf(ch); return i<0 ? 0.5 : i/(DENS.length-1); }
+
+  // ---- state ---------------------------------------------------------------
+  var P = new URLSearchParams(location.search);
+  var st = {
+    mode: P.get("mode") === "live" ? "live" : "inspect",
+    playing: true,
+    static: P.get("static") === "1",
+    reduced: P.get("reduced") === "1",
+    layer: P.get("layer") || "all",
+    density: P.get("density") === "1",
+    mask: false,
+    mobile: P.get("mobile") === "1"
+  };
+  var t = 0, prev = 0, liveCleanup = null;
+
+  // ---- sizing --------------------------------------------------------------
+  var W = 0, H = 0, dpr = 1;
+  function size(){
+    dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    W = window.innerWidth; H = window.innerHeight;
+    cv.style.width = W+"px"; cv.style.height = H+"px";
+    cv.width = W*dpr; cv.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  window.addEventListener("resize", size); size();
+
+  // ---- inspector draw: faithful mirror of the ghost foxglove branch --------
+  function grid(){ return window.XG_ASCII && window.XG_ASCII.foxglove; }
+  function rfAt(e){                        // foxglove reveal fraction over the timeline
+    if (e < Tb) return smooth(e/Tb);
+    if (e < Tb+Th) return 1;
+    if (e < Tb+Th+Td) return 1 - smooth((e-Tb-Th)/Td);
+    return -1;
+  }
+  function drawInspect(){
+    ctx.clearRect(0,0,W,H);
+    var g = grid(); if (!g) return;
+    var C = g.cols, R = g.rows;
+    var ch = (H*0.72)/R, cw = ch*0.6;
+    if (cw*C > W*0.28){ cw = (W*0.28)/C; ch = cw/0.6; }
+    var blockW = cw*C, blockH = ch*R;
+    var ox = 0.85*W - blockW/2, oy = (H-blockH)/2;
+    ctx.textBaseline = "middle"; ctx.textAlign = "center";
+    ctx.font = "500 " + (ch*0.95).toFixed(1) + "px 'IBM Plex Mono', monospace";
+
+    var isStatic = st.static;
+    var tt = (st.reduced || isStatic) ? 0 : t;   // reduced/static freeze the clock
+    // static pose is a DELIBERATELY chosen flat surface: rf=1, sway=0, wave=0, light flat.
+    var rf = isStatic ? 1 : rfAt(((st.reduced)?1e9:t) % (Tb+Th+Td+Tg));
+    if (st.reduced) rf = 1;
+    if (rf < 0){ drawGap(); return; }
+
+    var mask = [];
+    for (var y=0; y<R; y++){
+      var crow = g.chars[y] || "";
+      for (var x=0; x<C; x++){
+        var chr = crow[x];
+        if (chr === " " || chr === undefined) continue;
+        var o = 1 - y/R;
+        var reveal = rf - o;
+        if (reveal <= 0) continue;
+        var d = densOf(chr);
+
+        var glyph;
+        if (reveal < 0.06) glyph = isStatic ? NOISE[(NOISE.length*0.5)|0] : NOISE[(Math.random()*NOISE.length)|0];
+        else glyph = (!isStatic && Math.random() < 0.015) ? NOISE[(Math.random()*NOISE.length)|0] : chr;
+
+        var px = ox + x*cw + cw/2, py = oy + y*ch + ch/2;
+        var sway = isStatic ? 0 : Math.sin(tt*0.55);
+        px += (d-0.5)*30*sway;
+        var lite = isStatic ? 0.85 : (0.85 + 0.35*(d-0.5)*Math.sin(tt*0.55 + 0.6));
+        var wv = isStatic ? 0 : (Math.sin(px*0.011 + tt*1.2) + Math.sin(py*0.013 - tt*0.9));
+        mask.push([px,py]);
+
+        var isRed = (x*7 + y*13) % 11 === 0;
+        if (st.layer === "white" && isRed) continue;
+        if (st.layer === "red" && !isRed) continue;
+
+        var alpha = Math.min(1, smooth(reveal/0.22) * (0.52 + 0.24*(wv*0.25+0.5)) * lite);
+        ctx.globalAlpha = alpha;
+        if (st.density){
+          var v = Math.round(40 + d*205);
+          ctx.fillStyle = "rgb("+v+","+v+","+Math.round(60+d*180)+")";
+        } else {
+          ctx.fillStyle = isRed ? "rgba(230,32,46,0.95)" : "rgba(198,204,214,0.95)";
+        }
+        ctx.fillText(glyph, px, py + wv*2.4);
+      }
+    }
+    ctx.globalAlpha = 1;
+    if (st.mask) drawMask(mask);
+  }
+  function drawGap(){
+    if (((performance.now()/500)|0) % 2 === 0){
+      ctx.font = "500 14px 'IBM Plex Mono', monospace";
+      ctx.globalAlpha = 0.7; ctx.fillStyle = "rgba(198,204,214,0.9)";
+      ctx.fillText("\u2589", 0.85*W, H*0.76); ctx.globalAlpha = 1;
+    }
+  }
+  function drawMask(cells){
+    ctx.save(); ctx.globalAlpha = 1; ctx.strokeStyle = "rgba(230,32,46,0.5)"; ctx.lineWidth = 1;
+    var seen = {};
+    for (var i=0;i<cells.length;i++){
+      var gx = (cells[i][0]/24|0)*24, gy = (cells[i][1]/24|0)*24, k = gx+"_"+gy;
+      if (seen[k]) continue; seen[k] = 1;
+      ctx.strokeRect(gx+0.5, gy+0.5, 24, 24);
+    }
+    ctx.restore();
+  }
+
+  // ---- engine control ------------------------------------------------------
+  function stopLive(){ if (liveCleanup){ liveCleanup(); liveCleanup = null; } window.XGVE_PAUSED = false; }
+  function startLive(){
+    ctx.clearRect(0,0,W,H);
+    if (window.XGVE_initFoxgloveGhost) liveCleanup = window.XGVE_initFoxgloveGhost(cv);
+  }
+  var raf = 0;
+  function frame(now){
+    var dt = prev ? Math.min(0.05, (now-prev)/1000) : 0.016; prev = now;
+    if (st.mode === "inspect"){
+      if (st.playing && !st.static && !st.reduced) t += dt;
+      drawInspect();
+    }
+    raf = requestAnimationFrame(frame);
+  }
+
+  function applyMode(){
+    stopLive();
+    if (st.mode === "live"){
+      window.XGVE_PAUSED = !st.playing;
+      startLive();
+    }
+  }
+
+  // ---- ready signal for deterministic capture ------------------------------
+  function signalReady(){
+    // paint one canonical frame first, then flag.
+    drawInspect();
+    window.__foxgloveReady = true;
+    document.title = "foxglove:ready";
+  }
+
+  // ---- UI wiring -----------------------------------------------------------
+  function press(el,v){ el.setAttribute("aria-pressed", v ? "true":"false"); }
+  function seg(id, onPick){
+    var wrap = document.getElementById(id);
+    wrap.querySelectorAll("button").forEach(function(b){
+      b.onclick = function(){
+        wrap.querySelectorAll("button").forEach(function(x){ press(x, x===b); });
+        onPick(b.dataset.v);
+      };
+    });
+  }
+  seg("segMode", function(v){ st.mode = v; document.getElementById("btnStep").disabled = (v!=="inspect")||st.playing; applyMode(); render(); });
+  seg("segLayer", function(v){ st.layer = v; });
+  function tog(id, key, after){
+    var el = document.getElementById(id);
+    el.onclick = function(){ st[key] = !st[key]; press(el, st[key]); if (after) after(); };
+    press(el, st[key]);
+  }
+  tog("togPlay","playing", function(){
+    document.getElementById("btnStep").disabled = st.playing || st.mode!=="inspect";
+    if (st.mode==="live") window.XGVE_PAUSED = !st.playing;
+  });
+  tog("togStatic","static", function(){ if (st.static){ st.playing=false; press(document.getElementById("togPlay"),false);} document.getElementById("btnStep").disabled = st.playing || st.mode!=="inspect"; });
+  tog("togReduced","reduced");
+  tog("togDensity","density");
+  tog("togMask","mask");
+  tog("togMobile","mobile", render);
+  document.getElementById("btnStep").onclick = function(){ if (st.mode==="inspect"){ t += 1/30; drawInspect(); updateRead(); } };
+
+  function updateRead(){
+    var e = t % (Tb+Th+Td+Tg), phase = e<Tb?"build":e<Tb+Th?"hold":e<Tb+Th+Td?"decay":"gap";
+    document.getElementById("readout").innerHTML =
+      "engine <b>"+st.mode+"</b> · t <b>"+t.toFixed(2)+"s</b><br>"+
+      "phase <b>"+(st.static?"static":st.reduced?"reduced":phase)+"</b> · rf <b>"+
+      (st.static?"1.00":st.reduced?"1.00":smoothPhase(e).toFixed(2))+"</b><br>"+
+      "grid <b>74×67</b> · sway ±30px @0.55";
+  }
+  function smoothPhase(e){ var r = rfAt(e); return r<0?0:r; }
+  function render(){ document.body.setAttribute("data-mobile", st.mobile ? "1":"0"); press(document.getElementById("togMobile"), st.mobile); }
+
+  // initial pressed-state sync from URL
+  press(document.getElementById("togStatic"), st.static);
+  press(document.getElementById("togReduced"), st.reduced);
+  press(document.getElementById("togDensity"), st.density);
+  document.getElementById("segMode").querySelectorAll("button").forEach(function(b){ press(b, b.dataset.v===st.mode); });
+  document.getElementById("segLayer").querySelectorAll("button").forEach(function(b){ press(b, b.dataset.v===st.layer); });
+  if (st.static){ st.playing = false; press(document.getElementById("togPlay"), false); }
+  render();
+
+  // ---- boot (wait for ASCII data, like the shipped renderer) ---------------
+  var tries = 0;
+  (function boot(){
+    if (!grid()){ if (tries++ < 60){ setTimeout(boot, 80); return; } }
+    applyMode();
+    raf = requestAnimationFrame(frame);
+    setInterval(updateRead, 120); updateRead();
+    // give the webfont a beat, then flag a deterministic static frame if requested
+    if (document.fonts && document.fonts.ready){
+      document.fonts.ready.then(function(){ if (st.static) signalReady(); });
+    } else if (st.static){ setTimeout(signalReady, 300); }
+  })();
+})();
+</script>
+</body>
+</html>

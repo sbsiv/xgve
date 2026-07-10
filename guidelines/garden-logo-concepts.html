@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>XGVE — Garden Narrative Logo Concepts</title>
+<link rel="icon" href="../assets/web/xgve-favicon.ico">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html, body { margin: 0; }
+  body { position: relative; font-family: var(--font-body); color: var(--content-primary); }
+  a { color: var(--content-secondary); text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  .frame { position: absolute; }
+
+  .intro { width: 780px; }
+  .intro h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: var(--tracking-tight); color: #fff; }
+  .intro p { margin: 12px 0 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.8; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--content-muted); }
+  .intro .red { color: var(--accent); }
+
+  .card {
+    width: 560px; background: #000; border: 1px solid var(--xg-n-3, #26282c);
+    display: flex; flex-direction: column;
+  }
+  .card .head { display: flex; align-items: baseline; gap: 12px; padding: 18px 22px 0; }
+  .badge {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+    color: #fff; background: var(--xg-n-2, #17181b); border: 1px solid var(--xg-n-4, #34373d);
+    padding: 3px 9px; flex: none;
+  }
+  .card h2 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 21px; letter-spacing: var(--tracking-tight); color: #fff; }
+  .premise { margin: 10px 22px 0; font-family: var(--font-mono); font-size: 11px; line-height: 1.7; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--content-muted); }
+  .premise b { color: var(--content-secondary); font-weight: 500; }
+
+  .stage { display: grid; place-items: center; height: 330px; }
+  .stage svg { width: 250px; height: 250px; }
+
+  .mark { --st: #e9eaec; --ac: var(--accent, #e6021b); --ac2: #ff5842; --mu: #63666d; }
+  .mark.v-mono { --ac: #e9eaec; --ac2: #e9eaec; }
+
+  .rowlab { margin: 0 22px 8px; font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--content-faint, #4a4d53); }
+  .lockup { display: flex; align-items: center; gap: 14px; margin: 0 22px 20px; }
+  .lockup svg { width: 44px; height: 44px; flex: none; }
+  .lockup .wm { font-family: var(--font-display); font-weight: 700; font-size: 30px; letter-spacing: 0.02em; color: #fff; line-height: 1; }
+  .lockup .wm .x { color: var(--accent); }
+  .lockup .exp { display: block; margin-top: 5px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--content-muted); }
+
+  .reduction { display: flex; align-items: flex-end; gap: 26px; margin: 0 22px 22px; }
+  .reduction .cell { display: flex; flex-direction: column; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; color: var(--content-faint, #4a4d53); text-transform: uppercase; }
+  .reduction svg { display: block; }
+
+  .rationale { margin-top: auto; padding: 16px 22px 20px; border-top: 1px solid var(--xg-n-2, #17181b); font-family: var(--font-mono); font-size: 11px; line-height: 1.75; letter-spacing: 0.06em; color: var(--content-secondary); }
+  .rationale .mo { color: var(--content-muted); }
+  .rationale .red { color: var(--accent); }
+
+  /* ============ round 2 — print-first paper cards ============ */
+  .pcard {
+    width: 620px; background: #ffffff; border: 1px solid #e2e2de;
+    color: #111; display: flex; flex-direction: column;
+  }
+  .pcard .phead { display: flex; align-items: baseline; gap: 12px; padding: 20px 24px 0; }
+  .pcard .badge { color: #111; background: #f1f1ee; border: 1px solid #d8d8d3; }
+  .pcard h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 21px; letter-spacing: var(--tracking-tight); color: #111; }
+  .pcard .terr { margin-left: auto; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #9a9a94; text-align: right; }
+  .pcard .pmeta { margin: 6px 24px 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9a9a94; }
+  .pcard .phero { display: grid; place-items: center; height: 330px; }
+  .pcard .phero svg { width: 244px; height: 244px; color: #111; }
+  .pcard .prow { display: flex; align-items: flex-end; gap: 22px; margin: 0 24px 4px; }
+  .pcard .cell { display: flex; flex-direction: column; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #9a9a94; }
+  .pcard .chipneg { width: 84px; height: 84px; background: #000; display: grid; place-items: center; }
+  .pcard .chipneg svg { width: 62px; height: 62px; color: #fff; --bg: #000; }
+  .pcard svg { display: block; }
+  .pcard .p48 svg { width: 48px; height: 48px; color: #111; }
+  .pcard .p24 svg { width: 24px; height: 24px; color: #111; }
+  .pcard .p16 svg { width: 16px; height: 16px; color: #111; }
+  .pcard .plockup { display: flex; align-items: center; gap: 15px; margin: 18px 24px 4px; padding-top: 16px; border-top: 1px solid #ececea; }
+  .pcard .plockup svg { width: 42px; height: 42px; color: #111; flex: none; }
+  .pcard .plockup .wm2 { font-family: var(--font-display); font-weight: 500; font-size: 23px; letter-spacing: 0.2em; color: #111; line-height: 1; }
+  .pcard .plockup .exp2 { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #9a9a94; }
+  .pcard .phid { margin: 14px 24px 0; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.7; letter-spacing: 0.05em; color: #55554f; }
+  .pcard .prat { margin: 8px 24px 20px; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.7; letter-spacing: 0.05em; color: #9a9a94; }
+
+  /* ============ round 4 — ASCII trademark cards (dark) ============ */
+  .ncard { background: #000; border: 1px solid var(--xg-n-3, #26282c); color: #e9eaec; display: flex; flex-direction: column; }
+  .ncard .nhead { display: flex; align-items: baseline; gap: 12px; padding: 20px 24px 0; }
+  .ncard h2 { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 21px; letter-spacing: var(--tracking-tight); color: #fff; }
+  .ncard .terr { color: #63666d; }
+  .ncard .nmeta { margin: 6px 24px 0; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #63666d; }
+  .ncard .nhero { display: grid; place-items: center; padding: 26px 12px 18px; }
+  .apre { margin: 0; font-family: var(--font-mono); line-height: 1; color: #c6ccd6; }
+  .apre b { color: #ff2a38; font-weight: 500; }
+  .apre i { color: #565a62; font-style: normal; }
+  .apre.lt { color: #2b2d31; }
+  .apre.lt i { color: #a6a9a3; }
+  .ncard .nrow { display: flex; align-items: flex-end; gap: 24px; margin: 6px 24px 6px; }
+  .ncard .cell { display: flex; flex-direction: column; align-items: center; gap: 7px; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: #63666d; }
+  .ncard .chipw { background: #f4f4f2; padding: 10px 12px; }
+  .ncard .chipk { background: #0b0c0e; border: 1px solid var(--xg-n-2, #17181b); display: grid; place-items: center; }
+  .ncard .nlock { display: flex; align-items: center; gap: 15px; margin: 14px 24px 4px; padding-top: 16px; border-top: 1px solid var(--xg-n-2, #17181b); }
+  .ncard .wm3 { font-family: var(--font-display); font-weight: 500; font-size: 23px; letter-spacing: 0.2em; color: #fff; line-height: 1; }
+  .ncard .exp3 { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #63666d; }
+  .ncard .nhid { margin: 12px 24px 0; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.7; letter-spacing: 0.05em; color: #8b8f96; }
+  .ncard .nrat { margin: 8px 24px 20px; font-family: var(--font-mono); font-size: 10.5px; line-height: 1.7; letter-spacing: 0.05em; color: #63666d; }
+</style>
+</head>
+<body>
+
+<!-- ===== round 2 shared mark geometry (referenced via <use>) ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <g id="g2a">
+    <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+    <circle cx="60" cy="60" r="38" fill="none" stroke="currentColor" stroke-width="2"></circle>
+    <path d="M70.6 56.5 L90.2 36.9 A38 38 0 0 1 90.2 83.1 L70.6 63.5 Z" fill="currentColor"></path>
+    <path d="M49.4 63.5 L29.8 83.1 A38 38 0 0 1 29.8 36.9 L49.4 56.5 Z" fill="currentColor"></path>
+    <rect x="56.8" y="56.8" width="6.4" height="6.4" fill="currentColor" transform="rotate(45 60 60)"></rect>
+    <path d="M60 3.5 L60 9.5 M60 110.5 L60 116.5 M3.5 60 L9.5 60 M110.5 60 L116.5 60" stroke="currentColor" stroke-width="2"></path>
+  </g>
+  <g id="g2a-s">
+    <circle cx="60" cy="60" r="48" fill="none" stroke="currentColor" stroke-width="5"></circle>
+    <circle cx="60" cy="60" r="38" fill="none" stroke="currentColor" stroke-width="4"></circle>
+    <path d="M74.1 57.2 L91.9 39.4 A38 38 0 0 1 91.9 80.6 L74.1 62.8 Z" fill="currentColor"></path>
+    <path d="M45.9 62.8 L28.1 80.6 A38 38 0 0 1 28.1 39.4 L45.9 57.2 Z" fill="currentColor"></path>
+    <rect x="55.5" y="55.5" width="9" height="9" fill="currentColor" transform="rotate(45 60 60)"></rect>
+  </g>
+
+  <g id="g2b" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(45 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(135 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(225 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(315 60 60)"></path>
+    <path d="M60 6 L60 12 M60 108 L60 114 M6 60 L12 60 M108 60 L114 60" stroke-width="2"></path>
+    <circle cx="60" cy="60" r="4.2" fill="currentColor" stroke="none"></circle>
+  </g>
+  <g id="g2b-s" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(45 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(135 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(225 60 60)"></path>
+    <path d="M60 14 Q71 32 60 50 Q49 32 60 14 Z" transform="rotate(315 60 60)"></path>
+    <circle cx="60" cy="60" r="6" fill="currentColor" stroke="none"></circle>
+  </g>
+
+  <g id="g2c">
+    <path d="M102 24 L24 24 L24 96 L96 96 L96 42 L42 42 L42 78 L78 78 L78 60 L64 60" fill="none" stroke="currentColor" stroke-width="3"></path>
+    <rect x="53" y="56.5" width="7" height="7" fill="currentColor"></rect>
+  </g>
+  <g id="g2c-s">
+    <path d="M102 24 L24 24 L24 96 L96 96 L96 42 L42 42 L42 78 L70 78" fill="none" stroke="currentColor" stroke-width="7"></path>
+    <rect x="54" y="54" width="12" height="12" fill="currentColor"></rect>
+  </g>
+
+  <g id="g2d" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="24" y="24" width="72" height="72" stroke-width="2.5"></rect>
+    <path d="M34 34 L51 51 M51 34 L34 51" stroke-width="3"></path>
+    <path d="M86.5 38.5 A9 9 0 1 0 86.5 47.5 L79 47.5" stroke-width="3"></path>
+    <path d="M34 69 L42.5 86 L51 69" stroke-width="3"></path>
+    <path d="M70 69 L87 69 M70 77.5 L81 77.5 M70 86 L87 86" stroke-width="3"></path>
+  </g>
+  <g id="g2d-s" fill="none" stroke="currentColor" stroke-linecap="round">
+    <rect x="24" y="24" width="72" height="72" stroke-width="5"></rect>
+    <path d="M40 40 L80 80 M80 40 L40 80" stroke-width="7"></path>
+  </g>
+
+  <g id="g2e">
+    <path d="M34 106 L86 106" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+    <path d="M60 106 L60 45" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+    <circle cx="60" cy="27" r="17.5" fill="none" stroke="currentColor" stroke-width="2.5"></circle>
+    <circle cx="63.5" cy="30.5" r="4.8" fill="currentColor"></circle>
+    <path d="M60 76 Q41 73 35.5 56 Q51.5 62 60 76 Z" fill="currentColor"></path>
+  </g>
+  <g id="g2e-s">
+    <path d="M60 112 L60 48" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <circle cx="60" cy="28" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+    <circle cx="63" cy="31" r="7" fill="currentColor"></circle>
+    <path d="M60 84 Q34 80 27 54 Q49 62 60 84 Z" fill="currentColor"></path>
+  </g>
+
+  <g id="g2f">
+    <g fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M24 41 L24 24 L41 24"></path>
+      <path d="M79 24 L96 24 L96 41"></path>
+      <path d="M96 79 L96 96 L79 96"></path>
+      <path d="M41 96 L24 96 L24 79"></path>
+    </g>
+    <path d="M60 60 L43 43 M60 60 L77 43 M60 60 L43 77 M60 60 L77 77" stroke="currentColor" stroke-width="1.3" opacity="0.5"></path>
+    <rect x="40.2" y="40.2" width="5.6" height="5.6" fill="currentColor" transform="rotate(45 43 43)"></rect>
+    <rect x="74.2" y="40.2" width="5.6" height="5.6" fill="currentColor" transform="rotate(45 77 43)"></rect>
+    <rect x="40.2" y="74.2" width="5.6" height="5.6" fill="currentColor" transform="rotate(45 43 77)"></rect>
+    <rect x="74.2" y="74.2" width="5.6" height="5.6" fill="currentColor" transform="rotate(45 77 77)"></rect>
+    <rect x="56" y="56" width="8" height="8" fill="currentColor" transform="rotate(45 60 60)"></rect>
+  </g>
+  <g id="g2f-s">
+    <g fill="none" stroke="currentColor" stroke-width="5">
+      <path d="M24 41 L24 24 L41 24"></path>
+      <path d="M79 24 L96 24 L96 41"></path>
+      <path d="M96 79 L96 96 L79 96"></path>
+      <path d="M41 96 L24 96 L24 79"></path>
+    </g>
+    <rect x="38.5" y="38.5" width="9" height="9" fill="currentColor" transform="rotate(45 43 43)"></rect>
+    <rect x="72.5" y="38.5" width="9" height="9" fill="currentColor" transform="rotate(45 77 43)"></rect>
+    <rect x="38.5" y="72.5" width="9" height="9" fill="currentColor" transform="rotate(45 43 77)"></rect>
+    <rect x="72.5" y="72.5" width="9" height="9" fill="currentColor" transform="rotate(45 77 77)"></rect>
+    <rect x="54" y="54" width="12" height="12" fill="currentColor" transform="rotate(45 60 60)"></rect>
+  </g>
+  <g id="g3a">
+    <path d="M60 18 Q73 36 60 54 Q47 36 60 18 Z" fill="currentColor" transform="rotate(72 60 60)"></path>
+    <path d="M60 18 Q73 36 60 54 Q47 36 60 18 Z" fill="currentColor" transform="rotate(144 60 60)"></path>
+    <path d="M60 18 Q73 36 60 54 Q47 36 60 18 Z" fill="currentColor" transform="rotate(216 60 60)"></path>
+    <path d="M60 18 Q73 36 60 54 Q47 36 60 18 Z" fill="currentColor" transform="rotate(288 60 60)"></path>
+    <path d="M60 18 Q73 36 60 54 Q47 36 60 18 Z" fill="none" stroke="currentColor" stroke-width="2"></path>
+  </g>
+  <g id="g3a-s">
+    <path d="M60 14 Q76 34 60 56 Q44 34 60 14 Z" fill="currentColor" transform="rotate(72 60 60)"></path>
+    <path d="M60 14 Q76 34 60 56 Q44 34 60 14 Z" fill="currentColor" transform="rotate(144 60 60)"></path>
+    <path d="M60 14 Q76 34 60 56 Q44 34 60 14 Z" fill="currentColor" transform="rotate(216 60 60)"></path>
+    <path d="M60 14 Q76 34 60 56 Q44 34 60 14 Z" fill="currentColor" transform="rotate(288 60 60)"></path>
+  </g>
+
+  <g id="g3b">
+    <path d="M60 112 L60 74 A26 26 0 0 0 60 22 A13 13 0 0 0 60 48 A6.5 6.5 0 0 0 60 35" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"></path>
+    <circle cx="60" cy="35" r="3.5" fill="currentColor"></circle>
+    <path d="M60 96 Q47 94 42 83 Q54 87 60 96 Z" fill="currentColor"></path>
+  </g>
+  <g id="g3b-s">
+    <path d="M60 114 L60 74 A26 26 0 0 0 60 22 A13 13 0 0 0 60 48" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"></path>
+    <circle cx="60" cy="48" r="6" fill="currentColor"></circle>
+  </g>
+
+  <g id="g3c" transform="rotate(45 60 60)">
+    <path d="M63 57 L63 26 A31 31 0 0 1 94 57 Z" fill="currentColor"></path>
+    <path d="M63 57 L63 26 A31 31 0 0 1 94 57 Z" fill="currentColor" transform="rotate(90 60 60)"></path>
+    <path d="M63 57 L63 26 A31 31 0 0 1 94 57 Z" fill="currentColor" transform="rotate(180 60 60)"></path>
+    <path d="M63 57 L63 26 A31 31 0 0 1 94 57 Z" fill="currentColor" transform="rotate(270 60 60)"></path>
+  </g>
+  <g id="g3c-s" transform="rotate(45 60 60)">
+    <path d="M65 55 L65 26 A29 29 0 0 1 94 55 Z" fill="currentColor"></path>
+    <path d="M65 55 L65 26 A29 29 0 0 1 94 55 Z" fill="currentColor" transform="rotate(90 60 60)"></path>
+    <path d="M65 55 L65 26 A29 29 0 0 1 94 55 Z" fill="currentColor" transform="rotate(180 60 60)"></path>
+    <path d="M65 55 L65 26 A29 29 0 0 1 94 55 Z" fill="currentColor" transform="rotate(270 60 60)"></path>
+  </g>
+
+  <g id="g3d">
+    <path d="M60 112 L60 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"></path>
+    <circle cx="60" cy="14" r="3.5" fill="currentColor"></circle>
+    <rect x="34" y="63" width="24" height="13" rx="6.5" fill="currentColor"></rect>
+    <rect x="62" y="47" width="21" height="12" rx="6" fill="currentColor"></rect>
+    <rect x="40" y="33" width="18" height="10" rx="5" fill="currentColor"></rect>
+    <rect x="62" y="22" width="13" height="8" rx="4" fill="currentColor"></rect>
+    <path d="M60 104 Q44 102 38 90 Q52 94 60 104 Z" fill="currentColor"></path>
+  </g>
+  <g id="g3d-s">
+    <path d="M60 114 L60 12" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path>
+    <circle cx="60" cy="12" r="6" fill="currentColor"></circle>
+    <rect x="28" y="62" width="30" height="17" rx="8.5" fill="currentColor"></rect>
+    <rect x="62" y="40" width="26" height="15" rx="7.5" fill="currentColor"></rect>
+    <rect x="34" y="20" width="24" height="13" rx="6.5" fill="currentColor"></rect>
+  </g>
+
+  <g id="g3e">
+    <circle cx="60" cy="60" r="48" fill="currentColor"></circle>
+    <g fill="var(--bg, #fff)">
+      <circle cx="60" cy="60" r="5"></circle>
+      <path d="M60 26 Q69 40 60 54 Q51 40 60 26 Z"></path>
+      <path d="M60 26 Q69 40 60 54 Q51 40 60 26 Z" transform="rotate(72 60 60)"></path>
+      <path d="M60 26 Q69 40 60 54 Q51 40 60 26 Z" transform="rotate(144 60 60)"></path>
+      <path d="M60 26 Q69 40 60 54 Q51 40 60 26 Z" transform="rotate(216 60 60)"></path>
+      <path d="M60 26 Q69 40 60 54 Q51 40 60 26 Z" transform="rotate(288 60 60)"></path>
+    </g>
+  </g>
+  <g id="g3e-s">
+    <circle cx="60" cy="60" r="48" fill="currentColor"></circle>
+    <g fill="var(--bg, #fff)">
+      <circle cx="60" cy="60" r="7"></circle>
+      <path d="M60 22 Q72 38 60 56 Q48 38 60 22 Z"></path>
+      <path d="M60 22 Q72 38 60 56 Q48 38 60 22 Z" transform="rotate(72 60 60)"></path>
+      <path d="M60 22 Q72 38 60 56 Q48 38 60 22 Z" transform="rotate(144 60 60)"></path>
+      <path d="M60 22 Q72 38 60 56 Q48 38 60 22 Z" transform="rotate(216 60 60)"></path>
+      <path d="M60 22 Q72 38 60 56 Q48 38 60 22 Z" transform="rotate(288 60 60)"></path>
+    </g>
+  </g>
+</defs></svg>
+
+<section class="frame intro" style="left: 40px; top: 40px;">
+  <h1>Round 4 — the mark IS the ASCII</h1>
+  <p>Direction locked: <span class="red">ASCII floral jungle</span>. The engines were always the most ownable thing XGVE has — so the logo becomes a <b>fixed ASCII botanical trademark</b>: a deterministic glyph grid (same art every render, like the Foxglove art), drawn in the house DENS ramp, animated by the site&rsquo;s existing build/dissolve/sway engines. Red stays scarce: bells + pollen only.<br>
+  <a href="#4a">4a</a> thicket (hero) &middot; <a href="#4b">4b</a> medallion (seal) &middot; <a href="#4c">4c</a> scale system.</p>
+</section>
+
+<!-- ================================ 4a THICKET ================================ -->
+<section class="frame ncard" id="4a" style="left: 40px; top: 200px; width: 660px;">
+  <div class="nhead"><a class="badge" href="#4a">4a</a><h2>Thicket</h2><span class="terr">hero mark<br>jungle plot</span></div>
+  <p class="nmeta">88&times;36 fixed grid &middot; foxglove rising out of the understory &middot; rogue pollen escaping</p>
+  <div class="nhero"><pre class="apre" style="font-size: 7px;" data-comment-anchor="r4-thicket">         )             ?<i>.</i>                                   <i>,</i>/               <i>^</i>+
+        +*             ;|                                  ^x     <b>*</b>           ?<i>:</i>
+         o             &lt;+                                   =<i>.</i> <b>*</b>            \=
+         /z           =<i>:</i>                        <b>y</b>&gt;          /                +&gt;
+         <i>:</i>&gt;           <i>.</i>)                        n(         -i                +?
+         <i>:</i>?           <i>'</i>\                        s<b>8B</b>^         v|               +/
+          i/            ?<i>,</i>                      o?          <i>,</i>&gt;               <i>',</i>
+         <i>`,</i>            <i>;</i>                        zz          )
+        -(                                    =<b>2</b>pc          ?!
+         ~                                    <b>MBA</b>j          <i>;</i>
+         (/                                     ;w
+         <i>'`</i>                                      w
+                                                 <b>W85</b>
+                                                 8<b>Sh</b>
+                                                 &amp;
+         !<i>.</i>     <i>;</i>                                B                    <i>`</i>
+ <i>,^</i>      ~-     !<i>.</i>    <i>.`</i>                     <b>wWBK</b>8            <i>,</i>/     <i>'</i>/              <i>`</i>
+  ||     <i>.</i>-<i>'</i>    \<i>`</i>    |<i>`</i>     <i>,</i>                <b>x</b>z 0             )<i>^</i>    <i>:</i>|     <i>^</i>       -<i>:</i>
+   ~;     <i>,</i>^    &lt;<i>'</i>   _!     <i>^^</i>                   W             <i>,</i>|    <i>;</i>|    ^-     <i>,</i>!<i>;</i>
+    <i>;</i>-<i>`</i>    |<i>,</i>   )<i>'</i>  <i>.</i>)<i>,</i>    -<i>:</i>                    8<b>*</b>&gt;      ~<i>`</i>    -<i>^</i>   <i>:</i>_   <i>'</i>|<i>`</i>    <i>:</i>\<i>`</i>
+     <i>`</i>~<i>;</i>   <i>'</i>_   \<i>,</i>  <i>~</i>;   <i>`</i>_<i>:</i>     <i>.^</i>              <b>WB8b</b>     <i>,</i>_<i>;</i>   <i>`</i>!   <i>,</i>~   -^    <i>;~</i>
+<i>`,.</i>   <i>.</i>_~   (~ <i>.</i>+<i>;</i> <i>,</i>\<i>.</i>  <i>:</i>\<i>.</i>    <i>.</i>^~<i>'</i>              B<i>,</i>~-~+ <i>;</i>  <i>.</i>_-   :<i>~</i>  <i>,</i>|  <i>:</i>c&lt;!\__<i>;</i>      <i>:</i>
+ <i>.:;,</i>  <i>`</i>*&gt;<i>,</i> <i>^</i>i<i>:'</i>&gt;<i>:</i> &lt;\  (*<i>.</i>   <i>,</i>;^<i>`</i>       <i>;</i>/*     <i>`</i>8  <i>`</i>!/fx<i>.;</i>| ~t<i>`</i> !/<i>`</i> &gt;&lt;<i>;`</i>es+csts<i>:'</i>  <i>'</i>^!<i>'</i>
+   <i>'</i>;_<i>:</i>  ;c/<i>`</i>&lt;=<i>:</i>(<i>;</i>/?<i>':</i>|\<i>.</i> <i>`;</i>!<i>^'</i>      <i>:</i>!it&lt;   <b>30Wb</b>W    <i>^</i>cyeo&lt;\<i>'</i>!&gt;-)&gt;/<i>.</i>s+&gt;-r&gt;*ygkt/~_|-<i>'</i>
+      <i>;</i>-|<i>^:</i>i1\zs?_j&lt;(+<i>,</i>\&gt;)s! <i>`</i>  <i>~</i> z<i>:</i>jot/&gt;!  <i>;</i><b>W8WG</b>8     |<i>,</i>(xn/r)bwbx*c?u/wv)3nvtf?&lt;)_<i>.</i>
+<i>~</i>_^---<i>:.</i>-)ixji&gt;ndawx/&gt;|io|?|^_|(/c?ejk&lt;^       <i>,</i>28~-<i>,'</i> <i>`</i>(^af9q3wqW8k9=1uE$fz!utr+^<i>;:</i>
+ <i>'</i>|vnhgksevtuusG8%Aaee&lt;e&gt;c*\\~c\v_)Ega)!        y8 <i>'',</i>!|&lt;&gt;&lt;cu8$K86Spk8$#ABu7&lt;sb))+/+o|!^
+ <i>,</i>in257*envjGAsD8Dk)=*+!;^  <i>'</i>*!r=i3e&gt;<i>::</i>         i<b>8808</b><i>'</i>   <i>,</i>~/rg8&amp;S878B80K98adgu&amp;oagrc(<i>.</i>
+-/oEZ65iha2sAA2ks*&gt;&lt;/^-~  ~|i t\u4\a^_<i>,</i>         c<b>8WB0</b><i>;</i>    <i>.</i>jvy78Kk886gWo=zqq9x9&gt;a?as  x
+ jiy02kGpR8g88Ee&gt;~*i*)<i>'</i> <i>:</i>=/*(z*b8799v*(<i>,</i>        fk        <i>';</i>ie5&amp;00ZupSf!txtrrWuh2j!\ i<i>,</i>
+^\w+h8u1v84AR6&amp;=(_/<i>~</i>|&lt;  &gt;)i&lt;zk18WAk+h*i      -<b>e</b>(py     \*+opc943d84ESe\vsA3weeq8G=2ao/ <i>`</i>
+ c~a<i>^</i>jjk4Zy8?A$wk\<i>:</i>yyjvs |=y75&amp;dwycsy&lt;e<i>,</i>    <b>W8888</b>x    ^kknoEx9EnZ8BZjc(&lt;+jSWwvcZ80a#G ^&gt;
+v 7!sfRbG8dBih06+-!7Ej<i>'</i>-jx-0BWWvv+<i>^</i>8z6&gt;    <i>'</i><b>n$93</b>83<i>;</i> <i>.</i>+o+?zc8w080&amp;7Gh9g5dvx1x*-&lt;pB808&gt;xxs
+/e~RA3=($8RZq_#Wr)iEu=&gt;  t$$0WZjqAj8B9v   <i>;</i>(=*! Zd=-<i>~</i>!<i>';:.</i>)u%88B8#nGndu1s  ;~=/dB08BW=w
+xz882fi=e800B?8Dj|/az?~   _w8ynwhf8888+<i>,</i>-<i>:</i>iwj^   <i>^</i>; (\    s&lt;#806<i>:</i>|i1jic    \|?iAB80080
+<i>:</i>/E&gt;&lt;nktZ0808W8x<i>'`,</i>|/      <i>'</i>8=-/  8488<i>'</i>cer~&gt;/             x<i>^</i>A0Bp&lt;|!&lt;S    \!<i>^</i>-^=08B8u ;6</pre></div>
+  <div class="nrow">
+    <div class="cell"><pre class="apre" style="font-size: 4.5px;">         )             ?<i>.</i>                                   <i>,</i>/               <i>^</i>+
+        +*             ;|                                  ^x     <b>*</b>           ?<i>:</i>
+         o             &lt;+                                   =<i>.</i> <b>*</b>            \=
+         /z           =<i>:</i>                        <b>y</b>&gt;          /                +&gt;
+         <i>:</i>&gt;           <i>.</i>)                        n(         -i                +?
+         <i>:</i>?           <i>'</i>\                        s<b>8B</b>^         v|               +/
+          i/            ?<i>,</i>                      o?          <i>,</i>&gt;               <i>',</i>
+         <i>`,</i>            <i>;</i>                        zz          )
+        -(                                    =<b>2</b>pc          ?!
+         ~                                    <b>MBA</b>j          <i>;</i>
+         (/                                     ;w
+         <i>'`</i>                                      w
+                                                 <b>W85</b>
+                                                 8<b>Sh</b>
+                                                 &amp;
+         !<i>.</i>     <i>;</i>                                B                    <i>`</i>
+ <i>,^</i>      ~-     !<i>.</i>    <i>.`</i>                     <b>wWBK</b>8            <i>,</i>/     <i>'</i>/              <i>`</i>
+  ||     <i>.</i>-<i>'</i>    \<i>`</i>    |<i>`</i>     <i>,</i>                <b>x</b>z 0             )<i>^</i>    <i>:</i>|     <i>^</i>       -<i>:</i>
+   ~;     <i>,</i>^    &lt;<i>'</i>   _!     <i>^^</i>                   W             <i>,</i>|    <i>;</i>|    ^-     <i>,</i>!<i>;</i>
+    <i>;</i>-<i>`</i>    |<i>,</i>   )<i>'</i>  <i>.</i>)<i>,</i>    -<i>:</i>                    8<b>*</b>&gt;      ~<i>`</i>    -<i>^</i>   <i>:</i>_   <i>'</i>|<i>`</i>    <i>:</i>\<i>`</i>
+     <i>`</i>~<i>;</i>   <i>'</i>_   \<i>,</i>  <i>~</i>;   <i>`</i>_<i>:</i>     <i>.^</i>              <b>WB8b</b>     <i>,</i>_<i>;</i>   <i>`</i>!   <i>,</i>~   -^    <i>;~</i>
+<i>`,.</i>   <i>.</i>_~   (~ <i>.</i>+<i>;</i> <i>,</i>\<i>.</i>  <i>:</i>\<i>.</i>    <i>.</i>^~<i>'</i>              B<i>,</i>~-~+ <i>;</i>  <i>.</i>_-   :<i>~</i>  <i>,</i>|  <i>:</i>c&lt;!\__<i>;</i>      <i>:</i>
+ <i>.:;,</i>  <i>`</i>*&gt;<i>,</i> <i>^</i>i<i>:'</i>&gt;<i>:</i> &lt;\  (*<i>.</i>   <i>,</i>;^<i>`</i>       <i>;</i>/*     <i>`</i>8  <i>`</i>!/fx<i>.;</i>| ~t<i>`</i> !/<i>`</i> &gt;&lt;<i>;`</i>es+csts<i>:'</i>  <i>'</i>^!<i>'</i>
+   <i>'</i>;_<i>:</i>  ;c/<i>`</i>&lt;=<i>:</i>(<i>;</i>/?<i>':</i>|\<i>.</i> <i>`;</i>!<i>^'</i>      <i>:</i>!it&lt;   <b>30Wb</b>W    <i>^</i>cyeo&lt;\<i>'</i>!&gt;-)&gt;/<i>.</i>s+&gt;-r&gt;*ygkt/~_|-<i>'</i>
+      <i>;</i>-|<i>^:</i>i1\zs?_j&lt;(+<i>,</i>\&gt;)s! <i>`</i>  <i>~</i> z<i>:</i>jot/&gt;!  <i>;</i><b>W8WG</b>8     |<i>,</i>(xn/r)bwbx*c?u/wv)3nvtf?&lt;)_<i>.</i>
+<i>~</i>_^---<i>:.</i>-)ixji&gt;ndawx/&gt;|io|?|^_|(/c?ejk&lt;^       <i>,</i>28~-<i>,'</i> <i>`</i>(^af9q3wqW8k9=1uE$fz!utr+^<i>;:</i>
+ <i>'</i>|vnhgksevtuusG8%Aaee&lt;e&gt;c*\\~c\v_)Ega)!        y8 <i>'',</i>!|&lt;&gt;&lt;cu8$K86Spk8$#ABu7&lt;sb))+/+o|!^
+ <i>,</i>in257*envjGAsD8Dk)=*+!;^  <i>'</i>*!r=i3e&gt;<i>::</i>         i<b>8808</b><i>'</i>   <i>,</i>~/rg8&amp;S878B80K98adgu&amp;oagrc(<i>.</i>
+-/oEZ65iha2sAA2ks*&gt;&lt;/^-~  ~|i t\u4\a^_<i>,</i>         c<b>8WB0</b><i>;</i>    <i>.</i>jvy78Kk886gWo=zqq9x9&gt;a?as  x
+ jiy02kGpR8g88Ee&gt;~*i*)<i>'</i> <i>:</i>=/*(z*b8799v*(<i>,</i>        fk        <i>';</i>ie5&amp;00ZupSf!txtrrWuh2j!\ i<i>,</i>
+^\w+h8u1v84AR6&amp;=(_/<i>~</i>|&lt;  &gt;)i&lt;zk18WAk+h*i      -<b>e</b>(py     \*+opc943d84ESe\vsA3weeq8G=2ao/ <i>`</i>
+ c~a<i>^</i>jjk4Zy8?A$wk\<i>:</i>yyjvs |=y75&amp;dwycsy&lt;e<i>,</i>    <b>W8888</b>x    ^kknoEx9EnZ8BZjc(&lt;+jSWwvcZ80a#G ^&gt;
+v 7!sfRbG8dBih06+-!7Ej<i>'</i>-jx-0BWWvv+<i>^</i>8z6&gt;    <i>'</i><b>n$93</b>83<i>;</i> <i>.</i>+o+?zc8w080&amp;7Gh9g5dvx1x*-&lt;pB808&gt;xxs
+/e~RA3=($8RZq_#Wr)iEu=&gt;  t$$0WZjqAj8B9v   <i>;</i>(=*! Zd=-<i>~</i>!<i>';:.</i>)u%88B8#nGndu1s  ;~=/dB08BW=w
+xz882fi=e800B?8Dj|/az?~   _w8ynwhf8888+<i>,</i>-<i>:</i>iwj^   <i>^</i>; (\    s&lt;#806<i>:</i>|i1jic    \|?iAB80080
+<i>:</i>/E&gt;&lt;nktZ0808W8x<i>'`,</i>|/      <i>'</i>8=-/  8488<i>'</i>cer~&gt;/             x<i>^</i>A0Bp&lt;|!&lt;S    \!<i>^</i>-^=08B8u ;6</pre>reduced &middot; reads as texture</div>
+  </div>
+  <div class="nlock">
+    <pre class="apre" style="font-size: 2.6px;">         )             ?<i>.</i>                                   <i>,</i>/               <i>^</i>+
+        +*             ;|                                  ^x     <b>*</b>           ?<i>:</i>
+         o             &lt;+                                   =<i>.</i> <b>*</b>            \=
+         /z           =<i>:</i>                        <b>y</b>&gt;          /                +&gt;
+         <i>:</i>&gt;           <i>.</i>)                        n(         -i                +?
+         <i>:</i>?           <i>'</i>\                        s<b>8B</b>^         v|               +/
+          i/            ?<i>,</i>                      o?          <i>,</i>&gt;               <i>',</i>
+         <i>`,</i>            <i>;</i>                        zz          )
+        -(                                    =<b>2</b>pc          ?!
+         ~                                    <b>MBA</b>j          <i>;</i>
+         (/                                     ;w
+         <i>'`</i>                                      w
+                                                 <b>W85</b>
+                                                 8<b>Sh</b>
+                                                 &amp;
+         !<i>.</i>     <i>;</i>                                B                    <i>`</i>
+ <i>,^</i>      ~-     !<i>.</i>    <i>.`</i>                     <b>wWBK</b>8            <i>,</i>/     <i>'</i>/              <i>`</i>
+  ||     <i>.</i>-<i>'</i>    \<i>`</i>    |<i>`</i>     <i>,</i>                <b>x</b>z 0             )<i>^</i>    <i>:</i>|     <i>^</i>       -<i>:</i>
+   ~;     <i>,</i>^    &lt;<i>'</i>   _!     <i>^^</i>                   W             <i>,</i>|    <i>;</i>|    ^-     <i>,</i>!<i>;</i>
+    <i>;</i>-<i>`</i>    |<i>,</i>   )<i>'</i>  <i>.</i>)<i>,</i>    -<i>:</i>                    8<b>*</b>&gt;      ~<i>`</i>    -<i>^</i>   <i>:</i>_   <i>'</i>|<i>`</i>    <i>:</i>\<i>`</i>
+     <i>`</i>~<i>;</i>   <i>'</i>_   \<i>,</i>  <i>~</i>;   <i>`</i>_<i>:</i>     <i>.^</i>              <b>WB8b</b>     <i>,</i>_<i>;</i>   <i>`</i>!   <i>,</i>~   -^    <i>;~</i>
+<i>`,.</i>   <i>.</i>_~   (~ <i>.</i>+<i>;</i> <i>,</i>\<i>.</i>  <i>:</i>\<i>.</i>    <i>.</i>^~<i>'</i>              B<i>,</i>~-~+ <i>;</i>  <i>.</i>_-   :<i>~</i>  <i>,</i>|  <i>:</i>c&lt;!\__<i>;</i>      <i>:</i>
+ <i>.:;,</i>  <i>`</i>*&gt;<i>,</i> <i>^</i>i<i>:'</i>&gt;<i>:</i> &lt;\  (*<i>.</i>   <i>,</i>;^<i>`</i>       <i>;</i>/*     <i>`</i>8  <i>`</i>!/fx<i>.;</i>| ~t<i>`</i> !/<i>`</i> &gt;&lt;<i>;`</i>es+csts<i>:'</i>  <i>'</i>^!<i>'</i>
+   <i>'</i>;_<i>:</i>  ;c/<i>`</i>&lt;=<i>:</i>(<i>;</i>/?<i>':</i>|\<i>.</i> <i>`;</i>!<i>^'</i>      <i>:</i>!it&lt;   <b>30Wb</b>W    <i>^</i>cyeo&lt;\<i>'</i>!&gt;-)&gt;/<i>.</i>s+&gt;-r&gt;*ygkt/~_|-<i>'</i>
+      <i>;</i>-|<i>^:</i>i1\zs?_j&lt;(+<i>,</i>\&gt;)s! <i>`</i>  <i>~</i> z<i>:</i>jot/&gt;!  <i>;</i><b>W8WG</b>8     |<i>,</i>(xn/r)bwbx*c?u/wv)3nvtf?&lt;)_<i>.</i>
+<i>~</i>_^---<i>:.</i>-)ixji&gt;ndawx/&gt;|io|?|^_|(/c?ejk&lt;^       <i>,</i>28~-<i>,'</i> <i>`</i>(^af9q3wqW8k9=1uE$fz!utr+^<i>;:</i>
+ <i>'</i>|vnhgksevtuusG8%Aaee&lt;e&gt;c*\\~c\v_)Ega)!        y8 <i>'',</i>!|&lt;&gt;&lt;cu8$K86Spk8$#ABu7&lt;sb))+/+o|!^
+ <i>,</i>in257*envjGAsD8Dk)=*+!;^  <i>'</i>*!r=i3e&gt;<i>::</i>         i<b>8808</b><i>'</i>   <i>,</i>~/rg8&amp;S878B80K98adgu&amp;oagrc(<i>.</i>
+-/oEZ65iha2sAA2ks*&gt;&lt;/^-~  ~|i t\u4\a^_<i>,</i>         c<b>8WB0</b><i>;</i>    <i>.</i>jvy78Kk886gWo=zqq9x9&gt;a?as  x
+ jiy02kGpR8g88Ee&gt;~*i*)<i>'</i> <i>:</i>=/*(z*b8799v*(<i>,</i>        fk        <i>';</i>ie5&amp;00ZupSf!txtrrWuh2j!\ i<i>,</i>
+^\w+h8u1v84AR6&amp;=(_/<i>~</i>|&lt;  &gt;)i&lt;zk18WAk+h*i      -<b>e</b>(py     \*+opc943d84ESe\vsA3weeq8G=2ao/ <i>`</i>
+ c~a<i>^</i>jjk4Zy8?A$wk\<i>:</i>yyjvs |=y75&amp;dwycsy&lt;e<i>,</i>    <b>W8888</b>x    ^kknoEx9EnZ8BZjc(&lt;+jSWwvcZ80a#G ^&gt;
+v 7!sfRbG8dBih06+-!7Ej<i>'</i>-jx-0BWWvv+<i>^</i>8z6&gt;    <i>'</i><b>n$93</b>83<i>;</i> <i>.</i>+o+?zc8w080&amp;7Gh9g5dvx1x*-&lt;pB808&gt;xxs
+/e~RA3=($8RZq_#Wr)iEu=&gt;  t$$0WZjqAj8B9v   <i>;</i>(=*! Zd=-<i>~</i>!<i>';:.</i>)u%88B8#nGndu1s  ;~=/dB08BW=w
+xz882fi=e800B?8Dj|/az?~   _w8ynwhf8888+<i>,</i>-<i>:</i>iwj^   <i>^</i>; (\    s&lt;#806<i>:</i>|i1jic    \|?iAB80080
+<i>:</i>/E&gt;&lt;nktZ0808W8x<i>'`,</i>|/      <i>'</i>8=-/  8488<i>'</i>cer~&gt;/             x<i>^</i>A0Bp&lt;|!&lt;S    \!<i>^</i>-^=08B8u ;6</pre>
+    <div><span class="wm3">XGVE</span><span class="exp3">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="nhid">Deterministic — a trademark, not a screensaver. The site engine grows it bottom-first, sways it with pseudo-depth, dissolves it back to field.</p>
+  <p class="nrat">The full brand statement: engineered garden, drawn by the machine, one flower lit. For the hero, posters, OG image.</p>
+</section>
+
+<!-- ================================ 4b MEDALLION ================================ -->
+<section class="frame ncard" id="4b" style="left: 740px; top: 200px; width: 560px;">
+  <div class="nhead"><a class="badge" href="#4b">4b</a><h2>Medallion</h2><span class="terr">seal &middot; avatar<br>institutional</span></div>
+  <p class="nmeta">56&times;34 grid held in a dotted ring &middot; foxglove + laurel ferns</p>
+  <div class="nhero"><pre class="apre" style="font-size: 9px;" data-comment-anchor="r4-medallion">                        <i>':,.,.,'</i>
+                  <i>':'.':</i>        <i>.':,:.</i>
+              <i>.,.:</i>                    <i>,:':</i>
+            <i>,.,</i>                          <i>:.'</i>
+          <i>.:</i>               <b>st</b>               <i>..</i>
+        <i>':</i>                 nG&lt;                <i>.'</i>
+      <i>.:,</i>                  c<b>8B</b><i>^</i>                <i>:.,</i>
+     <i>,,</i>                    <i>,</i>t                    <i>:'</i>
+    <i>::</i>                   <i>.</i><b>+</b>/g                     <i>:.</i>
+   <i>.:</i>                    <b>+Gx</b>%                      <i>..</i>
+  <i>:,</i>                        Z                       <i>':</i>
+  <i>:</i>                         <b>Au</b>(                      <i>,</i>
+ <i>':</i>                         <b>88$</b>                      <i>':</i>
+ <i>'</i>                          W                         <i>:</i>
+ <i>.</i>                       <b>38p</b>8                         <i>:</i>
+<i>'.</i>                       <b>W8b</b>0                         <i>.'</i>
+<i>,,</i>                          8                         <i>::</i>
+<i>,:</i>                          <b>WD9</b><i>:</i>                      <i>':</i>
+<i>'.</i>                          <b>8U@</b>!                      <i>''</i>
+ <i>.</i>             -<i>:</i>~<i>':</i>  !<i>,</i>    W     <i>'</i>  \ -              <i>.</i>
+ <i>:</i>         ^ <i>:</i>oo!?co? \|<b>gB8G</b>8&gt;+&lt;) c&lt; &gt;tc    <i>;</i>         <i>'</i>
+ <i>':</i>        <i>'</i>*^sw-thwr_t8<b>080Z</b>888dsozx||qk+ <i>^</i>d!*       <i>':</i>
+  <i>,</i>      ??=isiahDEUbz?68hnn8j36wnr2wjaua h3f !&lt;     <i>.</i>
+  <i>..</i>   &gt;<i>:</i>(tj6Zq8wpK$5nrq1wwp<b>8888</b>&amp;1M45bq#MZ5x&gt;&lt;**x   <i>:,</i>
+   <i>,'</i>  \v*kqB883do8&amp;0xeaof+q<b>W888</b>G@#18qo188Ruzj1v<i>'</i>  <i>:,</i>
+    <i>.:</i>  iweSB4tSB0WEMyi?ft\9@u7&amp;KK8WW0BDnbU#W##/  <i>:'</i>
+     <i>''</i>  =3Supy$8W0q@t=n<b>088B</b>Wq9#BK8M888WG86A88\  <i>,.</i>
+      <i>'''</i>&gt;x)nw)*80Ma1x&lt;x<b>WB8</b>88$967kWE8M01Gkhb\?(<i>:.,</i>
+        <i>:,:.</i>    2Z0E=-|(si888|i_-/8SG&amp;8:-    <i>^,.</i>
+          <i>',</i>       ~\_\==\xb+    <i>,</i>:!-<i>;;^:</i>   <i>,,</i>
+            <i>:.'</i>     <i>';</i>_~^<i>.</i>        <i>.',',.</i> <i>:::</i>
+              <i>::.:</i>                    <i>::'.</i>
+                  <i>,.,.::</i>        <i>.,',',</i>
+                        <i>:'.,:':'</i></pre></div>
+  <div class="nrow">
+    <div class="cell"><pre class="apre" style="font-size: 5px;">                        <i>':,.,.,'</i>
+                  <i>':'.':</i>        <i>.':,:.</i>
+              <i>.,.:</i>                    <i>,:':</i>
+            <i>,.,</i>                          <i>:.'</i>
+          <i>.:</i>               <b>st</b>               <i>..</i>
+        <i>':</i>                 nG&lt;                <i>.'</i>
+      <i>.:,</i>                  c<b>8B</b><i>^</i>                <i>:.,</i>
+     <i>,,</i>                    <i>,</i>t                    <i>:'</i>
+    <i>::</i>                   <i>.</i><b>+</b>/g                     <i>:.</i>
+   <i>.:</i>                    <b>+Gx</b>%                      <i>..</i>
+  <i>:,</i>                        Z                       <i>':</i>
+  <i>:</i>                         <b>Au</b>(                      <i>,</i>
+ <i>':</i>                         <b>88$</b>                      <i>':</i>
+ <i>'</i>                          W                         <i>:</i>
+ <i>.</i>                       <b>38p</b>8                         <i>:</i>
+<i>'.</i>                       <b>W8b</b>0                         <i>.'</i>
+<i>,,</i>                          8                         <i>::</i>
+<i>,:</i>                          <b>WD9</b><i>:</i>                      <i>':</i>
+<i>'.</i>                          <b>8U@</b>!                      <i>''</i>
+ <i>.</i>             -<i>:</i>~<i>':</i>  !<i>,</i>    W     <i>'</i>  \ -              <i>.</i>
+ <i>:</i>         ^ <i>:</i>oo!?co? \|<b>gB8G</b>8&gt;+&lt;) c&lt; &gt;tc    <i>;</i>         <i>'</i>
+ <i>':</i>        <i>'</i>*^sw-thwr_t8<b>080Z</b>888dsozx||qk+ <i>^</i>d!*       <i>':</i>
+  <i>,</i>      ??=isiahDEUbz?68hnn8j36wnr2wjaua h3f !&lt;     <i>.</i>
+  <i>..</i>   &gt;<i>:</i>(tj6Zq8wpK$5nrq1wwp<b>8888</b>&amp;1M45bq#MZ5x&gt;&lt;**x   <i>:,</i>
+   <i>,'</i>  \v*kqB883do8&amp;0xeaof+q<b>W888</b>G@#18qo188Ruzj1v<i>'</i>  <i>:,</i>
+    <i>.:</i>  iweSB4tSB0WEMyi?ft\9@u7&amp;KK8WW0BDnbU#W##/  <i>:'</i>
+     <i>''</i>  =3Supy$8W0q@t=n<b>088B</b>Wq9#BK8M888WG86A88\  <i>,.</i>
+      <i>'''</i>&gt;x)nw)*80Ma1x&lt;x<b>WB8</b>88$967kWE8M01Gkhb\?(<i>:.,</i>
+        <i>:,:.</i>    2Z0E=-|(si888|i_-/8SG&amp;8:-    <i>^,.</i>
+          <i>',</i>       ~\_\==\xb+    <i>,</i>:!-<i>;;^:</i>   <i>,,</i>
+            <i>:.'</i>     <i>';</i>_~^<i>.</i>        <i>.',',.</i> <i>:::</i>
+              <i>::.:</i>                    <i>::'.</i>
+                  <i>,.,.::</i>        <i>.,',',</i>
+                        <i>:'.,:':'</i></pre>avatar &middot; 170px</div>
+    <div class="cell"><div class="chipw"><pre class="apre lt" style="font-size: 5px;">                        <i>':,.,.,'</i>
+                  <i>':'.':</i>        <i>.':,:.</i>
+              <i>.,.:</i>                    <i>,:':</i>
+            <i>,.,</i>                          <i>:.'</i>
+          <i>.:</i>               <b>st</b>               <i>..</i>
+        <i>':</i>                 nG&lt;                <i>.'</i>
+      <i>.:,</i>                  c<b>8B</b><i>^</i>                <i>:.,</i>
+     <i>,,</i>                    <i>,</i>t                    <i>:'</i>
+    <i>::</i>                   <i>.</i><b>+</b>/g                     <i>:.</i>
+   <i>.:</i>                    <b>+Gx</b>%                      <i>..</i>
+  <i>:,</i>                        Z                       <i>':</i>
+  <i>:</i>                         <b>Au</b>(                      <i>,</i>
+ <i>':</i>                         <b>88$</b>                      <i>':</i>
+ <i>'</i>                          W                         <i>:</i>
+ <i>.</i>                       <b>38p</b>8                         <i>:</i>
+<i>'.</i>                       <b>W8b</b>0                         <i>.'</i>
+<i>,,</i>                          8                         <i>::</i>
+<i>,:</i>                          <b>WD9</b><i>:</i>                      <i>':</i>
+<i>'.</i>                          <b>8U@</b>!                      <i>''</i>
+ <i>.</i>             -<i>:</i>~<i>':</i>  !<i>,</i>    W     <i>'</i>  \ -              <i>.</i>
+ <i>:</i>         ^ <i>:</i>oo!?co? \|<b>gB8G</b>8&gt;+&lt;) c&lt; &gt;tc    <i>;</i>         <i>'</i>
+ <i>':</i>        <i>'</i>*^sw-thwr_t8<b>080Z</b>888dsozx||qk+ <i>^</i>d!*       <i>':</i>
+  <i>,</i>      ??=isiahDEUbz?68hnn8j36wnr2wjaua h3f !&lt;     <i>.</i>
+  <i>..</i>   &gt;<i>:</i>(tj6Zq8wpK$5nrq1wwp<b>8888</b>&amp;1M45bq#MZ5x&gt;&lt;**x   <i>:,</i>
+   <i>,'</i>  \v*kqB883do8&amp;0xeaof+q<b>W888</b>G@#18qo188Ruzj1v<i>'</i>  <i>:,</i>
+    <i>.:</i>  iweSB4tSB0WEMyi?ft\9@u7&amp;KK8WW0BDnbU#W##/  <i>:'</i>
+     <i>''</i>  =3Supy$8W0q@t=n<b>088B</b>Wq9#BK8M888WG86A88\  <i>,.</i>
+      <i>'''</i>&gt;x)nw)*80Ma1x&lt;x<b>WB8</b>88$967kWE8M01Gkhb\?(<i>:.,</i>
+        <i>:,:.</i>    2Z0E=-|(si888|i_-/8SG&amp;8:-    <i>^,.</i>
+          <i>',</i>       ~\_\==\xb+    <i>,</i>:!-<i>;;^:</i>   <i>,,</i>
+            <i>:.'</i>     <i>';</i>_~^<i>.</i>        <i>.',',.</i> <i>:::</i>
+              <i>::.:</i>                    <i>::'.</i>
+                  <i>,.,.::</i>        <i>.,',',</i>
+                        <i>:'.,:':'</i></pre></div>print / light</div>
+  </div>
+  <div class="nlock">
+    <pre class="apre" style="font-size: 3.4px;">                        <i>':,.,.,'</i>
+                  <i>':'.':</i>        <i>.':,:.</i>
+              <i>.,.:</i>                    <i>,:':</i>
+            <i>,.,</i>                          <i>:.'</i>
+          <i>.:</i>               <b>st</b>               <i>..</i>
+        <i>':</i>                 nG&lt;                <i>.'</i>
+      <i>.:,</i>                  c<b>8B</b><i>^</i>                <i>:.,</i>
+     <i>,,</i>                    <i>,</i>t                    <i>:'</i>
+    <i>::</i>                   <i>.</i><b>+</b>/g                     <i>:.</i>
+   <i>.:</i>                    <b>+Gx</b>%                      <i>..</i>
+  <i>:,</i>                        Z                       <i>':</i>
+  <i>:</i>                         <b>Au</b>(                      <i>,</i>
+ <i>':</i>                         <b>88$</b>                      <i>':</i>
+ <i>'</i>                          W                         <i>:</i>
+ <i>.</i>                       <b>38p</b>8                         <i>:</i>
+<i>'.</i>                       <b>W8b</b>0                         <i>.'</i>
+<i>,,</i>                          8                         <i>::</i>
+<i>,:</i>                          <b>WD9</b><i>:</i>                      <i>':</i>
+<i>'.</i>                          <b>8U@</b>!                      <i>''</i>
+ <i>.</i>             -<i>:</i>~<i>':</i>  !<i>,</i>    W     <i>'</i>  \ -              <i>.</i>
+ <i>:</i>         ^ <i>:</i>oo!?co? \|<b>gB8G</b>8&gt;+&lt;) c&lt; &gt;tc    <i>;</i>         <i>'</i>
+ <i>':</i>        <i>'</i>*^sw-thwr_t8<b>080Z</b>888dsozx||qk+ <i>^</i>d!*       <i>':</i>
+  <i>,</i>      ??=isiahDEUbz?68hnn8j36wnr2wjaua h3f !&lt;     <i>.</i>
+  <i>..</i>   &gt;<i>:</i>(tj6Zq8wpK$5nrq1wwp<b>8888</b>&amp;1M45bq#MZ5x&gt;&lt;**x   <i>:,</i>
+   <i>,'</i>  \v*kqB883do8&amp;0xeaof+q<b>W888</b>G@#18qo188Ruzj1v<i>'</i>  <i>:,</i>
+    <i>.:</i>  iweSB4tSB0WEMyi?ft\9@u7&amp;KK8WW0BDnbU#W##/  <i>:'</i>
+     <i>''</i>  =3Supy$8W0q@t=n<b>088B</b>Wq9#BK8M888WG86A88\  <i>,.</i>
+      <i>'''</i>&gt;x)nw)*80Ma1x&lt;x<b>WB8</b>88$967kWE8M01Gkhb\?(<i>:.,</i>
+        <i>:,:.</i>    2Z0E=-|(si888|i_-/8SG&amp;8:-    <i>^,.</i>
+          <i>',</i>       ~\_\==\xb+    <i>,</i>:!-<i>;;^:</i>   <i>,,</i>
+            <i>:.'</i>     <i>';</i>_~^<i>.</i>        <i>.',',.</i> <i>:::</i>
+              <i>::.:</i>                    <i>::'.</i>
+                  <i>,.,.::</i>        <i>.,',',</i>
+                        <i>:'.,:':'</i></pre>
+    <div><span class="wm3">XGVE</span><span class="exp3">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="nhid">The jungle held in a specimen ring — garden as institution. Works as PFP/avatar, stamp, and window badge; survives light backgrounds.</p>
+  <p class="nrat">The most logo-shaped of the three: circular silhouette, dense heart, quiet edge. Natural successor to the old dial emblem.</p>
+</section>
+
+<!-- ================================ 4c SCALE SYSTEM ================================ -->
+<section class="frame ncard" id="4c" style="left: 1340px; top: 200px; width: 660px;">
+  <div class="nhead"><a class="badge" href="#4c">4c</a><h2>Scale system</h2><span class="terr">one organism<br>four sizes</span></div>
+  <p class="nmeta">Jungle &rarr; medallion &rarr; sprout &rarr; seed. ASCII needs room; each scale gets its own cut.</p>
+  <div class="nhero"><pre class="apre" style="font-size: 15px;" data-comment-anchor="r4-sprout">
+           <b>5</b>     <b>*</b>
+           t<b>R</b>-
+          <b>G4</b>
+           i<b>undefined8</b>
+         |<b>undefinedG</b>r
+           ~<b>undefined0</b>
+         <b>xMA</b>9<b>t</b>
+         <b>*undefined</b>&amp;<b>undefinedg</b>-
+         <b>xundefined</b>undefined<b>undefinedBy</b>
+        <i>,</i><b>undefinedundefinedundefined</b>undefined u
+         vDundefinedS d</pre></div>
+  <div class="nrow">
+    <div class="cell"><pre class="apre" style="font-size: 9px;">
+           <b>5</b>     <b>*</b>
+           t<b>R</b>-
+          <b>G4</b>
+           i<b>undefined8</b>
+         |<b>undefinedG</b>r
+           ~<b>undefined0</b>
+         <b>xMA</b>9<b>t</b>
+         <b>*undefined</b>&amp;<b>undefinedg</b>-
+         <b>xundefined</b>undefined<b>undefinedBy</b>
+        <i>,</i><b>undefinedundefinedundefined</b>undefined u
+         vDundefinedS d</pre>sprout &middot; &ge;96px</div>
+    <div class="cell"><div class="chipk" style="width: 48px; height: 48px;"><span style="font-family: var(--font-mono); font-size: 26px; color: #ff2a38;">*</span></div>seed &middot; 48px</div>
+    <div class="cell"><div class="chipk" style="width: 16px; height: 16px;"><span style="font-family: var(--font-mono); font-size: 11px; color: #ff2a38;">*</span></div>favicon</div>
+    <div class="cell"><div class="chipk" style="height: 48px; padding: 0 14px; display: flex; align-items: center; gap: 10px;"><pre class="apre" style="font-size: 3.4px;">
+           <b>5</b>     <b>*</b>
+           t<b>R</b>-
+          <b>G4</b>
+           i<b>undefined8</b>
+         |<b>undefinedG</b>r
+           ~<b>undefined0</b>
+         <b>xMA</b>9<b>t</b>
+         <b>*undefined</b>&amp;<b>undefinedg</b>-
+         <b>xundefined</b>undefined<b>undefinedBy</b>
+        <i>,</i><b>undefinedundefinedundefined</b>undefined u
+         vDundefinedS d</pre><span style="font-family: var(--font-display); font-weight: 500; font-size: 15px; letter-spacing: 0.18em; color: #fff;">XGVE</span></div>header lockup</div>
+  </div>
+  <p class="nhid">Below ~90px an ASCII scene dies, so it hands off: the sprout (24&times;12 cut of the same foxglove) for mid sizes, one red pollen glyph <b>*</b> as seed for favicon/app dots.</p>
+  <p class="nrat">This is the usage contract that makes 4a/4b shippable: hero &ge;320px &middot; medallion &ge;120px &middot; sprout &ge;96px &middot; seed below that.</p>
+</section>
+
+<section class="frame intro" style="left: 40px; top: 1180px;">
+  <h1>Round 3 — floral, modern <span style="font-size:14px; color: var(--content-muted); font-weight:400;">(superseded — too flat, not XGVE enough)</span></h1>
+  <p>Reframed: <span class="red">vision = visionary ideas brought to life</span> — no optics, no lenses, no eyes.<br>
+  Floral first, modern always; letters only ever a bonus. Pure black &amp; white; tested at 48/24/16, inverse, and in lockup.<br>
+  Five marks: <a href="#3a">3a</a> envisioned petal &middot; <a href="#3b">3b</a> unfurl &middot; <a href="#3c">3c</a> radius bloom &middot; <a href="#3d">3d</a> foxglove &middot; <a href="#3e">3e</a> night bloom.</p>
+</section>
+
+<!-- ================================ 3a ENVISIONED PETAL ================================ -->
+<section class="frame pcard" id="3a" style="left: 40px; top: 1340px;">
+  <div class="phead"><a class="badge" href="#3a">3a</a><h2>Envisioned Petal</h2><span class="terr">restrained bloom<br>the tagline, literally</span></div>
+  <p class="pmeta">Five-fold bloom — four petals grown, one imagined</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Envisioned Petal mark"><use href="#g3a"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g3a"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g3a"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g3a-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g3a-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g3a"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">The fifth petal exists only as a line — envisioned, not yet grown. At small sizes it becomes a missing-petal silhouette, which stays ownable. Bonus: V voids between petals.</p>
+  <p class="prat">&ldquo;Good taste, envisioned&rdquo; as geometry: the studio grows the petal that isn&rsquo;t there yet. Solid + hairline keeps it contemporary, never decorative.</p>
+</section>
+
+<!-- ================================ 3b UNFURL ================================ -->
+<section class="frame pcard" id="3b" style="left: 700px; top: 1340px;">
+  <div class="phead"><a class="badge" href="#3b">3b</a><h2>Unfurl</h2><span class="terr">fiddlehead<br>ideas taking shape</span></div>
+  <p class="pmeta">Fern crozier — the bloom before the bloom, one stroke</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Unfurl mark"><use href="#g3b"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g3b"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g3b"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g3b-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g3b-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g3b"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">A crozier holds the whole plant coiled inside it — potential, not display. The seed-dot marks where the idea is still rolled up. Bonus: the curl reads as a G gesture.</p>
+  <p class="prat">Quietest and most mysterious of the set; a single line with one leaf. Beautiful embossed or foil-stamped at any scale.</p>
+</section>
+
+<!-- ================================ 3c RADIUS BLOOM ================================ -->
+<section class="frame pcard" id="3c" style="left: 1360px; top: 1340px;">
+  <div class="phead"><a class="badge" href="#3c">3c</a><h2>Radius Bloom</h2><span class="terr">modular florality<br>software atelier</span></div>
+  <p class="pmeta">Four petals built from corner-radius geometry</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Radius Bloom mark"><use href="#g3c"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g3c"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g3c"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g3c-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g3c-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g3c"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Each petal is a quarter-disc — the corner radius of software made organic. Bonus: the channels between petals cross as a precise X.</p>
+  <p class="prat">The most contemporary construction here: UI geometry becoming a flower. Solid, confident, instantly an app icon.</p>
+</section>
+
+<!-- ================================ 3d FOXGLOVE ================================ -->
+<section class="frame pcard" id="3d" style="left: 2020px; top: 1340px;">
+  <div class="phead"><a class="badge" href="#3d">3d</a><h2>Foxglove</h2><span class="terr">strange botanical system<br>the house flower</span></div>
+  <p class="pmeta">Raceme reduced to capsules — bells alternating up a stem</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Foxglove mark"><use href="#g3d"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g3d"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g3d"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g3d-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g3d-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g3d"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Digitalis — beautiful, potent, slightly dangerous — drawn as modern capsules diminishing to a bud. No letters claimed; the rhythm is the signature.</p>
+  <p class="prat">Ties the studio to Foxglove Multiversal and gives the brand a real botanical mascot-without-a-face. Distinct at a distance by silhouette alone.</p>
+</section>
+
+<!-- ================================ 3e NIGHT BLOOM ================================ -->
+<section class="frame pcard" id="3e" style="left: 2680px; top: 1340px;">
+  <div class="phead"><a class="badge" href="#3e">3e</a><h2>Night Bloom</h2><span class="terr">negative space<br>app-icon native</span></div>
+  <p class="pmeta">A bloom held inside a solid seal — present by implication</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Night Bloom mark"><use href="#g3e"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g3e"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g3e"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g3e-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g3e-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g3e"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">The flower is carved out of the dark — envisioned before it exists. The disc gives it institutional seal weight; the voids keep it floral.</p>
+  <p class="prat">Strongest small-size presence of the set (favicon, avatar, stamp). Reverses perfectly; emboss-ready by construction.</p>
+</section>
+
+<section class="frame intro" style="left: 40px; top: 2320px;">
+  <h1>Round 2 — clean-sheet marks <span style="font-size:14px; color: var(--content-muted); font-weight:400;">(superseded — optics read too literal)</span></h1>
+  <p>XGVE Studios &middot; <span class="red">eXperimental Garden of Vision Engineering</span> &middot; &ldquo;Good taste, envisioned.&rdquo;<br>
+  Black &amp; white first — no dial, no needle, no trail, no mascot energy. Form over color; each tested at 48/24/16 and inverse.<br>
+  Six territories: <a href="#2a">2a</a> seal &middot; <a href="#2b">2b</a> machine-flower &middot; <a href="#2c">2c</a> engineered garden &middot; <a href="#2d">2d</a> monogram &middot; <a href="#2e">2e</a> botanical diagram &middot; <a href="#2f">2f</a> seed grid. Round 1 archived below.</p>
+</section>
+
+<!-- ================================ 2a FIDUCIAL ================================ -->
+<section class="frame pcard" id="2a" style="left: 40px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2a">2a</a><h2>Fiducial</h2><span class="terr">institutional seal<br>vision machine</span></div>
+  <p class="pmeta">Survey fiducial &times; parterre quarters</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Fiducial mark"><use href="#g2a"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2a"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2a"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2a-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2a-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2a"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: X = the two negative channels; the quartered disc is a garden plot read as a lens-calibration target.</p>
+  <p class="prat">The mark machines use to find their bearings — a seal that says &ldquo;calibrated taste.&rdquo; Strong emboss; unmistakable at 16px.</p>
+</section>
+
+<!-- ================================ 2b OBJECTIVE BLOOM ================================ -->
+<section class="frame pcard" id="2b" style="left: 700px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2b">2b</a><h2>Objective Bloom</h2><span class="terr">machine-flower<br>restrained bloom</span></div>
+  <p class="pmeta">Four objective lenses arranged as a corolla</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Objective Bloom mark"><use href="#g2b"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2b"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2b"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2b-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2b-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2b"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: petals sit on the X diagonals; any adjacent pair is a V; the void between tips is a square aperture; the dot is the ovule/pupil.</p>
+  <p class="prat">A flower drawn the way an optics lab would draw one — line-weight only, no fill. The most literal &ldquo;vision &times; garden&rdquo; fusion of the set.</p>
+</section>
+
+<!-- ================================ 2c PARTERRE ================================ -->
+<section class="frame pcard" id="2c" style="left: 1360px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2c">2c</a><h2>Parterre</h2><span class="terr">engineered garden<br>negative space</span></div>
+  <p class="pmeta">Boxwood labyrinth / Greek meander, one unbroken path</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Parterre mark"><use href="#g2c"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2c"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2c"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2c-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2c-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2c"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: the path is a squared G; the stacked returns read as E; the walk ends on a seed. The gate opens top-right.</p>
+  <p class="prat">Formal-garden plan meets circuit trace — engineered cultivation as one gesture. Quietly classical (the meander), which does the &ldquo;taste&rdquo; work.</p>
+</section>
+
+<!-- ================================ 2d HALLMARK ================================ -->
+<section class="frame pcard" id="2d" style="left: 2020px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2d">2d</a><h2>Hallmark</h2><span class="terr">abstract monogram<br>institutional seal</span></div>
+  <p class="pmeta">Silversmith&rsquo;s punch — four cuts in one stamp</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Hallmark mark"><use href="#g2d"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2d"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2d"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2d-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2d-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2d"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: all four letters, cut as abstract punches — X &middot; G &middot; V &middot; E, one per quarter. At small sizes it collapses to the X-punch alone.</p>
+  <p class="prat">Hallmarks are how quality goods have been signed for centuries — the most &ldquo;taste-led atelier&rdquo; move here, and the most direct keeper of the letters.</p>
+</section>
+
+<!-- ================================ 2e SPECIMEN ================================ -->
+<section class="frame pcard" id="2e" style="left: 2680px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2e">2e</a><h2>Specimen</h2><span class="terr">botanical diagram<br>vision machine</span></div>
+  <p class="pmeta">Botanical plate drawn as an optical instrument</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Specimen mark"><use href="#g2e"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2e"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2e"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2e-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2e-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2e"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: the head is a lens with its pupil off-axis (the experimental eye); leaf-to-stem fork = V; the baseline is the soil/optical bench.</p>
+  <p class="prat">The strangest of the set — a plant that looks back. Asymmetric, lots of air, reads as a plate from a lab notebook. Premium in print.</p>
+</section>
+
+<!-- ================================ 2f QUADRAT ================================ -->
+<section class="frame pcard" id="2f" style="left: 3340px; top: 2480px;">
+  <div class="phead"><a class="badge" href="#2f">2f</a><h2>Quadrat</h2><span class="terr">seed / node / grid<br>negative space</span></div>
+  <p class="pmeta">Field-sampling frame + seed constellation</p>
+  <div class="phero"><svg class="pmark" viewBox="0 0 120 120" role="img" aria-label="Quadrat mark"><use href="#g2f"></use></svg></div>
+  <div class="prow">
+    <div class="cell"><div class="chipneg"><svg viewBox="0 0 120 120"><use href="#g2f"></use></svg></div>inverse</div>
+    <div class="cell p48"><svg viewBox="0 0 120 120"><use href="#g2f"></use></svg>48</div>
+    <div class="cell p24"><svg viewBox="0 0 120 120"><use href="#g2f-s"></use></svg>24</div>
+    <div class="cell p16"><svg viewBox="0 0 120 120"><use href="#g2f-s"></use></svg>16</div>
+  </div>
+  <div class="plockup">
+    <svg viewBox="0 0 120 120"><use href="#g2f"></use></svg>
+    <div><span class="wm2">XGVE</span><span class="exp2">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="phid">Hidden structure: five seeds graphed as an X; the corner brackets are both an ecologist&rsquo;s quadrat and a viewfinder. Frame = E corners.</p>
+  <p class="prat">Field science + framing-the-shot in one device. The constellation gives it the mystery; the brackets give it the instrument.</p>
+</section>
+
+<section class="frame intro" style="left: 40px; top: 3460px;">
+  <h1>Garden narrative — the mark, reimagined <span style="font-size:14px; color: var(--content-muted); font-weight:400;">(round 1 — superseded)</span></h1>
+  <p>XGVE = <span class="red">eXperimental Garden of Vision Engineering</span>.<br>
+  Constants kept: black stage &middot; white structure &middot; scarce Signal Red &middot; engineered geometry &middot; the pixel trail.<br>
+  What changes: the rev becomes <b>growth</b>. Options <a href="#1a">1a</a>&ndash;<a href="#1d">1d</a>, each with lockup + reduction tests.</p>
+</section>
+
+<!-- ================================ 1a BLOOM GAUGE ================================ -->
+<section class="frame card" id="1a" style="left: 40px; top: 3620px;">
+  <div class="head"><a class="badge" href="#1a">1a</a><h2>Bloom Gauge</h2></div>
+  <p class="premise">Evolution, not revolution. The dial ring stays; the needle becomes a <b>stem</b>; redline becomes <b>full bloom</b>. Trail pixels become pollen.</p>
+  <div class="stage">
+    <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Bloom Gauge concept">
+      <circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="5" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle>
+      <path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="4" stroke-linecap="round"></path>
+      <rect x="46" y="26" width="8" height="8" fill="var(--ac)" transform="rotate(45 50 30)"></rect>
+      <rect x="39" y="30" width="6" height="6" fill="var(--ac)" transform="rotate(45 42 33)"></rect>
+      <rect x="55" y="30" width="6" height="6" fill="var(--ac)" transform="rotate(45 58 33)"></rect>
+      <rect x="48.6" y="28.6" width="2.8" height="2.8" fill="var(--ac2)" transform="rotate(45 50 30)"></rect>
+      <rect x="63" y="22" width="4" height="4" fill="var(--ac)"></rect>
+      <rect x="69" y="17" width="3.5" height="3.5" fill="var(--ac)"></rect>
+      <rect x="74.5" y="12.5" width="3" height="3" fill="var(--ac)"></rect>
+      <rect x="79.5" y="8.5" width="2.5" height="2.5" fill="var(--ac)"></rect>
+    </svg>
+  </div>
+  <p class="rowlab">Lockup</p>
+  <div class="lockup">
+    <svg class="mark" viewBox="0 0 100 100"><circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="5" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle><path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="4" stroke-linecap="round"></path><rect x="46" y="26" width="8" height="8" fill="var(--ac)" transform="rotate(45 50 30)"></rect><rect x="39" y="30" width="6" height="6" fill="var(--ac)" transform="rotate(45 42 33)"></rect><rect x="55" y="30" width="6" height="6" fill="var(--ac)" transform="rotate(45 58 33)"></rect><rect x="63" y="22" width="4" height="4" fill="var(--ac)"></rect><rect x="69" y="17" width="3.5" height="3.5" fill="var(--ac)"></rect><rect x="74.5" y="12.5" width="3" height="3" fill="var(--ac)"></rect><rect x="79.5" y="8.5" width="2.5" height="2.5" fill="var(--ac)"></rect></svg>
+    <div><span class="wm"><span class="x">X</span>GVE</span><span class="exp">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="rowlab">Reduction &middot; mono</p>
+  <div class="reduction">
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="48" height="48"><circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="5" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle><path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="4" stroke-linecap="round"></path><rect x="46" y="26" width="8" height="8" fill="var(--ac)" transform="rotate(45 50 30)"></rect><rect x="63" y="22" width="4" height="4" fill="var(--ac)"></rect><rect x="69" y="17" width="3.5" height="3.5" fill="var(--ac)"></rect></svg>48</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="24" height="24"><circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="6" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle><path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="5" stroke-linecap="round"></path><rect x="45" y="25" width="10" height="10" fill="var(--ac)" transform="rotate(45 50 30)"></rect></svg>24</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="16" height="16"><circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="7" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle><path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="6" stroke-linecap="round"></path><rect x="44" y="24" width="12" height="12" fill="var(--ac)" transform="rotate(45 50 30)"></rect></svg>16</div>
+    <div class="cell"><svg class="mark v-mono" viewBox="0 0 100 100" width="48" height="48"><circle cx="50" cy="54" r="38" fill="none" stroke="var(--st)" stroke-width="5" pathLength="100" stroke-dasharray="30 10 44 16" transform="rotate(-20 50 54)"></circle><path d="M50 88 Q46 66 50 40" fill="none" stroke="var(--st)" stroke-width="4" stroke-linecap="round"></path><rect x="46" y="26" width="8" height="8" fill="var(--ac)" transform="rotate(45 50 30)"></rect><rect x="63" y="22" width="4" height="4" fill="var(--ac)"></rect><rect x="69" y="17" width="3.5" height="3.5" fill="var(--ac)"></rect></svg>mono</div>
+  </div>
+  <p class="rationale">Lowest-risk pivot: same silhouette weight, same trail, same dial DNA. <span class="mo">Intro motion: time-lapse — stem draws up through the ring, bloom snaps open, pollen drifts out where the needle trail used to fly.</span></p>
+</section>
+
+<!-- ================================ 1b APERTURE IRIS ================================ -->
+<section class="frame card" id="1b" style="left: 650px; top: 3620px;">
+  <div class="head"><a class="badge" href="#1b">1b</a><h2>Aperture Iris</h2></div>
+  <p class="premise">Vision engineering, literally: six blades read as <b>camera iris</b> and <b>flower corolla</b> at once. Red is the pupil — one dot, nothing else.</p>
+  <div class="stage">
+    <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Aperture Iris concept">
+      <defs><polygon id="blade1b" points="50,13 43,24 49,47 55,21"></polygon></defs>
+      <circle cx="50" cy="50" r="43" fill="none" stroke="var(--mu)" stroke-width="2" pathLength="100" stroke-dasharray="88 12" transform="rotate(-55 50 50)"></circle>
+      <g fill="#0b0c0e" stroke="var(--st)" stroke-width="2" stroke-linejoin="round">
+        <use href="#blade1b"></use>
+        <use href="#blade1b" transform="rotate(60 50 50)"></use>
+        <use href="#blade1b" transform="rotate(120 50 50)"></use>
+        <use href="#blade1b" transform="rotate(180 50 50)"></use>
+        <use href="#blade1b" transform="rotate(240 50 50)"></use>
+        <use href="#blade1b" transform="rotate(300 50 50)"></use>
+      </g>
+      <circle cx="50" cy="50" r="4.6" fill="var(--ac)"></circle>
+    </svg>
+  </div>
+  <p class="rowlab">Lockup</p>
+  <div class="lockup">
+    <svg class="mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="43" fill="none" stroke="var(--mu)" stroke-width="2" pathLength="100" stroke-dasharray="88 12" transform="rotate(-55 50 50)"></circle><g fill="#0b0c0e" stroke="var(--st)" stroke-width="2" stroke-linejoin="round"><use href="#blade1b"></use><use href="#blade1b" transform="rotate(60 50 50)"></use><use href="#blade1b" transform="rotate(120 50 50)"></use><use href="#blade1b" transform="rotate(180 50 50)"></use><use href="#blade1b" transform="rotate(240 50 50)"></use><use href="#blade1b" transform="rotate(300 50 50)"></use></g><circle cx="50" cy="50" r="4.6" fill="var(--ac)"></circle></svg>
+    <div><span class="wm"><span class="x">X</span>GVE</span><span class="exp">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="rowlab">Reduction &middot; mono</p>
+  <div class="reduction">
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="48" height="48"><g fill="#0b0c0e" stroke="var(--st)" stroke-width="2.6" stroke-linejoin="round"><use href="#blade1b"></use><use href="#blade1b" transform="rotate(60 50 50)"></use><use href="#blade1b" transform="rotate(120 50 50)"></use><use href="#blade1b" transform="rotate(180 50 50)"></use><use href="#blade1b" transform="rotate(240 50 50)"></use><use href="#blade1b" transform="rotate(300 50 50)"></use></g><circle cx="50" cy="50" r="5.4" fill="var(--ac)"></circle></svg>48</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="24" height="24"><g fill="#0b0c0e" stroke="var(--st)" stroke-width="3.4" stroke-linejoin="round"><use href="#blade1b"></use><use href="#blade1b" transform="rotate(60 50 50)"></use><use href="#blade1b" transform="rotate(120 50 50)"></use><use href="#blade1b" transform="rotate(180 50 50)"></use><use href="#blade1b" transform="rotate(240 50 50)"></use><use href="#blade1b" transform="rotate(300 50 50)"></use></g><circle cx="50" cy="50" r="6.5" fill="var(--ac)"></circle></svg>24</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="16" height="16"><g fill="#0b0c0e" stroke="var(--st)" stroke-width="4.5" stroke-linejoin="round"><use href="#blade1b"></use><use href="#blade1b" transform="rotate(60 50 50)"></use><use href="#blade1b" transform="rotate(120 50 50)"></use><use href="#blade1b" transform="rotate(180 50 50)"></use><use href="#blade1b" transform="rotate(240 50 50)"></use><use href="#blade1b" transform="rotate(300 50 50)"></use></g><circle cx="50" cy="50" r="8" fill="var(--ac)"></circle></svg>16</div>
+    <div class="cell"><svg class="mark v-mono" viewBox="0 0 100 100" width="48" height="48"><g fill="#0b0c0e" stroke="var(--st)" stroke-width="2.6" stroke-linejoin="round"><use href="#blade1b"></use><use href="#blade1b" transform="rotate(60 50 50)"></use><use href="#blade1b" transform="rotate(120 50 50)"></use><use href="#blade1b" transform="rotate(180 50 50)"></use><use href="#blade1b" transform="rotate(240 50 50)"></use><use href="#blade1b" transform="rotate(300 50 50)"></use></g><circle cx="50" cy="50" r="5.4" fill="var(--ac)"></circle></svg>mono</div>
+  </div>
+  <p class="rationale">Strongest &ldquo;Vision&rdquo; read; the bloom is implied, not drawn. <span class="mo">Intro motion: blades rotate-close from open like a lens stopping down, pupil lights last — replaces the rev with a focus pull.</span></p>
+</section>
+
+<!-- ================================ 1c TRELLIS ================================ -->
+<section class="frame card" id="1c" style="left: 1260px; top: 3620px;">
+  <div class="head"><a class="badge" href="#1c">1c</a><h2>Trellis</h2></div>
+  <p class="premise">The engineered garden: a dot lattice (structure) with one red vine growing across it. The two diagonals still make an <b>X</b> — machine under, vine over.</p>
+  <div class="stage">
+    <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Trellis concept">
+      <g fill="var(--mu)">
+        <circle cx="20" cy="20" r="1.7"></circle><circle cx="40" cy="20" r="1.7"></circle><circle cx="60" cy="20" r="1.7"></circle><circle cx="80" cy="20" r="1.7"></circle>
+        <circle cx="20" cy="40" r="1.7"></circle><circle cx="40" cy="40" r="1.7"></circle><circle cx="60" cy="40" r="1.7"></circle><circle cx="80" cy="40" r="1.7"></circle>
+        <circle cx="20" cy="60" r="1.7"></circle><circle cx="40" cy="60" r="1.7"></circle><circle cx="60" cy="60" r="1.7"></circle><circle cx="80" cy="60" r="1.7"></circle>
+        <circle cx="20" cy="80" r="1.7"></circle><circle cx="40" cy="80" r="1.7"></circle><circle cx="60" cy="80" r="1.7"></circle><circle cx="80" cy="80" r="1.7"></circle>
+      </g>
+      <path d="M20 20 L42 42" stroke="var(--st)" stroke-width="3" stroke-linecap="round"></path>
+      <path d="M58 58 L80 80" stroke="var(--st)" stroke-width="3" stroke-linecap="round"></path>
+      <path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="3.5" stroke-linecap="round"></path>
+      <rect x="33.5" y="59.5" width="5" height="5" fill="var(--ac)" transform="rotate(45 36 62)"></rect>
+      <rect x="59.5" y="35.5" width="5" height="5" fill="var(--ac)" transform="rotate(45 62 38)"></rect>
+      <rect x="79" y="14.5" width="4" height="4" fill="var(--ac)"></rect>
+      <rect x="85" y="9.5" width="2.8" height="2.8" fill="var(--ac)"></rect>
+    </svg>
+  </div>
+  <p class="rowlab">Lockup</p>
+  <div class="lockup">
+    <svg class="mark" viewBox="0 0 100 100"><g fill="var(--mu)"><circle cx="20" cy="20" r="1.7"></circle><circle cx="40" cy="20" r="1.7"></circle><circle cx="60" cy="20" r="1.7"></circle><circle cx="80" cy="20" r="1.7"></circle><circle cx="20" cy="40" r="1.7"></circle><circle cx="40" cy="40" r="1.7"></circle><circle cx="60" cy="40" r="1.7"></circle><circle cx="80" cy="40" r="1.7"></circle><circle cx="20" cy="60" r="1.7"></circle><circle cx="40" cy="60" r="1.7"></circle><circle cx="60" cy="60" r="1.7"></circle><circle cx="80" cy="60" r="1.7"></circle><circle cx="20" cy="80" r="1.7"></circle><circle cx="40" cy="80" r="1.7"></circle><circle cx="60" cy="80" r="1.7"></circle><circle cx="80" cy="80" r="1.7"></circle></g><path d="M20 20 L42 42" stroke="var(--st)" stroke-width="3" stroke-linecap="round"></path><path d="M58 58 L80 80" stroke="var(--st)" stroke-width="3" stroke-linecap="round"></path><path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="3.5" stroke-linecap="round"></path><rect x="33.5" y="59.5" width="5" height="5" fill="var(--ac)" transform="rotate(45 36 62)"></rect><rect x="59.5" y="35.5" width="5" height="5" fill="var(--ac)" transform="rotate(45 62 38)"></rect><rect x="79" y="14.5" width="4" height="4" fill="var(--ac)"></rect><rect x="85" y="9.5" width="2.8" height="2.8" fill="var(--ac)"></rect></svg>
+    <div><span class="wm"><span class="x">X</span>GVE</span><span class="exp">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="rowlab">Reduction &middot; mono</p>
+  <div class="reduction">
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="48" height="48"><g fill="var(--mu)"><circle cx="20" cy="20" r="2.2"></circle><circle cx="80" cy="20" r="2.2"></circle><circle cx="40" cy="40" r="2.2"></circle><circle cx="60" cy="40" r="2.2"></circle><circle cx="40" cy="60" r="2.2"></circle><circle cx="60" cy="60" r="2.2"></circle><circle cx="20" cy="80" r="2.2"></circle><circle cx="80" cy="80" r="2.2"></circle></g><path d="M20 20 L42 42" stroke="var(--st)" stroke-width="3.6" stroke-linecap="round"></path><path d="M58 58 L80 80" stroke="var(--st)" stroke-width="3.6" stroke-linecap="round"></path><path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="4.2" stroke-linecap="round"></path><rect x="79" y="14.5" width="5" height="5" fill="var(--ac)"></rect></svg>48</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="24" height="24"><path d="M20 20 L42 42" stroke="var(--st)" stroke-width="5" stroke-linecap="round"></path><path d="M58 58 L80 80" stroke="var(--st)" stroke-width="5" stroke-linecap="round"></path><path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="5.5" stroke-linecap="round"></path><rect x="78" y="13.5" width="7" height="7" fill="var(--ac)"></rect></svg>24</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="16" height="16"><path d="M20 20 L42 42" stroke="var(--st)" stroke-width="7" stroke-linecap="round"></path><path d="M58 58 L80 80" stroke="var(--st)" stroke-width="7" stroke-linecap="round"></path><path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="7.5" stroke-linecap="round"></path></svg>16</div>
+    <div class="cell"><svg class="mark v-mono" viewBox="0 0 100 100" width="48" height="48"><g fill="var(--mu)"><circle cx="20" cy="20" r="2.2"></circle><circle cx="80" cy="20" r="2.2"></circle><circle cx="40" cy="40" r="2.2"></circle><circle cx="60" cy="40" r="2.2"></circle><circle cx="40" cy="60" r="2.2"></circle><circle cx="60" cy="60" r="2.2"></circle><circle cx="20" cy="80" r="2.2"></circle><circle cx="80" cy="80" r="2.2"></circle></g><path d="M20 20 L42 42" stroke="var(--st)" stroke-width="3.6" stroke-linecap="round"></path><path d="M58 58 L80 80" stroke="var(--st)" stroke-width="3.6" stroke-linecap="round"></path><path d="M20 82 Q50 52 76 22" fill="none" stroke="var(--ac)" stroke-width="4.2" stroke-linecap="round"></path><rect x="79" y="14.5" width="5" height="5" fill="var(--ac)"></rect></svg>mono</div>
+  </div>
+  <p class="rationale">Most native to the ASCII grid — the lattice IS the field. <span class="mo">Intro motion: dots print in like glyphs, vine draws point-to-point along the lattice, tip pixel lands last (the old trail landing).</span></p>
+</section>
+
+<!-- ================================ 1d GRAFT ================================ -->
+<section class="frame card" id="1d" style="left: 1870px; top: 3620px;">
+  <div class="head"><a class="badge" href="#1d">1d</a><h2>Graft</h2></div>
+  <p class="premise">Half machined, half grown — the site&rsquo;s split-emblem DNA made permanent. One diagonal is a <b>steel blade</b>; the other a <b>foxglove stem</b>, joined at a graft node.</p>
+  <div class="stage">
+    <svg class="mark" viewBox="0 0 100 100" role="img" aria-label="Graft concept">
+      <polygon points="16,14 26,11 86,84 78,89" fill="var(--st)"></polygon>
+      <path d="M20 27 L33 41" stroke="var(--st)" stroke-width="2.4" stroke-linecap="round"></path>
+      <path d="M15 35 L26 47" stroke="var(--mu)" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M49 52 L28 74" stroke="var(--mu)" stroke-width="2.6" stroke-linecap="round"></path>
+      <path d="M42 59 L36 78" stroke="var(--mu)" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="4.2" stroke-linecap="round"></path>
+      <polygon points="73,25 79,23 81,29 74,31" fill="var(--ac)"></polygon>
+      <polygon points="63,35 69,33 71,39 64,41" fill="var(--ac)"></polygon>
+      <rect x="82" y="10.5" width="4" height="4" fill="var(--ac)" transform="rotate(45 84 12.5)"></rect>
+      <rect x="47" y="47" width="6.4" height="6.4" fill="#0b0c0e" stroke="var(--st)" stroke-width="2" transform="rotate(45 50.2 50.2)"></rect>
+    </svg>
+  </div>
+  <p class="rowlab">Lockup</p>
+  <div class="lockup">
+    <svg class="mark" viewBox="0 0 100 100"><polygon points="16,14 26,11 86,84 78,89" fill="var(--st)"></polygon><path d="M20 27 L33 41" stroke="var(--st)" stroke-width="2.4" stroke-linecap="round"></path><path d="M15 35 L26 47" stroke="var(--mu)" stroke-width="2" stroke-linecap="round"></path><path d="M49 52 L28 74" stroke="var(--mu)" stroke-width="2.6" stroke-linecap="round"></path><path d="M42 59 L36 78" stroke="var(--mu)" stroke-width="2" stroke-linecap="round"></path><path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="4.2" stroke-linecap="round"></path><polygon points="73,25 79,23 81,29 74,31" fill="var(--ac)"></polygon><polygon points="63,35 69,33 71,39 64,41" fill="var(--ac)"></polygon><rect x="82" y="10.5" width="4" height="4" fill="var(--ac)" transform="rotate(45 84 12.5)"></rect><rect x="47" y="47" width="6.4" height="6.4" fill="#0b0c0e" stroke="var(--st)" stroke-width="2" transform="rotate(45 50.2 50.2)"></rect></svg>
+    <div><span class="wm"><span class="x">X</span>GVE</span><span class="exp">eXperimental Garden of Vision Engineering</span></div>
+  </div>
+  <p class="rowlab">Reduction &middot; mono</p>
+  <div class="reduction">
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="48" height="48"><polygon points="16,14 26,11 86,84 78,89" fill="var(--st)"></polygon><path d="M49 52 L28 74" stroke="var(--mu)" stroke-width="3" stroke-linecap="round"></path><path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="5" stroke-linecap="round"></path><polygon points="73,25 79,23 81,29 74,31" fill="var(--ac)"></polygon><rect x="46.5" y="46.5" width="7.4" height="7.4" fill="#0b0c0e" stroke="var(--st)" stroke-width="2.6" transform="rotate(45 50.2 50.2)"></rect></svg>48</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="24" height="24"><polygon points="14,13 27,10 88,84 77,90" fill="var(--st)"></polygon><path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="7" stroke-linecap="round"></path><path d="M49 52 L28 74" stroke="var(--mu)" stroke-width="4.5" stroke-linecap="round"></path></svg>24</div>
+    <div class="cell"><svg class="mark" viewBox="0 0 100 100" width="16" height="16"><polygon points="12,12 28,9 90,84 76,91" fill="var(--st)"></polygon><path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="9" stroke-linecap="round"></path></svg>16</div>
+    <div class="cell"><svg class="mark v-mono" viewBox="0 0 100 100" width="48" height="48"><polygon points="16,14 26,11 86,84 78,89" fill="var(--st)"></polygon><path d="M49 52 L28 74" stroke="var(--mu)" stroke-width="3" stroke-linecap="round"></path><path d="M84 15 Q64 29 51 48" fill="none" stroke="var(--ac)" stroke-width="5" stroke-linecap="round"></path><polygon points="73,25 79,23 81,29 74,31" fill="var(--ac)"></polygon><rect x="46.5" y="46.5" width="7.4" height="7.4" fill="#0b0c0e" stroke="var(--st)" stroke-width="2.6" transform="rotate(45 50.2 50.2)"></rect></svg>mono</div>
+  </div>
+  <p class="rationale">Keeps the X monogram and the half/half hero split (grown left, machined right). Bells nod to <span class="red">Foxglove</span>. <span class="mo">Intro motion: blade strikes in hard and stops dead; stem grows over it slowly; node clinches.</span></p>
+</section>
+
+</body>
+</html>

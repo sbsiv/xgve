@@ -1,0 +1,30 @@
+<!-- @dsCard group="Type" viewport="700x220" name="Mono & eyebrow — IBM Plex Mono" subtitle="Technical labels, data, uppercase tracked" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-canvas); color: var(--content-primary); }
+  .eyebrow { font-family: var(--font-mono); font-weight: var(--weight-medium); font-size: var(--text-xs);
+             letter-spacing: var(--tracking-widest); text-transform: uppercase;
+             color: var(--content-secondary); margin: 0 0 16px; }
+  .data { font-family: var(--font-mono); font-size: var(--text-lg); letter-spacing: var(--tracking-normal);
+          font-feature-settings: 'tnum' 1; margin: 0 0 6px; }
+  .data .g { color: var(--content-muted); }
+  .data .r { color: var(--accent); }
+  .status { display: flex; align-items: center; gap: 8px; margin-top: 16px;
+            font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: var(--tracking-wide); }
+  .dot { width: 8px; height: 8px; border-radius: var(--radius-pill); background: var(--accent); }
+  .foot { margin-top: 16px; font-family: var(--font-mono); font-size: 11px;
+          color: var(--content-muted); letter-spacing: var(--tracking-wide); }
+</style>
+</head>
+<body>
+  <p class="eyebrow">Experimental Generative Venture Engine</p>
+  <p class="data">V.4.2 <span class="g">//</span> BUILD 1180 <span class="g">//</span> <span class="r">LATENCY 12MS</span></p>
+  <p class="data g">0123456789 · tabular numerals · $12,480.00</p>
+  <div class="status"><span class="dot"></span>LIVE — 4 NODES · THROUGHPUT NOMINAL</div>
+  <p class="foot">--font-mono · --tracking-widest · uppercase for eyebrows</p>
+</body>
+</html>

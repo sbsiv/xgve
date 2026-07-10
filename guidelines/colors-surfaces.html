@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x200" name="Surface elevation" subtitle="Depth by lightness + hairline rule, not shadow" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas);
+         font-family: var(--font-body); color: var(--content-primary); }
+  .stack { display: flex; gap: 12px; }
+  .cell { flex: 1; height: 120px; border: var(--border-thin) solid var(--border-subtle);
+          padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+  .cell .n { font-size: var(--text-sm); font-weight: var(--weight-semibold); }
+  .cell .t { font-family: var(--font-mono); font-size: 10px; color: var(--content-muted);
+             letter-spacing: var(--tracking-wide); }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="cell" style="background:var(--surface-inset)"><span class="n">Inset</span><span class="t">--surface-inset</span></div>
+    <div class="cell" style="background:var(--surface-canvas)"><span class="n">Canvas</span><span class="t">--surface-canvas</span></div>
+    <div class="cell" style="background:var(--surface-default)"><span class="n">Default</span><span class="t">--surface-default</span></div>
+    <div class="cell" style="background:var(--surface-raised)"><span class="n">Raised</span><span class="t">--surface-raised</span></div>
+    <div class="cell" style="background:var(--surface-overlay)"><span class="n">Overlay</span><span class="t">--surface-overlay</span></div>
+  </div>
+</body>
+</html>

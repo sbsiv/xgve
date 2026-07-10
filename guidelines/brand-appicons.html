@@ -1,0 +1,27 @@
+<!-- @dsCard group="Brand" viewport="700x200" name="App icon / favicon sizes" subtitle="Emblem only — 512 → 16px" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 26px 24px; background: var(--surface-canvas); color: var(--content-primary); }
+  .row { display: flex; align-items: flex-end; gap: 22px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .cell img { display: block; image-rendering: auto; }
+  .t { font-family: var(--font-mono); font-size: 10px; color: var(--content-muted); }
+  .foot { margin-top: 18px; font-family: var(--font-mono); font-size: 11px; color: var(--content-muted);
+          letter-spacing: var(--tracking-wide); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><img src="../assets/web/xgve-icon-128.png" width="96" height="96" alt="128"><span class="t">128</span></div>
+    <div class="cell"><img src="../assets/web/xgve-icon-64.png" width="64" height="64" alt="64"><span class="t">64</span></div>
+    <div class="cell"><img src="../assets/web/xgve-icon-48.png" width="48" height="48" alt="48"><span class="t">48</span></div>
+    <div class="cell"><img src="../assets/web/xgve-icon-32.png" width="32" height="32" alt="32"><span class="t">32</span></div>
+    <div class="cell"><img src="../assets/web/xgve-icon-16.png" width="16" height="16" alt="16"><span class="t">16</span></div>
+  </div>
+  <p class="foot">Never place the horizontal wordmark inside a square icon · favicon.ico bundled in assets/web</p>
+</body>
+</html>

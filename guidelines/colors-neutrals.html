@@ -1,0 +1,37 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Neutral ramp" subtitle="Pure-grayscale, dark-first — --xg-n-0 → --xg-n-13" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; background: var(--surface-canvas);
+         font-family: var(--font-mono); color: var(--content-primary); }
+  .ramp { display: flex; height: 76px; border: var(--border-thin) solid var(--border-default); }
+  .step { flex: 1; position: relative; }
+  .step span { position: absolute; bottom: 6px; left: 0; right: 0; text-align: center;
+               font-size: 9px; letter-spacing: 0.02em; }
+  .caption { margin-top: 12px; font-size: 11px; color: var(--content-muted);
+             letter-spacing: var(--tracking-wide); display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+  <div class="ramp">
+    <div class="step" style="background:var(--xg-n-0)"><span style="color:var(--xg-n-9)">00</span></div>
+    <div class="step" style="background:var(--xg-n-1)"><span style="color:var(--xg-n-9)">01</span></div>
+    <div class="step" style="background:var(--xg-n-2)"><span style="color:var(--xg-n-9)">02</span></div>
+    <div class="step" style="background:var(--xg-n-3)"><span style="color:var(--xg-n-9)">03</span></div>
+    <div class="step" style="background:var(--xg-n-4)"><span style="color:var(--xg-n-10)">04</span></div>
+    <div class="step" style="background:var(--xg-n-5)"><span style="color:var(--xg-n-11)">05</span></div>
+    <div class="step" style="background:var(--xg-n-6)"><span style="color:var(--xg-n-12)">06</span></div>
+    <div class="step" style="background:var(--xg-n-7)"><span style="color:var(--xg-n-13)">07</span></div>
+    <div class="step" style="background:var(--xg-n-8)"><span style="color:var(--xg-n-0)">08</span></div>
+    <div class="step" style="background:var(--xg-n-9)"><span style="color:var(--xg-n-0)">09</span></div>
+    <div class="step" style="background:var(--xg-n-10)"><span style="color:var(--xg-n-0)">10</span></div>
+    <div class="step" style="background:var(--xg-n-11)"><span style="color:var(--xg-n-0)">11</span></div>
+    <div class="step" style="background:var(--xg-n-12)"><span style="color:var(--xg-n-0)">12</span></div>
+    <div class="step" style="background:var(--xg-n-13)"><span style="color:var(--xg-n-0)">13</span></div>
+  </div>
+  <div class="caption"><span>--xg-n-0 · #000000</span><span>pure grayscale · no hue cast</span><span>--xg-n-13 · #FFFFFF</span></div>
+</body>
+</html>

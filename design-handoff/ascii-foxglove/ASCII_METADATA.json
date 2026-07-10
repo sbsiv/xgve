@@ -1,0 +1,24 @@
+{
+  "subject": "foxglove",
+  "source": "window.XG_ASCII.foxglove (site/ascii-data.js)",
+  "columnCount": 74,
+  "rowCount": 67,
+  "characterWidth": 74,
+  "characterHeight": 67,
+  "cellAspectRatio": {
+    "canvasGhostAndLandingPre": 0.6,
+    "windowCanvas": 0.62,
+    "note": "cw = ch * aspect. Ghost/landing use 0.6; the retro window uses 0.62."
+  },
+  "glyphCells": 2250,
+  "spaceCells": 2708,
+  "uniqueGlyphs": 54,
+  "encoding": "UTF-8",
+  "preserveTrailingWhitespace": true,
+  "everyRowExactlyCols": true,
+  "tabWidth": 0,
+  "tabsPresent": false,
+  "lineWrap": "none",
+  "losslessSourceOfTruth": "foxglove.fixture.json (JSON strings cannot lose trailing whitespace). ASCII_SOURCE.txt is a padded convenience view — if a tool trims trailing spaces, re-pad every line to 74 chars.",
+  "redInData": false
+}

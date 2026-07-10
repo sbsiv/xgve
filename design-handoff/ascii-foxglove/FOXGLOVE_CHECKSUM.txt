@@ -1,0 +1,10 @@
+XGVE ASCII FOXGLOVE — CANONICAL CHECKSUMS
+cols x rows: 74 x 67
+glyph cells (non-space): 2250
+unique glyphs: 54
+sha256(foxglove.fixture.json) = ce96ed9bb32510716634afa9a458fc378cb15ff8df501f083497f8d2b5810310
+sha256(ASCII_SOURCE.txt)      = 49847ae0099a316bf556ff28d4f0a69061c6dae98e080c7b7271aa39f9bd357e
+
+Verify (node):
+  node -e "const c=require('crypto'),fs=require('fs');console.log(c.createHash('sha256').update(fs.readFileSync('foxglove.fixture.json')).digest('hex'))"
+If either hash differs, the ASCII data was altered (whitespace trim, glyph substitution, or re-encoding). Restore from foxglove.fixture.json.

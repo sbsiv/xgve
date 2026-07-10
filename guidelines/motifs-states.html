@@ -1,0 +1,31 @@
+<!-- @dsCard group="Motifs" viewport="700x180" name="Interaction states" subtitle="Rest · hover (red advances) · press · focus · disabled" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin: 0; padding: 28px 24px; background: var(--surface-canvas); color: var(--content-primary); }
+  .row { display: flex; gap: 14px; align-items: center; }
+  .cell { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .btn { width: 100%; height: var(--size-control-lg); display: flex; align-items: center; justify-content: center;
+         font-family: var(--font-body); font-size: var(--text-sm); font-weight: var(--weight-semibold);
+         background: var(--accent); color: var(--accent-content); border: none; letter-spacing: 0.01em; }
+  .btn.hover { background: var(--accent-hover); }
+  .btn.press { background: var(--accent-active); }
+  .btn.focus { box-shadow: var(--ring-focus); }
+  .btn.disabled { background: var(--surface-default); color: var(--content-faint); border: var(--border-thin) solid var(--border-subtle); }
+  .t { font-family: var(--font-mono); font-size: 10px; color: var(--content-muted);
+       letter-spacing: var(--tracking-wide); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="cell"><button class="btn">Launch</button><span class="t">Rest</span></div>
+    <div class="cell"><button class="btn hover">Launch</button><span class="t">Hover · brighter</span></div>
+    <div class="cell"><button class="btn press">Launch</button><span class="t">Press · deeper</span></div>
+    <div class="cell"><button class="btn focus">Launch</button><span class="t">Focus · red ring</span></div>
+    <div class="cell"><button class="btn disabled">Launch</button><span class="t">Disabled</span></div>
+  </div>
+</body>
+</html>

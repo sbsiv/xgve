@@ -1,0 +1,112 @@
+<!-- @dsCard group="Site" viewport="1280x760" name="ASCII Leaf Canopy" subtitle="Amber tree-leaf canopy breathing over the geometric field (tuning playground for the site overlay)" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XGVE — ASCII Leaf Canopy</title>
+<link rel="icon" href="../assets/web/xgve-favicon.ico">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { font-family: var(--font-mono, 'IBM Plex Mono', monospace); color: #c6ced8; }
+  a { color: #c6ced8; } a:hover { color: #e6021b; }
+
+  #geo, #canopy { position: fixed; inset: 0; pointer-events: none; display: block; width: 100%; height: 100%; }
+  #geo { z-index: 0; opacity: 0.9; }
+  #canopy { z-index: 1; }
+
+  .stage { position: fixed; inset: 0; z-index: 2; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; pointer-events: none; padding: 0 24px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #565b64; margin: 0 0 18px; }
+  .eyebrow .x { color: #e6021b; }
+  .tag { font-family: var(--font-display, 'Space Grotesk', sans-serif); font-weight: 700;
+    font-size: clamp(30px, 5.2vw, 66px); letter-spacing: -0.01em; color: #fff; margin: 0; line-height: 1; }
+  .tag .dot { color: #e6021b; }
+  .sub { margin: 20px 0 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6f7480; }
+
+  .ctl { position: fixed; z-index: 6; left: 50%; bottom: 18px; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 14px; padding: 9px 15px;
+    background: rgba(6,6,8,0.82); border: 1px solid #26282c; backdrop-filter: blur(6px);
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #9aa0a8; }
+  .ctl .grp { display: flex; align-items: center; gap: 7px; }
+  .ctl label { color: #565b64; white-space: nowrap; }
+  .ctl input[type=range] { width: 68px; accent-color: #e6021b; }
+  .ctl button { font: inherit; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer;
+    background: transparent; border: 1px solid #83848c; color: #e9eaec; padding: 6px 11px; transition: border-color .18s ease, color .18s ease; }
+  .ctl button:hover { border-color: #e6021b; color: #fff; }
+  .ctl .seg { display: inline-flex; border: 1px solid #33363d; }
+  .ctl .seg button { border: 0; padding: 6px 10px; color: #6f7480; }
+  .ctl .seg button.on { background: #17181b; color: #fff; }
+  .ctl .div { width: 1px; height: 20px; background: #26282c; }
+</style>
+</head>
+<body>
+<canvas id="geo" aria-hidden="true"></canvas>
+<canvas id="canopy" aria-hidden="true"></canvas>
+
+<div class="stage">
+  <p class="eyebrow"><span class="x">e</span>Xperimental Garden of Vision Engineering</p>
+  <h1 class="tag">Good taste, envisioned<span class="dot">.</span></h1>
+  <p class="sub">// botanical border — ferns, leaves, foxgloves — breathing over the field</p>
+</div>
+
+<div class="ctl" id="ctl">
+  <button id="replay">↻ Replay grow</button>
+  <div class="div"></div>
+  <div class="grp"><label>Breathe</label><input id="s-breathe" type="range" min="0" max="200" value="100"></div>
+  <div class="grp"><label>Depth</label><input id="s-bulge" type="range" min="0" max="100" value="35"></div>
+  <div class="grp"><label>Density</label><input id="s-density" type="range" min="50" max="150" value="100"></div>
+  <div class="grp"><label>Glow</label><input id="s-glow" type="range" min="0" max="100" value="30"></div>
+  <div class="grp"><label>Scrim</label><input id="s-scrim" type="range" min="0" max="100" value="55"></div>
+  <div class="div"></div>
+  <div class="seg" id="pal"><button data-p="moss" class="on">Moss</button><button data-p="ember">Ember</button><button data-p="signal">Signal</button></div>
+</div>
+
+<script src="../site/xgve-canopy.js"></script>
+<script>
+(function () {
+  "use strict";
+  // ---- faint static geometric field (context for the overlay; site uses the real engine) ----
+  function hash2(x, y) { let h = Math.imul(x|0, 374761393) + Math.imul(y|0, 668265263); h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; }
+  function vnoise(x, y) { const xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi, s = t => t*t*(3-2*t); const a = hash2(xi,yi), b = hash2(xi+1,yi), c = hash2(xi,yi+1), d = hash2(xi+1,yi+1); return a + (b-a)*s(xf) + (c-a)*s(yf) + (a-b-c+d)*s(xf)*s(yf); }
+  const GG = "/\\|=+<>-_:.";
+  function paintGeo() {
+    const g = document.getElementById("geo"), c = g.getContext("2d");
+    const dpr = Math.min(2, devicePixelRatio || 1), w = innerWidth, hgt = innerHeight;
+    g.width = w * dpr; g.height = hgt * dpr;
+    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, hgt);
+    c.textAlign = "center"; c.textBaseline = "middle"; c.font = "500 15px 'IBM Plex Mono', monospace";
+    const cell = 20;
+    for (let y = cell/2; y < hgt; y += cell) for (let x = cell/2; x < w; x += cell) {
+      const n = vnoise(x * 0.012, y * 0.012), n2 = vnoise(x * 0.05 + 9, y * 0.05 + 3);
+      if (n < 0.34) continue;
+      const b = 30 + 34 * n2;
+      c.fillStyle = hash2(x, y) < 0.006 ? "#6e1220" : "rgb(" + (b|0) + "," + ((b+3)|0) + "," + ((b+8)|0) + ")";
+      c.fillText(GG[Math.min(GG.length - 1, (n2 * 1.4 * GG.length) | 0)], x, y);
+    }
+  }
+
+  let ctl = null;
+  function boot() {
+    paintGeo();
+    ctl = window.XGVE_initCanopy(document.getElementById("canopy"), { palette: "moss", growDelay: 350 });
+    const $ = (id) => document.getElementById(id);
+    $("replay").onclick = () => ctl.replay();
+    $("s-breathe").oninput = (e) => ctl.set({ breathe: e.target.value / 100 });
+    $("s-bulge").oninput = (e) => ctl.set({ bulge: e.target.value / 100 });
+    $("s-density").oninput = (e) => ctl.set({ density: e.target.value / 100 });
+    $("s-glow").oninput = (e) => ctl.set({ glow: e.target.value / 10 });
+    $("s-scrim").oninput = (e) => ctl.set({ scrim: e.target.value / 100 });
+    document.querySelectorAll("#pal button").forEach((b) => b.onclick = () => {
+      ctl.set({ palette: b.dataset.p });
+      document.querySelectorAll("#pal button").forEach((x) => x.classList.toggle("on", x === b));
+    });
+  }
+  let rz = 0;
+  window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(paintGeo, 180); });
+  boot();
+})();
+</script>
+</body>
+</html>

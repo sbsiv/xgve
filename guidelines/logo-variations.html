@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="design_doc_mode" content="canvas">
+<title>XGVE — Logo Variations</title>
+<link rel="icon" href="../assets/web/xgve-favicon.ico">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html, body { margin: 0; }
+  body {
+    position: relative;
+    min-width: 2140px; min-height: 1460px;
+    font-family: var(--font-body);
+    color: var(--content-primary);
+  }
+
+  /* ---- title ---- */
+  .title { position: absolute; left: 64px; top: 46px; }
+  .title h1 {
+    margin: 0; font-family: var(--font-display); font-weight: 700;
+    font-size: 34px; letter-spacing: var(--tracking-tight); color: #fff;
+  }
+  .title p {
+    margin: 8px 0 0; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--content-muted);
+  }
+  .title p .red { color: var(--accent); }
+
+  /* ---- specimen card ---- */
+  .frame {
+    position: absolute; width: 460px; height: 320px;
+    background: var(--xg-n-2); border: 1px solid var(--border-default);
+    display: flex; flex-direction: column;
+  }
+  .art { flex: 1; display: grid; place-items: center; overflow: hidden; padding: 16px; }
+  .art--black { background: var(--xg-black); }
+  .art--light { background: #ffffff; }
+  .art--red   { background: var(--xg-red); }
+  .bar {
+    height: 42px; flex: none; border-top: 1px solid var(--border-default);
+    display: flex; align-items: center; gap: 10px; padding: 0 14px;
+    background: var(--xg-n-1);
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--content-secondary);
+  }
+  .bar .n { color: var(--accent); }
+  .bar .tag { margin-left: auto; color: var(--content-faint); letter-spacing: var(--tracking-wide); }
+
+  img.e, img.w { display: block; }
+  .mono-white { filter: brightness(0) invert(1); }
+  .black      { filter: brightness(0); }
+
+  .lk { display: flex; align-items: center; justify-content: center; }
+  .lk.stack { flex-direction: column; gap: 16px; }
+  .lk.row   { flex-direction: row; gap: 22px; }
+
+  /* lockup + tagline */
+  .tagline {
+    margin: 14px 0 0; font-family: var(--font-mono); font-size: 12px;
+    letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--content-secondary); text-align: center;
+  }
+  .tagline .dot { color: var(--accent); }
+
+  /* studio descriptor */
+  .descriptor { font-family: var(--font-display); font-weight: 600; font-size: 13px;
+    letter-spacing: 0.34em; color: var(--content-secondary); padding-left: 4px; }
+
+  /* broken-ring badge */
+  .ringframe { position: relative; width: 208px; height: 208px; display: grid; place-items: center; }
+  .ringframe::before {
+    content: ""; position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(from -18deg, var(--accent) 0deg 22deg, transparent 22deg 52deg,
+                var(--xg-n-6) 52deg 300deg, transparent 300deg 360deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 2px));
+    opacity: 0.55;
+  }
+
+  /* app icon set */
+  .icons { display: flex; gap: 18px; align-items: flex-start; }
+  .icons .col { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .icons .sq { width: 84px; height: 84px; display: grid; place-items: center; border: 1px solid var(--border-subtle); }
+  .icons .sq.black { background: var(--xg-black); }
+  .icons .sq.red   { background: var(--xg-red); border-color: transparent; }
+  .icons .sq.light { background: #fff; border-color: transparent; }
+  .icons .lbl { font-family: var(--font-mono); font-size: 9px; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--content-muted); }
+
+  /* note */
+  .note {
+    position: absolute; left: 64px; top: 1318px; width: 1500px;
+    font-family: var(--font-mono); font-size: 12px; line-height: 1.7;
+    letter-spacing: var(--tracking-wide); color: var(--content-muted);
+  }
+  .note b { color: var(--content-secondary); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div class="title">
+  <h1>XGVE — Logo variations</h1>
+  <p>Fresh treatments of the existing mark &nbsp;<span class="red">//</span>&nbsp; composition · colour · light/red field · lockups · badge · app icons</p>
+</div>
+
+<!-- ROW 0 — core lockups (black field) -->
+<div class="frame" style="left:64px; top:150px;">
+  <div class="art art--black">
+    <div class="lk stack">
+      <img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:84px;" alt="">
+      <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:210px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">01</span> Primary · Stacked <span class="tag">full colour</span></div>
+</div>
+
+<div class="frame" style="left:568px; top:150px;">
+  <div class="art art--black">
+    <div class="lk row">
+      <img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:66px;" alt="">
+      <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:180px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">02</span> Horizontal <span class="tag">full colour</span></div>
+</div>
+
+<div class="frame" style="left:1072px; top:150px;">
+  <div class="art art--black">
+    <div class="lk stack" style="gap:22px;">
+      <img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:126px;" alt="">
+      <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:118px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">03</span> Emblem-forward <span class="tag">full colour</span></div>
+</div>
+
+<div class="frame" style="left:1576px; top:150px;">
+  <div class="art art--black">
+    <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:330px;" alt="">
+  </div>
+  <div class="bar"><span class="n">04</span> Wordmark only <span class="tag">full colour</span></div>
+</div>
+
+<!-- ROW 1 — colour treatments -->
+<div class="frame" style="left:64px; top:534px;">
+  <div class="art art--black">
+    <div class="lk stack">
+      <img class="e mono-white" src="../assets/icon/xgve-icon-transparent.png" style="height:84px;" alt="">
+      <img class="w mono-white" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:210px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">05</span> Mono <span class="tag">no red</span></div>
+</div>
+
+<div class="frame" style="left:568px; top:534px;">
+  <div class="art art--light">
+    <div class="lk stack">
+      <img class="e black" src="../assets/icon/xgve-icon-transparent.png" style="height:84px;" alt="">
+      <img class="w black" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:210px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">06</span> Light field <span class="tag">black on white</span></div>
+</div>
+
+<div class="frame" style="left:1072px; top:534px;">
+  <div class="art art--red">
+    <div class="lk stack">
+      <img class="e mono-white" src="../assets/icon/xgve-icon-transparent.png" style="height:84px;" alt="">
+      <img class="w mono-white" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:210px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">07</span> Signal-Red field <span class="tag">white lockup</span></div>
+</div>
+
+<div class="frame" style="left:1576px; top:534px;">
+  <div class="art art--black">
+    <img class="e mono-white" src="../assets/icon/xgve-icon-transparent.png" style="height:150px;" alt="">
+  </div>
+  <div class="bar"><span class="n">08</span> Emblem only <span class="tag">mono</span></div>
+</div>
+
+<!-- ROW 2 — fresh lockups, badge, app icons -->
+<div class="frame" style="left:64px; top:918px;">
+  <div class="art art--black">
+    <div class="lk stack" style="gap:12px;">
+      <img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:70px;" alt="">
+      <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:188px;" alt="">
+      <div class="tagline">Good taste, engineered<span class="dot">.</span></div>
+    </div>
+  </div>
+  <div class="bar"><span class="n">09</span> Lockup + tagline <span class="tag">typeset</span></div>
+</div>
+
+<div class="frame" style="left:568px; top:918px;">
+  <div class="art art--black">
+    <div class="lk row" style="gap:18px;">
+      <img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:72px;" alt="">
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <img class="w" src="../assets/wordmark/xgve-wordmark-transparent.png" style="width:150px;" alt="">
+        <div class="descriptor">STUDIOS</div>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span class="n">10</span> Studio descriptor <span class="tag">wordmark + type</span></div>
+</div>
+
+<div class="frame" style="left:1072px; top:918px;">
+  <div class="art art--black">
+    <div class="ringframe">
+      <img class="e mono-white" src="../assets/icon/xgve-icon-transparent.png" style="height:92px;" alt="">
+    </div>
+  </div>
+  <div class="bar"><span class="n">11</span> Broken-ring badge <span class="tag">motif frame</span></div>
+</div>
+
+<div class="frame" style="left:1576px; top:918px;">
+  <div class="art art--black">
+    <div class="icons">
+      <div class="col">
+        <div class="sq black"><img class="e" src="../assets/icon/xgve-icon-transparent.png" style="height:52px;" alt=""></div>
+        <div class="lbl">Black</div>
+      </div>
+      <div class="col">
+        <div class="sq red"><img class="e mono-white" src="../assets/icon/xgve-icon-transparent.png" style="height:52px;" alt=""></div>
+        <div class="lbl">Signal</div>
+      </div>
+      <div class="col">
+        <div class="sq light"><img class="e black" src="../assets/icon/xgve-icon-transparent.png" style="height:52px;" alt=""></div>
+        <div class="lbl">Light</div>
+      </div>
+    </div>
+  </div>
+  <div class="bar"><span class="n">12</span> App icons <span class="tag">emblem</span></div>
+</div>
+
+<div class="note">
+  <b>All twelve are treatments of your existing mark</b> — composition, colour, field and lockup only. Nothing is redrawn. Mono/light/red use CSS colour filters on the real emblem + wordmark-only artwork (no baked tagline). #09–#10 typeset the new positioning (<b>“Good taste, engineered.”</b> / <b>STUDIOS</b>) rather than baking it into the mark. Tell me the number(s) you like and I’ll export them as standalone asset files and set the winner as the site + design-system default. A brand-new emblem shape would need new source artwork.
+</div>
+
+</body>
+</html>
