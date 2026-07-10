@@ -1,0 +1,36 @@
+/* XGVE — Effects: elevation, overlays, blur, rules
+ * The identity forbids glow, bevels and soft drop shadows on the mark. In UI,
+ * elevation is expressed primarily by SURFACE LIGHTNESS + a hairline technical
+ * rule — not by fuzzy shadows. Real shadows are reserved for true overlays
+ * (menus, dialogs) floating above content, and stay tight and pure-black
+ * (no colour, no glow).
+ */
+
+:root {
+  /* ---- Elevation via border (preferred on the black field) ----------- */
+  --elevation-flat:    0 0 0 1px var(--border-subtle);
+  --elevation-raised:  0 0 0 1px var(--border-default);
+
+  /* ---- Overlay shadows (tight, pure black — for floating layers only) - */
+  --shadow-sm:      0 2px 8px -2px rgb(0 0 0 / 0.6);
+  --shadow-md:      0 8px 24px -8px rgb(0 0 0 / 0.7);
+  --shadow-overlay: 0 24px 64px -20px rgb(0 0 0 / 0.85);
+  --shadow-none:    none;
+
+  /* ---- Focus ring (double-stroke: offset gap + Signal Red) ----------- */
+  --ring-focus: 0 0 0 2px var(--focus-ring-offset), 0 0 0 4px var(--focus-ring);
+
+  /* ---- Backdrop blur (used sparingly — dark scrims, sticky headers) --- */
+  --blur-sm: 6px;   /* @kind other */
+  --blur-md: 12px;  /* @kind other */
+  --blur-lg: 24px;  /* @kind other */
+
+  /* ---- Scrim / protection field (over imagery, so the mark stays clean) */
+  --scrim-weak:   rgb(0 0 0 / 0.45);
+  --scrim-strong: rgb(0 0 0 / 0.72);
+  --scrim-solid:  var(--xg-black);
+
+  /* ---- Technical hairline rule (1px divider on the field) ------------- */
+  --rule-color: var(--border-default);
+  --rule: var(--border-thin) solid var(--rule-color);
+}
