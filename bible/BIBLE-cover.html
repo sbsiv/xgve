@@ -1,0 +1,68 @@
+<!-- @dsCard group="Bible" viewport="920x600" name="Website Blind-Rebuild Bible" subtitle="Canonical master file — reproduce the XGVE site from zero context (bible/)" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #000; }
+  .cover {
+    width: 920px; min-height: 600px; background: #000; color: #e9eaec;
+    font-family: var(--font-mono, "IBM Plex Mono", monospace);
+    padding: 40px 44px; position: relative; overflow: hidden;
+  }
+  .kicker { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: #5c5d64; }
+  .kicker b { color: #e6021b; font-weight: 500; }
+  h1 {
+    font-family: var(--font-display, "Space Grotesk", sans-serif);
+    font-weight: 700; font-size: 40px; letter-spacing: -0.02em; line-height: 1.02;
+    margin: 14px 0 6px; color: #fff;
+  }
+  h1 .r { color: #e6021b; }
+  .sub { font-size: 13px; line-height: 1.7; color: #a8a9b0; max-width: 720px; margin: 0 0 26px; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 26px; }
+  .row { display: flex; gap: 12px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid #1c1c1f; }
+  .num { color: #e6021b; font-size: 11px; width: 26px; flex: none; letter-spacing: 0.1em; }
+  .lbl { color: #cacbd0; font-size: 12.5px; }
+  .lbl small { display: block; color: #5c5d64; font-size: 10.5px; letter-spacing: 0.04em; margin-top: 1px; }
+  .foot {
+    margin-top: 26px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: #83848c;
+  }
+  .chip { border: 1px solid #26262a; padding: 6px 11px; color: #cacbd0; }
+  .chip.red { color: #ff2a38; border-color: rgba(216,32,46,0.5); }
+  .mark { position: absolute; right: 40px; top: 34px; width: 92px; opacity: 0.9; }
+</style>
+</head>
+<body>
+<div class="cover">
+  <img class="mark" src="../assets/icon/xgve-icon-transparent.png" alt="XGVE">
+  <div class="kicker">XGVE Studios <b>//</b> Canonical Master File</div>
+  <h1>Website Blind&#8209;Rebuild <span class="r">Bible</span></h1>
+  <p class="sub">The single source of truth for the XGVE site. Everything needed to reproduce it — appearance <i>and</i> behaviour — with no access to the original project, chat, or Figma. Reproduce, don't reinterpret. When code and doc disagree, <b>the code in /site is canon</b>.</p>
+  <div class="grid">
+    <div class="row"><span class="num">00</span><span class="lbl">Index &amp; identity<small>principles / anti-principles</small></span></div>
+    <div class="row"><span class="num">01</span><span class="lbl">Foundations<small>exact tokens · type · z-index</small></span></div>
+    <div class="row"><span class="num">02</span><span class="lbl">ASCII system<small>ramps · atlas · field math · pseudo-depth</small></span></div>
+    <div class="row"><span class="num">03</span><span class="lbl">Metallic &amp; hybrid<small>split emblem, exploded</small></span></div>
+    <div class="row"><span class="num">04</span><span class="lbl">Component library<small>anatomy · states</small></span></div>
+    <div class="row"><span class="num">05</span><span class="lbl">Motion &amp; interaction<small>timing tables</small></span></div>
+    <div class="row"><span class="num">06</span><span class="lbl">Responsive<small>breakpoints · clamp formulas</small></span></div>
+    <div class="row"><span class="num">07</span><span class="lbl">Technical<small>rendering strategy · perf</small></span></div>
+    <div class="row"><span class="num">08</span><span class="lbl">Assets<small>manifest · export</small></span></div>
+    <div class="row"><span class="num">09</span><span class="lbl">Checklist &amp; failures<small>18 pitfalls, detect &amp; fix</small></span></div>
+    <div class="row"><span class="num">10</span><span class="lbl">Master prompt<small>self-contained, blind</small></span></div>
+    <div class="row"><span class="num">★</span><span class="lbl">MINIMAL<small>fast-rebuild cheat sheet</small></span></div>
+  </div>
+  <div class="foot">
+    <span class="chip">Void Black #000</span>
+    <span class="chip red">Signal Red #E6021B</span>
+    <span class="chip">IBM Plex Mono</span>
+    <span class="chip">Pseudo-depth from density</span>
+    <span class="chip">Half-ASCII / half-metal</span>
+  </div>
+</div>
+</body>
+</html>

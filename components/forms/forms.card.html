@@ -1,0 +1,73 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Form controls" subtitle="Input · Select · Checkbox · Radio · Switch" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-canvas); color: var(--content-primary);
+         font-family: var(--font-body); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 28px; align-items: start; }
+  .lab { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-widest);
+         text-transform: uppercase; color: var(--content-muted); margin: 0 0 12px; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .col { display: flex; flex-direction: column; gap: 14px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const NS = window.XGVEDesignSystem_c9ef21;
+  const { Input, Select, Checkbox, Radio, RadioGroup, Switch } = NS;
+  const S = (p) => <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+      strokeLinecap="round" strokeLinejoin="round">{p}</svg>;
+  const Search = () => <S><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></S>;
+  const Copy = () => <S><rect x="9" y="9" width="11" height="11" rx="1"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></S>;
+
+  function Demo() {
+    return (
+      <div className="grid">
+        <div className="col">
+          <div><p className="lab">Text input</p>
+            <div className="stack">
+              <Input label="Project name" placeholder="untitled-project" required />
+              <Input label="Search nodes" leading={<Search/>} placeholder="Find a node…" />
+              <Input label="Seed" error="Must be a positive integer" defaultValue="-1" />
+            </div>
+          </div>
+          <div><p className="lab">Select</p>
+            <Select label="Runtime" placeholder="Select runtime…" options={['Node','Deno','Bun']} />
+          </div>
+        </div>
+        <div className="col">
+          <div><p className="lab">Checkbox</p>
+            <div className="stack">
+              <Checkbox label="Enable telemetry" defaultChecked />
+              <Checkbox label="Select all" indeterminate />
+              <Checkbox label="Auto-deploy" description="Ship on every green build" />
+            </div>
+          </div>
+          <div><p className="lab">Radio</p>
+            <RadioGroup legend="Deploy target">
+              <Radio name="t" value="prod" label="Production" defaultChecked />
+              <Radio name="t" value="staging" label="Staging" />
+            </RadioGroup>
+          </div>
+          <div><p className="lab">Switch</p>
+            <div className="stack">
+              <Switch label="Live mode" defaultChecked />
+              <Switch size="sm" label="Reduced motion" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

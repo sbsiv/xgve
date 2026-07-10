@@ -1,0 +1,589 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "archive/ascii-terminal/**",
+              "components/actions/**",
+              "components/data-display/**",
+              "components/feedback/**",
+              "components/forms/**",
+              "components/navigation/**",
+              "deploy/site/**",
+              "design-handoff/ascii-foxglove/source/**",
+              "site/**",
+              "ui_kits/xgve-console/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Space Grotesk|Inter|IBM Plex Mono))/i]",
+        "message": "Font not provided by the design system. Available: Space Grotesk, Inter, IBM Plex Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|dot|pulse|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, variant, size, dot, pulse."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:neutral|signal|signal-soft|outline|positive|warning)$/]",
+        "message": "<Badge> variant must be one of 'neutral' | 'signal' | 'signal-soft' | 'outline' | 'positive' | 'warning'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Badge> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|size|iconLeft|iconRight|fullWidth|chamfer|loading|disabled|type|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, size, iconLeft, iconRight, fullWidth, chamfer, loading, disabled, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|secondary|ghost|danger)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'secondary' | 'ghost' | 'danger'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|padding|accent|chamfer|interactive|as|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: children, variant, padding, accent, chamfer, interactive, as."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:raised|flat|overlay|outline)$/]",
+        "message": "<Card> variant must be one of 'raised' | 'flat' | 'overlay' | 'outline'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute[name.name='padding'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Card> padding must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Checkbox'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|description|indeterminate|disabled|key|ref|className|style|children)$/]",
+        "message": "<Checkbox> doesn't accept that prop. Declared props: label, description, indeterminate, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Dialog'] > JSXAttribute > JSXIdentifier[name!=/^(?:open|onClose|eyebrow|title|description|children|footer|accent|width|closeOnScrim|key|ref|className|style|children)$/]",
+        "message": "<Dialog> doesn't accept that prop. Declared props: open, onClose, eyebrow, title, description, children, footer, accent, width, closeOnScrim."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|label|variant|size|active|disabled|type|key|ref|className|style|children)$/]",
+        "message": "<IconButton> doesn't accept that prop. Declared props: children, label, variant, size, active, disabled, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:ghost|outline|solid)$/]",
+        "message": "<IconButton> variant must be one of 'ghost' | 'outline' | 'solid'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<IconButton> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='IconButton'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<IconButton> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|required|size|leading|trailing|error|hint|disabled|key|ref|className|style|children)$/]",
+        "message": "<Input> doesn't accept that prop. Declared props: label, required, size, leading, trailing, error, hint, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Input'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Input> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ProgressRing'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|size|thickness|gap|indeterminate|showValue|label|key|ref|className|style|children)$/]",
+        "message": "<ProgressRing> doesn't accept that prop. Declared props: value, size, thickness, gap, indeterminate, showValue, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Radio'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|description|disabled|key|ref|className|style|children)$/]",
+        "message": "<Radio> doesn't accept that prop. Declared props: label, description, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SelectOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|disabled|key|ref|className|style|children)$/]",
+        "message": "<SelectOption> doesn't accept that prop. Declared props: value, label, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Switch'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|size|disabled|key|ref|className|style|children)$/]",
+        "message": "<Switch> doesn't accept that prop. Declared props: label, size, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Switch'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md)$/]",
+        "message": "<Switch> size must be one of 'sm' | 'md'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TabItem'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|icon|count|disabled|key|ref|className|style|children)$/]",
+        "message": "<TabItem> doesn't accept that prop. Declared props: value, label, icon, count, disabled."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tag'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|selected|dot|onRemove|onClick|key|ref|className|style|children)$/]",
+        "message": "<Tag> doesn't accept that prop. Declared props: children, selected, dot, onRemove, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Toast'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|title|message|icon|actionLabel|onAction|onClose|key|ref|className|style|children)$/]",
+        "message": "<Toast> doesn't accept that prop. Declared props: variant, title, message, icon, actionLabel, onAction, onClose."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Toast'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:default|signal|positive|warning)$/]",
+        "message": "<Toast> variant must be one of 'default' | 'signal' | 'positive' | 'warning'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|shortcut|placement|children|key|ref|className|style|children)$/]",
+        "message": "<Tooltip> doesn't accept that prop. Declared props: label, shortcut, placement, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tooltip'] > JSXAttribute[name.name='placement'] > Literal[value!=/^(?:top|bottom|left|right)$/]",
+        "message": "<Tooltip> placement must be one of 'top' | 'bottom' | 'left' | 'right'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "Card": {
+        "replaces": []
+      },
+      "Checkbox": {
+        "replaces": []
+      },
+      "Dialog": {
+        "replaces": []
+      },
+      "IconButton": {
+        "replaces": []
+      },
+      "Input": {
+        "replaces": []
+      },
+      "ProgressRing": {
+        "replaces": []
+      },
+      "Radio": {
+        "replaces": []
+      },
+      "SelectOption": {
+        "replaces": []
+      },
+      "Switch": {
+        "replaces": []
+      },
+      "TabItem": {
+        "replaces": []
+      },
+      "Tag": {
+        "replaces": []
+      },
+      "Toast": {
+        "replaces": []
+      },
+      "Tooltip": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent",
+      "--accent-active",
+      "--accent-border",
+      "--accent-content",
+      "--accent-hover",
+      "--accent-surface",
+      "--accent-surface-hover",
+      "--blur-lg",
+      "--blur-md",
+      "--blur-sm",
+      "--border-default",
+      "--border-hairline",
+      "--border-heavy",
+      "--border-inverse",
+      "--border-strong",
+      "--border-subtle",
+      "--border-thick",
+      "--border-thin",
+      "--chamfer-lg",
+      "--chamfer-md",
+      "--chamfer-sm",
+      "--chamfer-xl",
+      "--container-2xl",
+      "--container-lg",
+      "--container-md",
+      "--container-sm",
+      "--container-xl",
+      "--content-faint",
+      "--content-inverse",
+      "--content-muted",
+      "--content-on-accent",
+      "--content-primary",
+      "--content-secondary",
+      "--dur-base",
+      "--dur-fast",
+      "--dur-instant",
+      "--dur-slow",
+      "--dur-slower",
+      "--ease-accel",
+      "--ease-enter",
+      "--ease-in-out",
+      "--ease-out",
+      "--elevation-flat",
+      "--elevation-raised",
+      "--focus-ring",
+      "--focus-ring-offset",
+      "--font-body",
+      "--font-display",
+      "--font-eyebrow",
+      "--font-heading",
+      "--font-metric",
+      "--font-mono",
+      "--gutter",
+      "--icon-lg",
+      "--icon-md",
+      "--icon-sm",
+      "--icon-xl",
+      "--icon-xs",
+      "--leading-none",
+      "--leading-normal",
+      "--leading-relaxed",
+      "--leading-snug",
+      "--leading-tight",
+      "--logo-1x",
+      "--logo-clear-compact",
+      "--logo-clear-emblem",
+      "--logo-clear-standard",
+      "--logo-min-emblem",
+      "--logo-min-lockup-w",
+      "--radius-0",
+      "--radius-1",
+      "--radius-2",
+      "--radius-3",
+      "--radius-pill",
+      "--ring-focus",
+      "--rule",
+      "--rule-color",
+      "--scrim-solid",
+      "--scrim-strong",
+      "--scrim-weak",
+      "--selection-bg",
+      "--selection-fg",
+      "--shadow-md",
+      "--shadow-none",
+      "--shadow-overlay",
+      "--shadow-sm",
+      "--size-control-lg",
+      "--size-control-md",
+      "--size-control-sm",
+      "--size-control-xl",
+      "--space-0",
+      "--space-1",
+      "--space-10",
+      "--space-11",
+      "--space-12",
+      "--space-13",
+      "--space-14",
+      "--space-15",
+      "--space-16",
+      "--space-2",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-7",
+      "--space-8",
+      "--space-9",
+      "--space-px",
+      "--surface-active",
+      "--surface-canvas",
+      "--surface-default",
+      "--surface-hover",
+      "--surface-inset",
+      "--surface-inverse",
+      "--surface-overlay",
+      "--surface-raised",
+      "--text-2xl",
+      "--text-2xs",
+      "--text-3xl",
+      "--text-4xl",
+      "--text-5xl",
+      "--text-6xl",
+      "--text-7xl",
+      "--text-base",
+      "--text-lg",
+      "--text-md",
+      "--text-sm",
+      "--text-xl",
+      "--text-xs",
+      "--tracking-normal",
+      "--tracking-tight",
+      "--tracking-tighter",
+      "--tracking-wide",
+      "--tracking-wider",
+      "--tracking-widest",
+      "--transition-colors",
+      "--transition-opacity",
+      "--transition-transform",
+      "--weight-bold",
+      "--weight-medium",
+      "--weight-regular",
+      "--weight-semibold",
+      "--xg-black",
+      "--xg-black-rgb",
+      "--xg-fn-critical",
+      "--xg-fn-info",
+      "--xg-fn-positive",
+      "--xg-fn-warning",
+      "--xg-n-0",
+      "--xg-n-1",
+      "--xg-n-10",
+      "--xg-n-11",
+      "--xg-n-12",
+      "--xg-n-13",
+      "--xg-n-2",
+      "--xg-n-3",
+      "--xg-n-4",
+      "--xg-n-5",
+      "--xg-n-6",
+      "--xg-n-7",
+      "--xg-n-8",
+      "--xg-n-9",
+      "--xg-red",
+      "--xg-red-bright",
+      "--xg-red-deep",
+      "--xg-red-dim",
+      "--xg-red-rgb",
+      "--xg-white",
+      "--xg-white-rgb",
+      "--z-base",
+      "--z-dialog",
+      "--z-nav",
+      "--z-overlay",
+      "--z-raised",
+      "--z-sticky",
+      "--z-toast",
+      "--z-tooltip"
+    ],
+    "tokenKinds": {
+      "--xg-black": "color",
+      "--xg-white": "color",
+      "--xg-red": "color",
+      "--xg-black-rgb": "other",
+      "--xg-white-rgb": "other",
+      "--xg-red-rgb": "other",
+      "--xg-red-bright": "color",
+      "--xg-red-deep": "color",
+      "--xg-red-dim": "color",
+      "--xg-n-0": "color",
+      "--xg-n-1": "color",
+      "--xg-n-2": "color",
+      "--xg-n-3": "color",
+      "--xg-n-4": "color",
+      "--xg-n-5": "color",
+      "--xg-n-6": "color",
+      "--xg-n-7": "color",
+      "--xg-n-8": "color",
+      "--xg-n-9": "color",
+      "--xg-n-10": "color",
+      "--xg-n-11": "color",
+      "--xg-n-12": "color",
+      "--xg-n-13": "color",
+      "--xg-fn-positive": "color",
+      "--xg-fn-warning": "color",
+      "--xg-fn-info": "color",
+      "--xg-fn-critical": "color",
+      "--surface-canvas": "color",
+      "--surface-inset": "color",
+      "--surface-default": "color",
+      "--surface-raised": "color",
+      "--surface-overlay": "color",
+      "--surface-hover": "color",
+      "--surface-active": "color",
+      "--surface-inverse": "color",
+      "--content-primary": "color",
+      "--content-secondary": "color",
+      "--content-muted": "color",
+      "--content-faint": "color",
+      "--content-inverse": "color",
+      "--content-on-accent": "color",
+      "--border-subtle": "color",
+      "--border-default": "color",
+      "--border-strong": "color",
+      "--border-inverse": "color",
+      "--accent": "color",
+      "--accent-hover": "color",
+      "--accent-active": "color",
+      "--accent-content": "color",
+      "--accent-surface": "color",
+      "--accent-surface-hover": "color",
+      "--accent-border": "color",
+      "--focus-ring": "color",
+      "--focus-ring-offset": "color",
+      "--selection-bg": "color",
+      "--selection-fg": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--text-2xs": "font",
+      "--text-xs": "font",
+      "--text-sm": "font",
+      "--text-base": "font",
+      "--text-md": "font",
+      "--text-lg": "font",
+      "--text-xl": "font",
+      "--text-2xl": "font",
+      "--text-3xl": "font",
+      "--text-4xl": "font",
+      "--text-5xl": "font",
+      "--text-6xl": "font",
+      "--text-7xl": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--weight-bold": "font",
+      "--leading-none": "font",
+      "--leading-tight": "font",
+      "--leading-snug": "font",
+      "--leading-normal": "font",
+      "--leading-relaxed": "font",
+      "--tracking-tighter": "font",
+      "--tracking-tight": "font",
+      "--tracking-normal": "font",
+      "--tracking-wide": "font",
+      "--tracking-wider": "font",
+      "--tracking-widest": "font",
+      "--font-eyebrow": "font",
+      "--font-heading": "font",
+      "--font-metric": "font",
+      "--space-0": "spacing",
+      "--space-px": "spacing",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-7": "spacing",
+      "--space-8": "spacing",
+      "--space-9": "spacing",
+      "--space-10": "spacing",
+      "--space-11": "spacing",
+      "--space-12": "spacing",
+      "--space-13": "spacing",
+      "--space-14": "spacing",
+      "--space-15": "spacing",
+      "--space-16": "spacing",
+      "--radius-0": "radius",
+      "--radius-1": "radius",
+      "--radius-2": "radius",
+      "--radius-3": "radius",
+      "--radius-pill": "radius",
+      "--chamfer-sm": "spacing",
+      "--chamfer-md": "spacing",
+      "--chamfer-lg": "spacing",
+      "--chamfer-xl": "spacing",
+      "--border-hairline": "spacing",
+      "--border-thin": "spacing",
+      "--border-thick": "spacing",
+      "--border-heavy": "spacing",
+      "--size-control-sm": "spacing",
+      "--size-control-md": "spacing",
+      "--size-control-lg": "spacing",
+      "--size-control-xl": "spacing",
+      "--icon-xs": "spacing",
+      "--icon-sm": "spacing",
+      "--icon-md": "spacing",
+      "--icon-lg": "spacing",
+      "--icon-xl": "spacing",
+      "--container-sm": "spacing",
+      "--container-md": "spacing",
+      "--container-lg": "spacing",
+      "--container-xl": "spacing",
+      "--container-2xl": "spacing",
+      "--gutter": "color",
+      "--logo-1x": "spacing",
+      "--logo-clear-standard": "color",
+      "--logo-clear-compact": "color",
+      "--logo-clear-emblem": "color",
+      "--logo-min-lockup-w": "spacing",
+      "--logo-min-emblem": "spacing",
+      "--z-base": "other",
+      "--z-raised": "other",
+      "--z-sticky": "other",
+      "--z-nav": "other",
+      "--z-overlay": "other",
+      "--z-dialog": "other",
+      "--z-toast": "other",
+      "--z-tooltip": "other",
+      "--dur-instant": "other",
+      "--dur-fast": "other",
+      "--dur-base": "other",
+      "--dur-slow": "other",
+      "--dur-slower": "other",
+      "--ease-out": "other",
+      "--ease-in-out": "other",
+      "--ease-accel": "other",
+      "--ease-enter": "other",
+      "--transition-colors": "color",
+      "--transition-transform": "color",
+      "--transition-opacity": "color",
+      "--elevation-flat": "shadow",
+      "--elevation-raised": "shadow",
+      "--shadow-sm": "shadow",
+      "--shadow-md": "shadow",
+      "--shadow-overlay": "shadow",
+      "--shadow-none": "shadow",
+      "--ring-focus": "color",
+      "--blur-sm": "other",
+      "--blur-md": "other",
+      "--blur-lg": "other",
+      "--scrim-weak": "color",
+      "--scrim-strong": "color",
+      "--scrim-solid": "color",
+      "--rule-color": "color",
+      "--rule": "color"
+    },
+    "fontFamilies": [
+      "IBM Plex Mono",
+      "Inter",
+      "Space Grotesk"
+    ]
+  }
+}

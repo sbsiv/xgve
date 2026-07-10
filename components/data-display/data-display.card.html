@@ -1,0 +1,79 @@
+<!-- @dsCard group="Components" viewport="700x480" name="Card · Badge · Tag" subtitle="Surfaces, status chips & interactive tokens" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-canvas); color: var(--content-primary);
+         font-family: var(--font-body); }
+  .lab { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-widest);
+         text-transform: uppercase; color: var(--content-muted); margin: 0 0 12px; }
+  .grp { margin-bottom: 22px; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-widest);
+             text-transform: uppercase; color: var(--content-muted); margin: 0 0 8px; }
+  h3 { font-size: var(--text-lg); margin: 0 0 4px; }
+  .metric { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--content-secondary); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Card, Badge, Tag } = window.XGVEDesignSystem_c9ef21;
+  function Demo() {
+    const [sel, setSel] = React.useState({ gen: true, games: false });
+    const [tags, setTags] = React.useState(['wasm', 'rust', 'edge']);
+    return (
+      <React.Fragment>
+        <div className="grp">
+          <p className="lab">Cards</p>
+          <div className="cards">
+            <Card accent>
+              <p className="eyebrow">Node · US-East</p>
+              <h3>Aurora</h3>
+              <p className="metric">12ms · nominal</p>
+            </Card>
+            <Card variant="outline" interactive>
+              <p className="eyebrow">Node · EU-West</p>
+              <h3>Halcyon</h3>
+              <p className="metric">28ms · nominal</p>
+            </Card>
+            <Card chamfer variant="overlay">
+              <p className="eyebrow">Build</p>
+              <h3>#1180</h3>
+              <p className="metric">green</p>
+            </Card>
+          </div>
+        </div>
+        <div className="grp">
+          <p className="lab">Badges</p>
+          <div className="row">
+            <Badge variant="signal" dot pulse>Live</Badge>
+            <Badge variant="signal-soft">Beta</Badge>
+            <Badge variant="neutral">v4.2</Badge>
+            <Badge variant="outline" dot>Queued</Badge>
+            <Badge variant="positive" dot>Healthy</Badge>
+            <Badge variant="warning" dot>Degraded</Badge>
+          </div>
+        </div>
+        <div className="grp">
+          <p className="lab">Tags — selectable & removable</p>
+          <div className="row">
+            <Tag dot selected={sel.gen} onClick={() => setSel(s => ({...s, gen: !s.gen}))}>Generative</Tag>
+            <Tag dot selected={sel.games} onClick={() => setSel(s => ({...s, games: !s.games}))}>Games</Tag>
+            {tags.map(t => <Tag key={t} onRemove={() => setTags(a => a.filter(x => x !== t))}>{t}</Tag>)}
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

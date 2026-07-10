@@ -1,0 +1,51 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Tabs" subtitle="Signal-Red active rule · underline & enclosed" -->
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--surface-canvas); color: var(--content-primary);
+         font-family: var(--font-body); }
+  .lab { font-family: var(--font-mono); font-size: 10px; letter-spacing: var(--tracking-widest);
+         text-transform: uppercase; color: var(--content-muted); margin: 0 0 12px; }
+  .grp { margin-bottom: 26px; }
+  .panel { margin-top: 16px; padding: 18px; background: var(--surface-raised);
+           border: var(--border-thin) solid var(--border-subtle); font-family: var(--font-mono);
+           font-size: var(--text-sm); color: var(--content-secondary); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+  const { Tabs } = window.XGVEDesignSystem_c9ef21;
+  const items = [
+    { value: 'overview', label: 'Overview' },
+    { value: 'nodes', label: 'Nodes', count: 4 },
+    { value: 'logs', label: 'Logs' },
+    { value: 'billing', label: 'Billing', disabled: true },
+  ];
+  function Demo() {
+    const [v, setV] = React.useState('overview');
+    return (
+      <React.Fragment>
+        <div className="grp">
+          <p className="lab">Underline</p>
+          <Tabs items={items} value={v} onChange={setV} />
+          <div className="panel">// {v} — panel content</div>
+        </div>
+        <div className="grp">
+          <p className="lab">Enclosed</p>
+          <Tabs items={items} defaultValue="nodes" variant="enclosed" />
+        </div>
+      </React.Fragment>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>
