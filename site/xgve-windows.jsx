@@ -24,7 +24,6 @@
   const LINKS = [
     ["X / TWITTER", "https://x.com/xgvestudios"],
     ["ITCH.IO", "https://xgve.itch.io"],
-    ["GITHUB", "https://github.com/xgve"],
     ["DISCORD", "https://discord.gg/xgve"],
   ];
   const WISHLIST_URL = "";   // set to the Steam/itch store page when live — chip becomes the wishlist link
@@ -84,16 +83,16 @@
   }
 
   function FoxgloveWindow({ onClose }) {
-    return h(RetroWindow, { title: "FOXGLOVE_MULTIVERSAL.APP", x0: Math.max(12, window.innerWidth - 560), y0: 80, w: Math.min(480, window.innerWidth - 24), onClose: onClose },
-      h("div", { style: { display: "flex", gap: 18, padding: 16 } },
-        h(Flora, { w: 240, hpx: 330 }),
-        h("div", { style: { flex: 1, minWidth: 0, paddingTop: 8 } },
-          h("div", { style: { fontSize: 10, letterSpacing: "0.22em", color: "#565b64", textTransform: "uppercase" } }, "FLORA_SERIES"),
-          h("div", { style: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 24, lineHeight: 1.08, color: "#fff", margin: "10px 0 14px" } }, "Foxglove", h("br"), "Multiversal"),
+    return h(RetroWindow, { title: "FOXGLOVE_MULTIVERSAL.APP", x0: Math.max(12, window.innerWidth - 700), y0: 80, w: Math.min(620, window.innerWidth - 24), onClose: onClose },
+      h("div", { style: { display: "flex", gap: 24, padding: 22 } },
+        h(Flora, { w: 310, hpx: 426 }),
+        h("div", { style: { flex: 1, minWidth: 0, paddingTop: 10 } },
+          h("div", { style: { fontSize: 11, letterSpacing: "0.22em", color: "#565b64", textTransform: "uppercase" } }, "FLORA_SERIES"),
+          h("div", { style: { fontFamily: "'Space Grotesk', sans-serif", fontWeight: 700, fontSize: 31, lineHeight: 1.08, color: "#fff", margin: "12px 0 18px" } }, "Foxglove", h("br"), "Multiversal"),
           h("div", { style: { display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 9, marginBottom: 18 } },
             h("div", { style: { background: "#c11722", color: "#fff", fontSize: 10, letterSpacing: "0.16em", padding: "6px 10px" } }, "\u25cf IN DEVELOPMENT"),
             h("a", { href: WISHLIST_URL || ("mailto:xgve@pm.me?subject=" + encodeURIComponent("Notify me: Foxglove Multiversal")), target: WISHLIST_URL ? "_blank" : undefined, rel: WISHLIST_URL ? "noopener" : undefined, title: WISHLIST_URL ? "Wishlist Foxglove Multiversal" : "Get notified when Foxglove Multiversal is available to wishlist", className: "xgwl-btn", style: { display: "inline-block", background: "transparent", border: "1px solid #83848c", color: "#e9eaec", fontSize: 10, letterSpacing: "0.16em", padding: "6px 12px", textDecoration: "none", cursor: "pointer" } }, "WISHLIST")),
-          h("div", { style: { fontSize: 12, lineHeight: 1.8, color: "#6f7480" } },
+          h("div", { style: { fontSize: 13.5, lineHeight: 1.8, color: "#6f7480" } },
             "Climb the corporate ladder while unravelling the mysteries at Foxglove Multiversal.")
         )
       )

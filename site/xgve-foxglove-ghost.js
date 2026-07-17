@@ -100,12 +100,6 @@
       if (rf >= 0) { if (cur === 0) drawGrid(foxCells, rf, 0.85, 0.72, 0.28, "right", true); else drawGrid(wordCells, rf, 0.30, 0.19, 0.40, "bl", false); }
       else {
         window.XGVE_RMASK = null;
-        if (!reduced && (((now / 500) | 0) % 2) === 0) {      // blink where the next build starts
-          var cx2 = idx === 0 ? W * 0.055 : W * 0.85, cy2 = idx === 0 ? H * 0.88 : H * 0.76;
-          ctx.font = "500 14px 'IBM Plex Mono', monospace";
-          ctx.globalAlpha = 0.7; ctx.fillStyle = "rgba(198,204,214,0.9)";
-          ctx.fillText("\u2589", cx2, cy2); ctx.globalAlpha = 1;
-        }
       }
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
